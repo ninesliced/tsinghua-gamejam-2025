@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dx60kwiigg21c"]
+
+[ext_resource type="PackedScene" uid="uid://cwp27or88qkvo" path="res://scenes/player/player.tscn" id="1_6ksfa"]
+[ext_resource type="PackedScene" uid="uid://brac0v3p34xaj" path="res://scenes/collectibles/battery.tscn" id="2_vixcw"]
+
+[node name="Louis" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_6ksfa")]
+position = Vector2(107, 87)
+
+[node name="Battery" parent="." instance=ExtResource("2_vixcw")]
+position = Vector2(152, 71)
