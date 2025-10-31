@@ -11,6 +11,9 @@ var _disabled = false
 @export var time_to_decelerate = 0.1
 @export var speed = 150
 
+signal on_move(velocity: Vector2)
+signal on_stop()
+
 func _ready():
 	var parent = get_parent()
 	if parent is Player:
@@ -33,6 +36,7 @@ func _physics_process(delta):
 		return
 	velocity = handle_movement(delta, _player.velocity)
 	_player.velocity = velocity
+	
 
 
 
@@ -41,7 +45,12 @@ func handle_movement(delta, velocity):
 	var vec = Input.get_vector("left", "right", "up", "down")
 
 	vec = vec.normalized()
+	if vec == Vector2(0, 0):
+		emit_signal("on_stop")
+	else:
+		emit_signal("on_move", vec)
 	new_velocity = handle_acceleration_decceleration(delta, vec, velocity)
+	
 	return new_velocity
 
 func handle_acceleration_decceleration(delta, vec, velocity):

@@ -2,32 +2,64 @@ extends State
 class_name Anchored
 @export var movement_component: MovementComponent
 @export var speed : float = 150.0
+@export var max_speed : float = 300.0
+@export var speed_multiplier : float = 1.2
+var current_speed : float = 0.0:
+	set(value):
+		current_speed = value
+		velocity = direction * pow(current_speed, 1.22)
 var enabled: bool = false
 var player: Player = null
 var selected_anchor: Anchor = null
+var anchor_checkeds: Array[Anchor] = []
 
 var moving_to_anchor: bool = false
+
+var lose_speed_stack_timer: Timer = null
+var velocity : Vector2 = Vector2.ZERO
+var direction : Vector2 = Vector2.ZERO
+var tween : Tween = null
+
+@export var lose_speed_stack_interval : float = 1.0
 
 func on_entity_set():
 	player = entity as Player
 	pass
 
+func lose_speed_stack():
+	if current_speed > speed:
+		current_speed = max(current_speed / speed_multiplier, speed)
+
 func enter():
 	enabled = true
 	movement_component.disable()
-	print(player)
 	player.velocity = Vector2(0, 0)
+	current_speed = speed
+
+	lose_speed_stack_timer = Timer.new()
+	lose_speed_stack_timer.wait_time = lose_speed_stack_interval
+	lose_speed_stack_timer.timeout.connect(lose_speed_stack)
+	lose_speed_stack_timer.one_shot = false
+	lose_speed_stack_timer.start()
+	add_child(lose_speed_stack_timer)
 	pass
 
 func _input(event):
 	if not enabled:
 		return
+	if event.is_action_pressed("interact"):
+		call_deferred("emit_state_finished")
 	pass
+
+func emit_state_finished():
+	state_finished.emit(self, "Normal")
 
 func process(delta):
 	pass
 
 func physics_process(delta):
+	var mouse_pos = get_viewport().get_mouse_position()
+	direction = (mouse_pos - player.global_position).normalized()
 	if moving_to_anchor:
 		return
 	var input_vector = Input.get_vector("left", "right", "up", "down")
@@ -40,21 +72,32 @@ func physics_process(delta):
 	pass
 
 func exit():
+	current_speed = speed
 	enabled = false
 	movement_component.enable()
+	anchor_checkeds.clear()
+	lose_speed_stack_timer.stop()
+	# player.velocity = velocity
+	tween.stop()
+	moving_to_anchor = false
 	pass
 
 func move_to_anchor(target_anchor: Anchor) -> void:
+	lose_speed_stack_timer.stop()
+	current_speed = min(current_speed * speed_multiplier, max_speed)
+		
 	moving_to_anchor = true
-	var tween = player.create_tween()
+	tween = player.create_tween()
+	var target_position = target_anchor.anchor_mark.global_position
 
-	var distance = player.global_position.distance_to(target_anchor.global_position)
-	var duration = distance / speed
-
-	tween.tween_property(player, "global_position", target_anchor.global_position, duration)
+	var distance = player.global_position.distance_to(target_position)
+	var duration = distance / current_speed
+	direction = (target_position - player.global_position).normalized()
+	tween.tween_property(player, "global_position", target_position, duration)
 	var on_tween_completed = func():
 		selected_anchor = target_anchor
 		moving_to_anchor = false
+		lose_speed_stack_timer.start()
 	tween.finished.connect(on_tween_completed)
 
 func _get_linked_anchors() -> Array:

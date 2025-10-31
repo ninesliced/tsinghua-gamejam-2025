@@ -7,15 +7,15 @@ var player: Player = null
 signal on_disabled()
 signal on_enabled()
 
-@onready var animated_sprite_2d: AnimatedSprite2D = %AnimatedSprite2D
+@onready var animated_sprite_2d: AnimatedSprite2D = %AnchorSprite
 @onready var electric_link: ElectricLink = $ElectricLink
 @onready var electric_field_zone: ElectricFieldZone = $ElectricFieldZone
 @onready var player_interaction_zone: Area2D = $PlayerInteractionZone
+@onready var anchor_mark: Marker2D = %AnchorMark
 
 func _on_player_interaction_zone_on_player_exited(player: Player):
 	if is_processing() == false:
 		return
-	animated_sprite_2d.play("default")
 	can_collect = false
 	player.anchor_manager.anchors_in_range.erase(self)
 	player = null
@@ -24,7 +24,7 @@ func _on_player_interaction_zone_on_player_entered(player: Player):
 	if is_processing() == false:
 		return
 	can_collect = true
-	animated_sprite_2d.play("near")
+	# animated_sprite_2d.play("near")
 	self.player = player
 	player.anchor_manager.anchors_in_range.append(self)
 

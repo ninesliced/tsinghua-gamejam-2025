@@ -1,34 +1,29 @@
-[gd_scene load_steps=11 format=3 uid="uid://i8mrq45e3ure"]
+[gd_scene load_steps=12 format=3 uid="uid://i8mrq45e3ure"]
 
 [ext_resource type="Script" uid="uid://bjeuw8oor4ins" path="res://scenes/anchors/anchor.gd" id="1_xdr0r"]
-[ext_resource type="Texture2D" uid="uid://c0vgnvipqqoaj" path="res://placeholder/place_holder_sprite.png" id="2_4qvrl"]
 [ext_resource type="Script" uid="uid://d0ncy2pvdp87m" path="res://scenes/anchors/electric_field_zone.gd" id="2_b7jhl"]
+[ext_resource type="Texture2D" uid="uid://v0dc4lx8vsnp" path="res://assets/tilesheet/tilesheet.png" id="3_ps13o"]
 [ext_resource type="PackedScene" uid="uid://ckpbluy0ns4u5" path="res://scenes/components/player_interaction_zone.tscn" id="4_ps13o"]
+[ext_resource type="Script" uid="uid://bej1q2jw7wtyw" path="res://scenes/anchors/anchor_sprite.gd" id="4_qb2g3"]
 [ext_resource type="Script" uid="uid://b4mwtdmf2m4om" path="res://scenes/anchors/electric_link.gd" id="5_ps13o"]
+[ext_resource type="Script" uid="uid://c30n30gmpxb8p" path="res://scenes/anchors/electric_line/electric_line.gd" id="7_ijs5a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ayfc7"]
 radius = 61.03278
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vhrr1"]
-atlas = ExtResource("2_4qvrl")
-region = Rect2(96, 160, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijs5a"]
+atlas = ExtResource("3_ps13o")
+region = Rect2(16, 0, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t7rn2"]
-atlas = ExtResource("2_4qvrl")
-region = Rect2(16, 160, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0p1gy"]
-atlas = ExtResource("2_4qvrl")
-region = Rect2(80, 160, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_qb2g3"]
+atlas = ExtResource("3_ps13o")
+region = Rect2(32, 0, 16, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_p873x"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vhrr1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_t7rn2")
+"texture": SubResource("AtlasTexture_ijs5a")
 }],
 "loop": true,
 "name": &"default",
@@ -36,10 +31,18 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0p1gy")
+"texture": SubResource("AtlasTexture_qb2g3")
 }],
 "loop": true,
-"name": &"near",
+"name": &"linked",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qb2g3")
+}],
+"loop": true,
+"name": &"near_1",
 "speed": 2.0
 }]
 
@@ -53,12 +56,26 @@ script = ExtResource("2_b7jhl")
 shape = SubResource("CircleShape2D_ayfc7")
 debug_color = Color(10.127623, 7.851116, 0, 0.050980393)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnchorSprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("electric_line")]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_p873x")
-animation = &"near"
-autoplay = "default"
-frame_progress = 0.66999686
+script = ExtResource("4_qb2g3")
+electric_line = NodePath("AnchorMark/ElectricLine")
+
+[node name="AnchorMark" type="Marker2D" parent="AnchorSprite"]
+unique_name_in_owner = true
+position = Vector2(0, -9)
+
+[node name="ElectricLine" type="Line2D" parent="AnchorSprite/AnchorMark"]
+unique_name_in_owner = true
+visible = false
+width = 2.0
+default_color = Color(1, 0.8156863, 0.38039216, 1)
+script = ExtResource("7_ijs5a")
+noise_amplitude = 3.0
+number_of_segments = 10
+update_frequency = 0.125
+metadata/_custom_type_script = "uid://c30n30gmpxb8p"
 
 [node name="PlayerInteractionZone" parent="." instance=ExtResource("4_ps13o")]
 
@@ -79,3 +96,7 @@ offset_bottom = -27.0
 [connection signal="area_entered" from="ElectricFieldZone" to="ElectricFieldZone" method="_on_area_entered"]
 [connection signal="on_player_entered" from="PlayerInteractionZone" to="." method="_on_player_interaction_zone_on_player_entered"]
 [connection signal="on_player_exited" from="PlayerInteractionZone" to="." method="_on_player_interaction_zone_on_player_exited"]
+[connection signal="on_emptied" from="ElectricLink" to="AnchorSprite" method="_on_electric_link_on_emptied"]
+[connection signal="on_emptied" from="ElectricLink" to="AnchorSprite/AnchorMark" method="_on_electric_link_on_emptied"]
+[connection signal="on_linked" from="ElectricLink" to="AnchorSprite" method="_on_electric_link_on_linked"]
+[connection signal="on_linked" from="ElectricLink" to="AnchorSprite/AnchorMark" method="_on_electric_link_on_linked"]

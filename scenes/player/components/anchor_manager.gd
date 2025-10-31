@@ -21,7 +21,6 @@ func _ready():
 	pass
 
 func handle_anchor_action():
-	print(anchors_in_range.size())
 	if anchors_in_range.size() > 0:
 		var nearest_anchor = null
 		var nearest_distance = INF
