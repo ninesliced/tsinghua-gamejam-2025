@@ -32,8 +32,6 @@ func disable():
 	set_process(false)
 	hide()
 	set_all_areas(false)
-	print("--------------")
-	print("all areas disabled")
 	on_disabled.emit()
 	SignalBus.on_anchor_disabled.emit(self)
 
