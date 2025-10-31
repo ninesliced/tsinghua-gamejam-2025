@@ -1,12 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://kc1des6ujkfo"]
+[gd_scene load_steps=2 format=3 uid="uid://kc1des6ujkfo"]
 
 [ext_resource type="PackedScene" uid="uid://cwp27or88qkvo" path="res://scenes/player/player.tscn" id="1_fk7tf"]
-[ext_resource type="PackedScene" uid="uid://i8mrq45e3ure" path="res://scenes/anchors/anchor.tscn" id="2_gfv14"]
 
 [node name="Guigui" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_fk7tf")]
 position = Vector2(37, 32)
-
-[node name="Anchor" parent="." instance=ExtResource("2_gfv14")]
-position = Vector2(88, 43)

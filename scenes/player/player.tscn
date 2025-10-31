@@ -1,11 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://cwp27or88qkvo"]
+[gd_scene load_steps=12 format=3 uid="uid://cwp27or88qkvo"]
 
 [ext_resource type="Texture2D" uid="uid://c0vgnvipqqoaj" path="res://placeholder/place_holder_sprite.png" id="1_8afob"]
 [ext_resource type="Script" uid="uid://bcy3y0yh1qhom" path="res://scenes/player/player.gd" id="1_dovo2"]
 [ext_resource type="PackedScene" uid="uid://b62c81khntjjv" path="res://addons/shaker/components/gameplay/state_machine/state_machine.tscn" id="2_75vfm"]
 [ext_resource type="PackedScene" uid="uid://dbph4hfobefpw" path="res://addons/shaker/components/gameplay/state_machine/state.tscn" id="3_0owmy"]
 [ext_resource type="PackedScene" uid="uid://bhw42if6pyrcm" path="res://scenes/player/components/movement_component.tscn" id="3_gmlin"]
+[ext_resource type="Script" uid="uid://cd3vndlmhk4b" path="res://scenes/player/states/normal.gd" id="4_0owmy"]
 [ext_resource type="Script" uid="uid://bk7hjjop1q07j" path="res://scenes/player/components/anchor_manager.gd" id="4_lvxji"]
+[ext_resource type="Script" uid="uid://bapsr6p3avfvj" path="res://scenes/player/components/movement_anchor_component.gd" id="7_qek5x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x7p2l"]
 radius = 6.0
@@ -35,14 +37,22 @@ shape = SubResource("CircleShape2D_x7p2l")
 initial_state = NodePath("Normal")
 entity = NodePath("..")
 
-[node name="Normal" parent="StateMachine" instance=ExtResource("3_0owmy")]
+[node name="Normal" parent="StateMachine" node_paths=PackedStringArray("anchor_manager") instance=ExtResource("3_0owmy")]
+script = ExtResource("4_0owmy")
+anchor_manager = NodePath("../../AnchorManager")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_x7p2l")
 
 [node name="MovementComponent" parent="." instance=ExtResource("3_gmlin")]
 
+[node name="MovementAnchorComponent" type="Node" parent="MovementComponent" node_paths=PackedStringArray("anchor_manager", "movement_component")]
+script = ExtResource("7_qek5x")
+anchor_manager = NodePath("../../AnchorManager")
+movement_component = NodePath("..")
+
 [node name="AnchorManager" type="Node2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("4_lvxji")
 
 [node name="LabelAnchor" type="Node2D" parent="AnchorManager"]
