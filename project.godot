@@ -22,6 +22,7 @@ boot_splash/image="uid://cwkvy4433vg3c"
 Global="*res://globals/global.gd"
 GameGlobal="*res://globals/game_global.gd"
 SignalBus="*res://globals/signal_bus.gd"
+Enum="*res://globals/enum.gd"
 
 [display]
 
@@ -30,6 +31,14 @@ window/size/viewport_height=180
 window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="viewport"
+
+[file_customization]
+
+folder_colors={
+"res://assets/": "green",
+"res://globals/": "blue",
+"res://scenes/": "pink"
+}
 
 [rendering]
 
