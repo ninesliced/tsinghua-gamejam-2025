@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://i8mrq45e3ure"]
+
+[ext_resource type="Script" uid="uid://bjeuw8oor4ins" path="res://scenes/anchors/anchor.gd" id="1_xdr0r"]
+[ext_resource type="Texture2D" uid="uid://c0vgnvipqqoaj" path="res://placeholder/place_holder_sprite.png" id="2_4qvrl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhrr1"]
+atlas = ExtResource("2_4qvrl")
+region = Rect2(96, 160, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0p1gy"]
+atlas = ExtResource("2_4qvrl")
+region = Rect2(80, 160, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p873x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhrr1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0p1gy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="Anchor" type="Node2D"]
+script = ExtResource("1_xdr0r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_p873x")
+frame_progress = 0.95434797

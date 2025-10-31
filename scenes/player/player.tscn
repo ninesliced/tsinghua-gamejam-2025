@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwp27or88qkvo"]
+[gd_scene load_steps=10 format=3 uid="uid://cwp27or88qkvo"]
 
 [ext_resource type="Texture2D" uid="uid://c0vgnvipqqoaj" path="res://placeholder/place_holder_sprite.png" id="1_8afob"]
 [ext_resource type="Script" uid="uid://bcy3y0yh1qhom" path="res://scenes/player/player.gd" id="1_dovo2"]
+[ext_resource type="PackedScene" uid="uid://b62c81khntjjv" path="res://addons/shaker/components/gameplay/state_machine/state_machine.tscn" id="2_75vfm"]
+[ext_resource type="PackedScene" uid="uid://dbph4hfobefpw" path="res://addons/shaker/components/gameplay/state_machine/state.tscn" id="3_0owmy"]
 [ext_resource type="PackedScene" uid="uid://bhw42if6pyrcm" path="res://scenes/player/components/movement_component.tscn" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://bk7hjjop1q07j" path="res://scenes/player/components/anchor_manager.gd" id="4_lvxji"]
 
@@ -29,12 +31,28 @@ script = ExtResource("1_dovo2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_x7p2l")
 
+[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state", "entity") instance=ExtResource("2_75vfm")]
+initial_state = NodePath("Normal")
+entity = NodePath("..")
+
+[node name="Normal" parent="StateMachine" instance=ExtResource("3_0owmy")]
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_x7p2l")
 
 [node name="MovementComponent" parent="." instance=ExtResource("3_gmlin")]
 
-[node name="AnchorManager" type="Node" parent="."]
+[node name="AnchorManager" type="Node2D" parent="."]
 script = ExtResource("4_lvxji")
 
-[node name="Anchor" type="Node2D" parent="."]
+[node name="LabelAnchor" type="Node2D" parent="AnchorManager"]
+
+[node name="Label" type="Label" parent="AnchorManager/LabelAnchor"]
+unique_name_in_owner = true
+offset_left = -51.0
+offset_top = -22.0
+offset_right = 51.0
+offset_bottom = -8.0
+theme_override_font_sizes/font_size = 9
+text = "qsdqsdsdqsd"
+horizontal_alignment = 1
