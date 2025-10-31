@@ -9,13 +9,7 @@ signal on_enabled()
 
 @onready var animated_sprite_2d: AnimatedSprite2D = %AnimatedSprite2D
 @onready var electric_link: ElectricLink = $ElectricLink
-
-var areas : Array[Area2D] = []
-
-func _ready():
-	for child in get_children():
-		if child is Area2D:
-			areas.append(child)
+@export var electric_field_zone: ElectricFieldZone
 
 func _on_player_interaction_zone_on_player_exited(player: Player):
 	if is_processing() == false:
@@ -39,6 +33,7 @@ func disable():
 	hide()
 	set_all_areas(false)
 	on_disabled.emit()
+	SignalBus.on_anchor_disabled.emit(self)
 
 func enable():
 	can_collect = true
@@ -48,6 +43,13 @@ func enable():
 	on_enabled.emit()
 
 func set_all_areas(bool_value: bool):
-	for area in areas:
-		area.monitoring = bool_value
-		area.monitorable = bool_value
+	# why tf does electric_field_zone get affected like that but not the other
+	electric_field_zone.monitorable = bool_value
+	electric_field_zone.monitoring = bool_value
+
+	# #talking about this
+	# for area in areas:
+	# 	print(area.name)
+	# 	print("Setting area ", area.name, " to ", bool_value)
+	# 	area.monitoring = bool_value
+	# 	area.monitorable = bool_value

@@ -8,37 +8,33 @@ var line_nodes: Array[Line2D] = []
 func _ready():
 	var parent_anchor = get_parent() as Anchor
 	parent_anchor.on_disabled.connect(on_anchor_disabled)
+	SignalBus.on_anchor_disabled.connect(unlink_anchor)
 
 func on_anchor_disabled():
 	unlink_all()
 
 func link(anchor: Anchor):
-	print("Linking anchor")
 	_create_line(anchor)
 	linked_anchors.append(anchor)
 	%Label.text = str(linked_anchors.size())
 
 func unlink_all():
-	for anchor in linked_anchors:
-		anchor.electric_link.unlink_anchor(get_parent() as Anchor)
-	for line in line_nodes:
-		line.queue_free()
+	for line_node in line_nodes:
+		line_node.queue_free()
 	line_nodes.clear()
-	%Label.text = str(linked_anchors.size())
 	linked_anchors.clear()
 
 func unlink_anchor(anchor: Anchor):
-	if !linked_anchors.has(anchor):
-		return
-	print("Unlinking anchor")
-	var index = linked_anchors.find(anchor)
-	var line = line_nodes[index]
-	line.queue_free()
-	line_nodes.remove_at(index)
-	linked_anchors.remove_at(index)
-
+	if anchor in linked_anchors:
+		var index = linked_anchors.find(anchor)
+		linked_anchors.erase(anchor)
+		var line_node = line_nodes[index]
+		line_node.queue_free()
+		line_nodes.erase(line_node)
+		%Label.text = str(linked_anchors.size())
 
 func _create_line(anchor: Anchor):
+	print("Creating line to anchor: ", anchor.get_instance_id())
 	var line = Line2D.new()
 	line.width = 4
 	line.default_color = Color.CYAN

@@ -46,8 +46,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_t7rn2"]
 radius = 22.022715
 
-[node name="Anchor" type="Node2D"]
+[node name="Anchor" type="Node2D" node_paths=PackedStringArray("electric_field_zone")]
 script = ExtResource("1_xdr0r")
+electric_field_zone = NodePath("ElectricFieldZone")
 
 [node name="ElectricFieldZone" type="Area2D" parent="."]
 script = ExtResource("2_b7jhl")
@@ -61,7 +62,7 @@ unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_p873x")
 animation = &"near"
 autoplay = "default"
-frame_progress = 0.64055085
+frame_progress = 0.16846958
 
 [node name="PlayerInteractionZone" type="Area2D" parent="."]
 script = ExtResource("3_ayfc7")
