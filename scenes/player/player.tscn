@@ -1,9 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwp27or88qkvo"]
+[gd_scene load_steps=8 format=3 uid="uid://cwp27or88qkvo"]
 
 [ext_resource type="Texture2D" uid="uid://c0vgnvipqqoaj" path="res://placeholder/place_holder_sprite.png" id="1_8afob"]
 [ext_resource type="Script" uid="uid://bcy3y0yh1qhom" path="res://scenes/player/player.gd" id="1_dovo2"]
+[ext_resource type="PackedScene" uid="uid://bhw42if6pyrcm" path="res://scenes/player/components/movement_component.tscn" id="3_gmlin"]
+[ext_resource type="Script" uid="uid://bk7hjjop1q07j" path="res://scenes/player/components/anchor_manager.gd" id="4_lvxji"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x7p2l"]
+radius = 6.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dovo2"]
 atlas = ExtResource("1_8afob")
@@ -28,3 +31,10 @@ shape = SubResource("CircleShape2D_x7p2l")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_x7p2l")
+
+[node name="MovementComponent" parent="." instance=ExtResource("3_gmlin")]
+
+[node name="AnchorManager" type="Node" parent="."]
+script = ExtResource("4_lvxji")
+
+[node name="Anchor" type="Node2D" parent="."]
