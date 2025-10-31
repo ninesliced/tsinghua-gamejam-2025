@@ -1,9 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://i8mrq45e3ure"]
+[gd_scene load_steps=11 format=3 uid="uid://i8mrq45e3ure"]
 
 [ext_resource type="Script" uid="uid://bjeuw8oor4ins" path="res://scenes/anchors/anchor.gd" id="1_xdr0r"]
 [ext_resource type="Texture2D" uid="uid://c0vgnvipqqoaj" path="res://placeholder/place_holder_sprite.png" id="2_4qvrl"]
 [ext_resource type="Script" uid="uid://d0ncy2pvdp87m" path="res://scenes/anchors/electric_field_zone.gd" id="2_b7jhl"]
-[ext_resource type="Script" uid="uid://c1qjhawxo14dl" path="res://scenes/components/player_interaction_zone.gd" id="3_ayfc7"]
+[ext_resource type="PackedScene" uid="uid://ckpbluy0ns4u5" path="res://scenes/components/player_interaction_zone.tscn" id="4_ps13o"]
 [ext_resource type="Script" uid="uid://b4mwtdmf2m4om" path="res://scenes/anchors/electric_link.gd" id="5_ps13o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ayfc7"]
@@ -43,12 +43,8 @@ animations = [{
 "speed": 2.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_t7rn2"]
-radius = 22.022715
-
-[node name="Anchor" type="Node2D" node_paths=PackedStringArray("electric_field_zone")]
+[node name="Anchor" type="Node2D"]
 script = ExtResource("1_xdr0r")
-electric_field_zone = NodePath("ElectricFieldZone")
 
 [node name="ElectricFieldZone" type="Area2D" parent="."]
 script = ExtResource("2_b7jhl")
@@ -62,14 +58,9 @@ unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_p873x")
 animation = &"near"
 autoplay = "default"
-frame_progress = 0.16846958
+frame_progress = 0.66999686
 
-[node name="PlayerInteractionZone" type="Area2D" parent="."]
-script = ExtResource("3_ayfc7")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerInteractionZone"]
-shape = SubResource("CircleShape2D_t7rn2")
-debug_color = Color(0, 16.956205, 14.997389, 0)
+[node name="PlayerInteractionZone" parent="." instance=ExtResource("4_ps13o")]
 
 [node name="ElectricLink" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -79,13 +70,12 @@ script = ExtResource("5_ps13o")
 
 [node name="Label" type="Label" parent="ElectricLink"]
 unique_name_in_owner = true
+visible = false
 offset_left = -21.0
 offset_top = -50.0
 offset_right = 19.0
 offset_bottom = -27.0
 
 [connection signal="area_entered" from="ElectricFieldZone" to="ElectricFieldZone" method="_on_area_entered"]
-[connection signal="body_entered" from="PlayerInteractionZone" to="PlayerInteractionZone" method="_on_body_entered"]
-[connection signal="body_exited" from="PlayerInteractionZone" to="PlayerInteractionZone" method="_on_body_exited"]
 [connection signal="on_player_entered" from="PlayerInteractionZone" to="." method="_on_player_interaction_zone_on_player_entered"]
 [connection signal="on_player_exited" from="PlayerInteractionZone" to="." method="_on_player_interaction_zone_on_player_exited"]

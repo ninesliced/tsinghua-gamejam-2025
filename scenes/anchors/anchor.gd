@@ -9,7 +9,8 @@ signal on_enabled()
 
 @onready var animated_sprite_2d: AnimatedSprite2D = %AnimatedSprite2D
 @onready var electric_link: ElectricLink = $ElectricLink
-@export var electric_field_zone: ElectricFieldZone
+@onready var electric_field_zone: ElectricFieldZone = $ElectricFieldZone
+@onready var player_interaction_zone: Area2D = $PlayerInteractionZone
 
 func _on_player_interaction_zone_on_player_exited(player: Player):
 	if is_processing() == false:
@@ -46,6 +47,9 @@ func set_all_areas(bool_value: bool):
 	# why tf does electric_field_zone get affected like that but not the other
 	electric_field_zone.monitorable = bool_value
 	electric_field_zone.monitoring = bool_value
+
+	player_interaction_zone.monitorable = bool_value
+	player_interaction_zone.monitoring = bool_value
 
 	# #talking about this
 	# for area in areas:

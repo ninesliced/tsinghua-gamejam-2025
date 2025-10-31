@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckpbluy0ns4u5"]
+
+[ext_resource type="Script" uid="uid://c1qjhawxo14dl" path="res://scenes/components/player_interaction_zone.gd" id="1_vpner"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t7rn2"]
+radius = 22.022715
+
+[node name="PlayerInteractionZone" type="Area2D"]
+script = ExtResource("1_vpner")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_t7rn2")
+debug_color = Color(0, 16.956205, 14.997389, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

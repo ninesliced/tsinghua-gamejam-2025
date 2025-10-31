@@ -3,7 +3,7 @@ class_name ElectricLink
 
 var linked_anchors: Array[Anchor] = []
 var line_nodes: Array[Line2D] = []
-
+var electric_line_scene: PackedScene = preload("res://scenes/anchors/electric_line/electric_line.tscn")
 
 func _ready():
 	var parent_anchor = get_parent() as Anchor
@@ -34,11 +34,10 @@ func unlink_anchor(anchor: Anchor):
 		%Label.text = str(linked_anchors.size())
 
 func _create_line(anchor: Anchor):
-	print("Creating line to anchor: ", anchor.get_instance_id())
-	var line = Line2D.new()
-	line.width = 4
-	line.default_color = Color.CYAN
-	line.points = [Vector2.ZERO, anchor.global_position - get_parent().global_position]
-	line.position = Vector2.ZERO
+	var line: ElectricLine = electric_line_scene.instantiate()
+	var vector = anchor.global_position - get_parent().global_position
+	line.set_endpoints(Vector2.ZERO, vector)
 	get_parent().add_child(line)
 	line_nodes.append(line)
+	if get_instance_id() > anchor.electric_link.get_instance_id():
+		line.hide()

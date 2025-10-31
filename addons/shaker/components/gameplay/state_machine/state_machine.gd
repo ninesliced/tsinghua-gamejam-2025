@@ -4,6 +4,8 @@ class_name StateMachine
 @export var initial_state : State
 @export var entity : Node
 
+signal on_state_changed(old_state: State, new_state: State)
+
 var states : Dictionary = {}
 var current_state : State
 
@@ -47,6 +49,7 @@ func on_state_transition(state: State, new_state_name: String) -> void:
 	new_state.enter()
 	new_state.state_enter.emit()
 	current_state = new_state
+	emit_signal("on_state_changed", state, new_state)
 
 
 
