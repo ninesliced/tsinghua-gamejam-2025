@@ -12,6 +12,10 @@ func _process(delta):
 
 
 func _on_area_entered(area: Area2D):
+	print("ElectricFieldZone detected area entered: ", area.name)
+	print(monitorable)
+	print(monitoring)
+	print(get_instance_id())
 	if !(area is ElectricFieldZone):
 		return
 
