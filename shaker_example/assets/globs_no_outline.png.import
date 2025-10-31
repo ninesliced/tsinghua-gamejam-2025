@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwkvy4433vg3c"
-path="res://.godot/imported/Ninesliced.png-4e31d2e42c17c99c4a9beff0891d2fb4.ctex"
+uid="uid://chd3180joggfl"
+path="res://.godot/imported/globs_no_outline.png-2e910b5d5c2dd25e8f38314feab41756.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/boot_splash/Ninesliced.png"
-dest_files=["res://.godot/imported/Ninesliced.png-4e31d2e42c17c99c4a9beff0891d2fb4.ctex"]
+source_file="res://shaker_example/assets/globs_no_outline.png"
+dest_files=["res://.godot/imported/globs_no_outline.png-2e910b5d5c2dd25e8f38314feab41756.ctex"]
 
 [params]
 
