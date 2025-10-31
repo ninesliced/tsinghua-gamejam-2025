@@ -17,6 +17,12 @@ boot_splash/bg_color=Color(0.913725, 0.992157, 0.870588, 1)
 boot_splash/fullsize=false
 boot_splash/image="uid://cwkvy4433vg3c"
 
+[autoload]
+
+Global="*res://globals/global.gd"
+GameGlobal="*res://globals/game_global.gd"
+SignalBus="*res://globals/signal_bus.gd"
+
 [display]
 
 window/size/viewport_width=320
