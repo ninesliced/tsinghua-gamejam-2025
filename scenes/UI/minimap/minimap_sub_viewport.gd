@@ -25,7 +25,6 @@ func _ready() -> void:
 
 	await player.ready
 	if player and player.anchor_manager:
-		print("Connecting to anchor manager signals")
 		player.anchor_manager.on_anchor_used.connect(_on_anchor_used)
 		player.anchor_manager.on_anchor_added.connect(_on_anchor_added)
 
@@ -207,7 +206,6 @@ func _on_anchor_used(anchor: Anchor) -> void:
 		anchor_minimap_sprites[anchor] = sprite
 
 func _on_anchor_added(anchor: Anchor) -> void:
-	print("Minimap: Anchor added ", anchor)
 	if anchor_minimap_sprites.has(anchor):
 		anchor_minimap_sprites[anchor].queue_free()
 		anchor_minimap_sprites.erase(anchor)

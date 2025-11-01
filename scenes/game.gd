@@ -25,7 +25,6 @@ func _ready():
 	GameGlobal.game = self
 	setup_time()
 	GameGlobal.train.train_reached_end.connect(change_to_exploration)
-	print(GameGlobal.train)
 	pass # Replace with function body.
 
 

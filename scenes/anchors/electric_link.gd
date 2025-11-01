@@ -22,7 +22,6 @@ func _process(delta: float) -> void:
 		i += delta*1000
 		return
 	i = 0
-	print(linked_anchors.size())
 	for i in range(linked_anchors.size()):
 		var anchor = linked_anchors[i]
 		var line_node = line_nodes[i]
