@@ -52,7 +52,6 @@ func decharge(anchor: Anchor):
 		for line in line_nodes.values():
 			line.hide()
 		surcharged = false
-		print("decharged")
 		on_decharged.emit()
 
 func link(anchor: Anchor):
@@ -98,7 +97,6 @@ func _create_line(anchor: Anchor):
 	line.hide()
 
 func surcharge(generator_anchor: Anchor):
-	print("surcharging anchor")
 	if generator_anchor in generator_linkeds:
 		return
 	generator_linkeds.append(generator_anchor)
