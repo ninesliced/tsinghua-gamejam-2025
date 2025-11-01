@@ -47,6 +47,7 @@ func use_anchor():
 	anchor.global_position = get_parent().global_position
 	anchor.enable()
 	on_anchor_used.emit(anchor)
+	SignalBus.on_anchor_placed.emit(anchor)
 
 
 func add_anchor(anchor: Anchor):

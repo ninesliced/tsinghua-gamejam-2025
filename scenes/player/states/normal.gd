@@ -34,6 +34,8 @@ func _input(event):
 
 func can_be_anchored(anchor: Anchor) -> bool:
 	var anchor_elec_link = anchor.electric_link
+	if anchor_elec_link.surcharged == false:
+		return false
 	if anchor.electric_link.linked_anchors.size() > 0:
 		return true
 	return false
