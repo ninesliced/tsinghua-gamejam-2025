@@ -3,15 +3,30 @@
 [ext_resource type="Texture2D" uid="uid://c0vgnvipqqoaj" path="res://placeholder/place_holder_sprite.png" id="1_8afob"]
 [ext_resource type="Script" uid="uid://bcy3y0yh1qhom" path="res://scenes/player/player.gd" id="1_dovo2"]
 [ext_resource type="PackedScene" uid="uid://b62c81khntjjv" path="res://addons/shaker/components/gameplay/state_machine/state_machine.tscn" id="2_75vfm"]
-[ext_resource type="Script" uid="uid://b28k41i5rvxp2" path="res://scenes/player/player_animation_manager.gd" id="2_fm80t"]
+[ext_resource type="Script" path="res://scenes/player/player_animation_manager.gd" id="2_fm80t"]
 [ext_resource type="PackedScene" uid="uid://dbph4hfobefpw" path="res://addons/shaker/components/gameplay/state_machine/state.tscn" id="3_0owmy"]
 [ext_resource type="PackedScene" uid="uid://bhw42if6pyrcm" path="res://scenes/player/components/movement_component.tscn" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://cd3vndlmhk4b" path="res://scenes/player/states/normal.gd" id="4_0owmy"]
 [ext_resource type="Script" uid="uid://bk7hjjop1q07j" path="res://scenes/player/components/anchor_manager.gd" id="4_lvxji"]
-[ext_resource type="Script" uid="uid://dylbnj0ifmbg1" path="res://scenes/player/states/anchored.gd" id="5_5gtgg"]
+[ext_resource type="Script" path="res://scenes/player/states/anchored.gd" id="5_5gtgg"]
 [ext_resource type="Script" uid="uid://bapsr6p3avfvj" path="res://scenes/player/components/movement_anchor_component.gd" id="7_qek5x"]
 [ext_resource type="PackedScene" uid="uid://dqieuqmaqtj3n" path="res://scenes/components/interaction_zone_component.tscn" id="10_je7p5"]
 [ext_resource type="Texture2D" uid="uid://v0dc4lx8vsnp" path="res://assets/tilesheet/tilesheet.png" id="11_je7p5"]
+
+[sub_resource type="Animation" id="Animation_ugbui"]
+resource_name = "Anchored"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Display/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9303003),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"default", &"default"]
+}
 
 [sub_resource type="Animation" id="Animation_fm80t"]
 length = 0.001
@@ -109,21 +124,6 @@ tracks/1/keys = {
 "values": [Vector2(1.4285715, 5.714286), Vector2(4.2857137, 7.142857), Vector2(5.7142854, 5.714286), Vector2(4.2857137, 7.142857), Vector2(1.4285715, 5.714286)]
 }
 
-[sub_resource type="Animation" id="Animation_ugbui"]
-resource_name = "Anchored"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Display/AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.9303003),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [&"default", &"default"]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fm80t"]
 _data = {
 &"Anchored": SubResource("Animation_ugbui"),
@@ -174,6 +174,7 @@ func _on_state_machine_on_state_changed(old_state, new_state):
 "
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 2
 script = ExtResource("1_dovo2")
 
 [node name="PlayerAnimationManager" type="AnimationPlayer" parent="." node_paths=PackedStringArray("display_node")]
