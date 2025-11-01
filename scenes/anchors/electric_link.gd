@@ -2,7 +2,8 @@ extends Node2D
 class_name ElectricLink
 
 var linked_anchors: Array[Anchor] = []
-var line_nodes: Array[Line2D] = []
+# var line_nodes: Array[Line2D] = []
+var line_nodes: Dictionary[Anchor, ElectricLine] = {}
 var electric_line_scene: PackedScene = preload("res://scenes/anchors/electric_line/electric_line.tscn")
 
 signal on_linked(anchor: Anchor)
@@ -30,13 +31,15 @@ func _process(delta: float) -> void:
 	if generator_linkeds.size() == 0:
 		return
 
-	# if int(i) % 10 != 0 or int(i) == 0:
-	# 	i += delta*1000
-	# 	return
-	# i = 0
+	if int(i) % 5 != 0 or int(i) == 0:
+		i += delta*1000
+		return
+	i = 0
 	for i in range(linked_anchors.size()):
 		var anchor = linked_anchors[i]
-		var line_node = line_nodes[i]
+		if line_nodes.has(anchor) == false:
+			continue
+		var line_node = line_nodes[anchor]
 		var start = get_parent().anchor_mark.position
 		var end = anchor.anchor_mark.global_position - get_parent().anchor_mark.global_position + get_parent().anchor_mark.position
 		line_node.set_endpoints(start, end)
@@ -46,10 +49,10 @@ func _process(delta: float) -> void:
 func decharge(anchor: Anchor):
 	generator_linkeds.erase(anchor)
 	if generator_linkeds.size() == 0:
-		for line in line_nodes:
+		for line in line_nodes.values():
 			line.hide()
 		surcharged = false
-		print("Decharged")
+		print("decharged")
 		on_decharged.emit()
 
 func link(anchor: Anchor):
@@ -65,42 +68,46 @@ func unlink_all():
 
 
 func unlink_anchor(anchor: Anchor):
+	print("unlinking anchor")
 	if !anchor in linked_anchors:
 		return
 
 	var index = linked_anchors.find(anchor)
 	linked_anchors.erase(anchor)
-	var line_node = line_nodes[index]
-	line_node.queue_free()
-	line_nodes.erase(line_node)
-	%Label.text = str(linked_anchors.size())
+
 	generator_linkeds.erase(anchor)
 	if linked_anchors.size() == 0:
 		on_emptied.emit()
-	print("Anchor unlinked")
 	SignalBus.on_anchor_unlinked.emit(anchor)
-	print("signaled")
+	if line_nodes.has(anchor) == true:
+		var line_node = line_nodes[anchor]
+		line_node.queue_free()
+		line_nodes.erase(anchor)
+	%Label.text = str(linked_anchors.size())
+
 
 func _create_line(anchor: Anchor):
+	if get_instance_id() > anchor.electric_link.get_instance_id():
+		return
 	var line: ElectricLine = electric_line_scene.instantiate()
 	var vector = anchor.global_position - get_parent().global_position
 	var start = get_parent().anchor_mark.position
 	var end = anchor.anchor_mark.global_position - get_parent().anchor_mark.global_position + get_parent().anchor_mark.position
 	line.set_endpoints(start, end)
 	get_parent().add_child(line)
-	line_nodes.append(line)
+	line_nodes[anchor] = line
 	line.hide()
 
 func surcharge(generator_anchor: Anchor):
+	print("surcharging anchor")
 	if generator_anchor in generator_linkeds:
 		return
 	generator_linkeds.append(generator_anchor)
 
 	surcharged = true
-	for line in line_nodes:
+	for line in line_nodes.values():
 		line.show()
 	on_surcharged.emit()
-	print("Surcharged")
 
 func _on_electric_field_zone_area_exited(area: Area2D):
 	if not area is ElectricFieldZone:

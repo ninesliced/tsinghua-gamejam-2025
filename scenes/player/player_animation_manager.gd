@@ -26,7 +26,6 @@ func _on_movement_component_on_stop():
 func _on_movement_component_on_move(direction: Vector2):
 	particules_node.emitting = true
 	if (direction.y != 0):
-		print("Vertical movement detected")
 		if direction.y < 0:
 			play("up")
 		else:

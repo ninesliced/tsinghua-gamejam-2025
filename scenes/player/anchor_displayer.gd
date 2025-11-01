@@ -2,7 +2,6 @@ extends Node2D
 
 var anchor_display_scene : PackedScene = preload("res://scenes/anchors/anchor_display.tscn")
 @export var anchor_manager: AnchorManager
-@export var player: Player
 var list_displayed_anchors: Array[AnchorDisplay] = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,7 +14,7 @@ func _on_anchor_added(anchor: Anchor):
 	if list_displayed_anchors.size() > 0:
 		instance.anchor_target = list_displayed_anchors[ list_displayed_anchors.size() - 1 ]
 	else:
-		instance.anchor_target = player
+		instance.anchor_target = self
 	add_child(instance)
 	list_displayed_anchors.append(instance)
 

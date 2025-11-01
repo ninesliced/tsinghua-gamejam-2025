@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://c30n30gmpxb8p" path="res://scenes/anchors/electric_line/electric_line.gd" id="7_ijs5a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ayfc7"]
-radius = 61.03278
+radius = 64.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ijs5a"]
 atlas = ExtResource("3_ps13o")
