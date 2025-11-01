@@ -21,9 +21,11 @@ func _level_changed(new_level: int) -> void:
 		_active = true
 		_spawn_timer.wait_time = randf_range(spawn_interval.x, spawn_interval.y)
 		_spawn_timer.start()
+		on_spawner_activated.emit()
 	else:
 		_active = false
 		_spawn_timer.stop()
+		on_spawner_deactivated.emit()
 
 
 func _on_timer_timeout() -> void:
@@ -45,3 +47,5 @@ func _on_timer_timeout() -> void:
 	
 	_spawn_timer.wait_time = randf_range(spawn_interval.x, spawn_interval.y)
 	_spawn_timer.start()
+	
+	on_enemy_spawned.emit(enemy_instance)
