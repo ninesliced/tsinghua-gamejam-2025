@@ -19,7 +19,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Anchor" instance=ExtResource("1_ew1ci")]
+[node name="Anchor" groups=["Anchors"] instance=ExtResource("1_ew1ci")]
 pickable = false
 
 [node name="AnchorSprite" parent="." index="1"]
