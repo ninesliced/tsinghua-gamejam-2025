@@ -1,26 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://dx60kwiigg21c"]
+[gd_scene load_steps=6 format=3 uid="uid://8o038ldf3bg7"]
 
 [ext_resource type="PackedScene" uid="uid://cwp27or88qkvo" path="res://scenes/player/player.tscn" id="1_6ksfa"]
-[ext_resource type="Script" uid="uid://b17lskc43ix1l" path="res://scenes/louis.gd" id="1_tk4lf"]
+[ext_resource type="Script" path="res://scenes/louis.gd" id="1_tk4lf"]
 [ext_resource type="PackedScene" uid="uid://brac0v3p34xaj" path="res://scenes/collectibles/battery.tscn" id="2_vixcw"]
-[ext_resource type="Script" uid="uid://1x64j0v2rlif" path="res://scenes/UI/minimap/minimap_sub_viewport.gd" id="3_vixcw"]
-[ext_resource type="Texture2D" uid="uid://cm4ueixrueyux" path="res://assets/tilesheet/UI_spritesheet.png" id="5_ux01x"]
-[ext_resource type="Texture2D" uid="uid://ce267gyq77c17" path="res://assets/tilesheet/UI_tilemap.png" id="6_y4ga5"]
+[ext_resource type="PackedScene" uid="uid://sdetkwwl3mhv" path="res://scenes/UI/minimap/ui.tscn" id="4_ux01x"]
 [ext_resource type="PackedScene" uid="uid://ccbafmp5xuv54" path="res://scenes/enemy/enemy.tscn" id="7_eljnv"]
 [ext_resource type="PackedScene" uid="uid://djy7d8gmx84od" path="res://scenes/train/railway.tscn" id="8_71p4b"]
 [ext_resource type="PackedScene" uid="uid://b8phwynxhybcm" path="res://scenes/train/train.tscn" id="9_axu7r"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y4ga5"]
-atlas = ExtResource("5_ux01x")
-region = Rect2(18, 252, 16, 16)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ux01x"]
-
-[sub_resource type="Curve2D" id="Curve2D_1vlug"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 15, 52, 0, 0, 0, 0, 44, -32, 0, 0, 0, 0, 118, -58, 0, 0, 0, 0, 173, -64, 0, 0, 0, 0, 182, -19, 0, 0, 0, 0, 221, 22)
-}
-point_count = 6
 
 [node name="Louis" type="Node2D"]
 script = ExtResource("1_tk4lf")
@@ -33,7 +19,7 @@ position = Vector2(107, 87)
 [node name="Battery" parent="." instance=ExtResource("2_vixcw")]
 position = Vector2(128, 127)
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" parent="." instance=ExtResource("4_ux01x")]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="UI"]
 anchors_preset = 1
