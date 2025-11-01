@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://hxftew76u0of"]
+[gd_scene load_steps=14 format=3 uid="uid://hxftew76u0of"]
 
 [ext_resource type="Script" uid="uid://1x64j0v2rlif" path="res://scenes/UI/minimap/minimap_sub_viewport.gd" id="1_nj03n"]
 [ext_resource type="Texture2D" uid="uid://cm4ueixrueyux" path="res://assets/tilesheet/UI_spritesheet.png" id="2_byepb"]
 [ext_resource type="Texture2D" uid="uid://ce267gyq77c17" path="res://assets/tilesheet/UI_tilemap.png" id="3_bioq6"]
 [ext_resource type="FontFile" uid="uid://b43fnbe7haseo" path="res://assets/m5x7.ttf" id="4_byepb"]
+[ext_resource type="Script" uid="uid://dww5066gh1k11" path="res://scenes/UI/minimap/progress_bar.gd" id="5_6xly5"]
+[ext_resource type="Shader" uid="uid://b02bw466pwk5a" path="res://addons/shaker/components/vfx/shaders/outline.gdshader" id="5_l51st"]
+[ext_resource type="Script" uid="uid://i6b2gcav1qjt" path="res://ui/game/time.gd" id="6_6xly5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y4ga5"]
 atlas = ExtResource("2_byepb")
@@ -11,8 +14,18 @@ region = Rect2(18, 252, 16, 16)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ux01x"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6xly5"]
+bg_color = Color(0.3882353, 0.78039217, 0.3019608, 1)
+
+[sub_resource type="Theme" id="Theme_id7dy"]
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_6xly5")
+
 [sub_resource type="FontVariation" id="FontVariation_nj03n"]
 base_font = ExtResource("4_byepb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_id7dy"]
+shader = ExtResource("5_l51st")
+shader_parameter/color = Color(0, 0, 0, 1)
 
 [node name="UI" type="CanvasLayer"]
 
@@ -72,9 +85,36 @@ patch_margin_right = 8
 patch_margin_bottom = 8
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = 79.0
-offset_top = 6.0
-offset_right = 328.0
-offset_bottom = 23.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 136.0
+offset_top = 64.0
+offset_right = 199.0
+offset_bottom = 81.0
+grow_horizontal = 2
+theme = SubResource("Theme_id7dy")
 theme_override_fonts/font = SubResource("FontVariation_nj03n")
 theme_override_font_sizes/font_size = 16
+script = ExtResource("5_6xly5")
+
+[node name="Time" type="RichTextLabel" parent="."]
+material = SubResource("ShaderMaterial_id7dy")
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -161.0
+offset_top = -220.0
+offset_right = 159.0
+offset_bottom = -177.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "qsdsq"
+horizontal_alignment = 1
+threaded = true
+script = ExtResource("6_6xly5")
