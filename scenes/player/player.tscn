@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bhw42if6pyrcm" path="res://scenes/player/components/movement_component.tscn" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://cd3vndlmhk4b" path="res://scenes/player/states/normal.gd" id="4_0owmy"]
 [ext_resource type="Script" uid="uid://bk7hjjop1q07j" path="res://scenes/player/components/anchor_manager.gd" id="4_lvxji"]
-[ext_resource type="Script" uid="uid://dylbnj0ifmbg1" path="res://scenes/player/states/anchored.gd" id="5_5gtgg"]
+[ext_resource type="Script" path="res://scenes/player/states/anchored.gd" id="5_5gtgg"]
 [ext_resource type="Script" uid="uid://bapsr6p3avfvj" path="res://scenes/player/components/movement_anchor_component.gd" id="7_qek5x"]
 [ext_resource type="PackedScene" uid="uid://dqieuqmaqtj3n" path="res://scenes/components/interaction_zone_component.tscn" id="10_je7p5"]
 [ext_resource type="Script" uid="uid://d1b7pxmk0hej1" path="res://scenes/player/components/movement_dash_component.gd" id="11_gx1jg"]
@@ -175,6 +175,7 @@ func _on_state_machine_on_state_changed(old_state, new_state):
 "
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_dovo2")
 

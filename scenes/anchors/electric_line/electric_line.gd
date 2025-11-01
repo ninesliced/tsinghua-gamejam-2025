@@ -55,3 +55,15 @@ func update_line():
 
 func set_endpoints(start: Vector2, end: Vector2) -> void:
 	points = [start, end]
+	
+	var line: SegmentShape2D = %CollisionLine.shape
+	line.a = start
+	line.b = end
+
+
+func _on_area_body_entered(body: Node2D) -> void:
+	if not body is Enemy:
+		return
+	
+	var enemy: Enemy = body
+	enemy.health_component.damage(1)
