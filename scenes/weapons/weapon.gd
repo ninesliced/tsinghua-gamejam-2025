@@ -1,16 +1,24 @@
 extends Node2D
 
-@export var weapon_data: WeaponData
+class_name Weapon
 
 @onready var _delay_timer: Timer = %DelayTimer
+@export var weapon_data: WeaponData :
+	set(x):
+		weapon_data = x
+		if weapon_data == null:
+			return
+		
+		if %Sprite:
+			%Sprite.texture = weapon_data.texture
+		if _delay_timer:
+			_delay_timer.wait_time = weapon_data.delay
 var _can_shoot: bool = true
 
-func _ready() -> void:
-	assert(weapon_data != null, "WeaponData not assigned to weapon.")
-	%Sprite.texture = weapon_data.texture
-	_delay_timer.wait_time = weapon_data.delay
-
 func _process(delta: float) -> void:
+	if not weapon_data:
+		return
+	
 	if Input.is_action_pressed("shoot"):
 		if weapon_data.automatic:
 			if _can_shoot:
@@ -24,6 +32,9 @@ func _process(delta: float) -> void:
 				shoot()
 
 func shoot() -> void:
+	if not weapon_data:
+		return
+	
 	for i in range(weapon_data.bullets_per_shot):
 		var mouse_angle := (get_global_mouse_position() - global_position).angle()
 		var angle_offset := randf_range(-weapon_data.spread_angle / 2, weapon_data.spread_angle / 2)

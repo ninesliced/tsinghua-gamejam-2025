@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://dbbx7yvd7myye"]
+[gd_scene load_steps=12 format=4 uid="uid://dbbx7yvd7myye"]
 
 [ext_resource type="PackedScene" uid="uid://cwp27or88qkvo" path="res://scenes/player/player.tscn" id="1_7i0yp"]
 [ext_resource type="Script" uid="uid://dun17vq27vq80" path="res://scenes/game.gd" id="1_jucne"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b8phwynxhybcm" path="res://scenes/train/train.tscn" id="3_5xjal"]
 [ext_resource type="TileSet" uid="uid://dckjsir55y6u4" path="res://assets/tilemap/map.tres" id="4_8c0u5"]
 [ext_resource type="PackedScene" uid="uid://iv7okvrk67fi" path="res://scenes/spawner/spawner.tscn" id="5_5xjal"]
+[ext_resource type="PackedScene" uid="uid://cf4cyxtoeoidg" path="res://scenes/collectibles/weapon_item.tscn" id="7_ew141"]
 
 [sub_resource type="Curve2D" id="Curve2D_7i0yp"]
 _data = {
@@ -38,7 +39,6 @@ tile_set = ExtResource("4_8c0u5")
 
 [node name="Railway" parent="." instance=ExtResource("2_8c0u5")]
 position = Vector2(-6.472131, -11.200001)
-scale = Vector2(2.0786886, 2.15)
 curve = SubResource("Curve2D_7i0yp")
 ways = Array[Curve2D]([SubResource("Curve2D_8c0u5"), SubResource("Curve2D_5xjal")])
 timers = Array[float]([5.0, 10.0])
@@ -56,3 +56,6 @@ position = Vector2(68, 54)
 [node name="Spawner" parent="." instance=ExtResource("5_5xjal")]
 position = Vector2(71, 392.75)
 shape = SubResource("RectangleShape2D_jucne")
+
+[node name="WeaponItem" parent="." instance=ExtResource("7_ew141")]
+position = Vector2(121, 32)

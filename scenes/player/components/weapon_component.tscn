@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgtr4jc6gcnqx"]
+
+[ext_resource type="Script" uid="uid://dl5g4q87oovyf" path="res://scenes/player/components/weapon_component.gd" id="1_cyfd3"]
+[ext_resource type="PackedScene" uid="uid://dmbnxuxhi1oim" path="res://scenes/weapons/weapon.tscn" id="2_lhgl8"]
+
+[node name="WeaponComponent" type="Node2D"]
+script = ExtResource("1_cyfd3")
+
+[node name="Weapon" parent="." instance=ExtResource("2_lhgl8")]
+unique_name_in_owner = true
+weapon_data = null

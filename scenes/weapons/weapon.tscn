@@ -13,6 +13,4 @@ unique_name_in_owner = true
 [node name="DelayTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [connection signal="timeout" from="DelayTimer" to="." method="_on_delay_timer_timeout"]
