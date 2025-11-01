@@ -10,7 +10,8 @@ class_name Enemy
 @onready var health_component: HealthComponent = %HealthComponent
 
 var knockback: Vector2 = Vector2.ZERO
-var knockback_timer = 0
+var can_be_knockback: bool = true
+var knockback_iframe_time: float = 0.5
 
 enum state {
 	ATTACK,
@@ -24,8 +25,12 @@ func _ready() -> void:
 	SignalBus.on_enemy_created.emit(self)
 
 func _physics_process(delta: float) -> void:
-	velocity = knockback
-
+	if knockback_iframe_time > 0 and can_be_knockback == false:
+		knockback_iframe_time -= delta
+	else:
+		knockback = Vector2.ZERO
+		can_be_knockback = true
+		knockback_iframe_time = 0.5
 	match current_state:
 		state.ATTACK:
 			process_attacked_state(delta)
@@ -42,9 +47,13 @@ func _on_timer_timeout() -> void:
 func _on_health_component_on_dead() -> void:
 	set_electrocuted_state()
 	
-func apply_knockback(direction: Vector2, force: float, knockback_duration: float) -> void:
+func apply_knockback(direction: Vector2, force: float) -> void:
 	knockback = direction * force
-	knockback_timer = knockback_duration
+	if can_be_knockback:
+		velocity += knockback
+		var max_knockback: Vector2 = Vector2(abs(knockback.x), abs(knockback.y))
+		velocity = velocity.clamp(-max_knockback * 1.5, max_knockback * 1.5)
+		can_be_knockback = false
 	
 func _on_health_component_on_damage(amount: int) -> void:
 	$AnimationPlayer.play("new_animation")
@@ -59,9 +68,7 @@ func _on_navigation_agent_target_reached() -> void:
 
 func process_attacked_state(delta: float) -> void:
 	var next_path_position: Vector2 = _agent.get_next_path_position()
-	#velocity = global_position.direction_to(next_path_position) * speed
-	velocity = velocity.move_toward(global_position.direction_to(next_path_position) * speed, delta * speed * 100)
-	print(velocity, global_position.direction_to(next_path_position))
+	velocity = velocity.move_toward(global_position.direction_to(next_path_position) * speed, delta * speed)
 	if velocity.x != 0:
 		animated_sprite_2d.flip_h = velocity.x > 0
 	move_and_slide()
