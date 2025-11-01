@@ -21,6 +21,9 @@ texture = ExtResource("1_4a83h")
 
 [node name="NavigationAgent" type="NavigationAgent2D" parent="."]
 unique_name_in_owner = true
+path_desired_distance = 3.0
+target_desired_distance = 3.0
+path_postprocessing = 1
 debug_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
