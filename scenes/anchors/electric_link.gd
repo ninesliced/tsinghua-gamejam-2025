@@ -31,8 +31,8 @@ func _process(delta: float) -> void:
 	if generator_linkeds.size() == 0:
 		return
 
-	if int(i) % 5 != 0 or int(i) == 0:
-		i += delta*1000
+	i += 1
+	if i % 5 != 0 or i == 0:
 		return
 	i = 0
 	for i in range(linked_anchors.size()):
@@ -68,7 +68,6 @@ func unlink_all():
 
 
 func unlink_anchor(anchor: Anchor):
-	print("unlinking anchor")
 	if !anchor in linked_anchors:
 		return
 

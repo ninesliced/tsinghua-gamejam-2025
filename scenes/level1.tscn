@@ -1,11 +1,11 @@
-[gd_scene load_steps=24 format=4 uid="uid://ds7eh20eiv5le"]
+[gd_scene load_steps=24 format=4 uid="uid://b88fm2l6lhpor"]
 
 [ext_resource type="Script" uid="uid://dun17vq27vq80" path="res://scenes/game.gd" id="1_d3jkd"]
 [ext_resource type="PackedScene" uid="uid://hxftew76u0of" path="res://scenes/UI/minimap/ui.tscn" id="2_u3awl"]
 [ext_resource type="TileSet" uid="uid://dckjsir55y6u4" path="res://assets/tilemap/map.tres" id="3_2ku1j"]
 [ext_resource type="Shader" uid="uid://b02bw466pwk5a" path="res://addons/shaker/components/vfx/shaders/outline.gdshader" id="4_f31uk"]
 [ext_resource type="Script" uid="uid://i6b2gcav1qjt" path="res://ui/game/time.gd" id="5_gnai3"]
-[ext_resource type="PackedScene" uid="uid://djy7d8gmx84od" path="res://scenes/train/railway.tscn" id="6_i8kv5"]
+[ext_resource type="PackedScene" path="res://scenes/train/railway.tscn" id="6_i8kv5"]
 [ext_resource type="PackedScene" uid="uid://b8phwynxhybcm" path="res://scenes/train/train.tscn" id="7_dxn3v"]
 [ext_resource type="PackedScene" uid="uid://lheoc2svvmfo" path="res://scenes/anchors/generator.tscn" id="8_14jow"]
 [ext_resource type="PackedScene" uid="uid://cwp27or88qkvo" path="res://scenes/player/player.tscn" id="9_mvsps"]

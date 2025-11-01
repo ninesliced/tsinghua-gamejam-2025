@@ -12,12 +12,12 @@ var end : Vector2
 func _ready():
 	setup_line()
 	#TIMER SETUP
-	timer = Timer.new()
-	timer.wait_time = update_frequency
-	timer.one_shot = false
-	timer.autostart = true
-	add_child(timer)
-	timer.timeout.connect(update_line)
+	# timer = Timer.new()
+	# timer.wait_time = update_frequency
+	# timer.one_shot = false
+	# timer.autostart = true
+	# add_child(timer)
+	# timer.timeout.connect(update_line)
 
 func setup_line():
 	var vector = end - start
