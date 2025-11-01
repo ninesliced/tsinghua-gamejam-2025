@@ -8,9 +8,15 @@ var num_points: int = 0
 var timer: Timer = null
 var start : Vector2
 var end : Vector2
+
+@onready var collision_line: CollisionShape2D = %CollisionLine
+@onready var area: Area2D = %Area
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	show()
 	setup_line()
+	area.monitorable = false
+	area.monitoring = false
 	#TIMER SETUP
 	# timer = Timer.new()
 	# timer.wait_time = update_frequency
@@ -18,6 +24,17 @@ func _ready():
 	# timer.autostart = true
 	# add_child(timer)
 	# timer.timeout.connect(update_line)
+
+func disable():
+	hide()
+	area.monitoring = false
+	area.monitorable = false
+	# collision_line.disabled = true
+func enable():
+	show()
+	area.monitoring = true
+	area.monitorable = true
+	# collision_line.disabled = false
 
 func setup_line():
 	var vector = end - start
