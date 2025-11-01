@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://v0dc4lx8vsnp" path="res://assets/tilesheet/tilesheet.png" id="4_0drc4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4bqpq"]
-size = Vector2(31.978601, 15.045567)
+size = Vector2(16, 15.045567)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xnb1e"]
 shader = ExtResource("2_4bqpq")
@@ -20,7 +20,7 @@ shader_parameter/height = 4.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iuhv6"]
 atlas = ExtResource("4_0drc4")
-region = Rect2(3, 67, 55, 41)
+region = Rect2(18, 82, 10, 10)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0i8p1"]
 radius = 44.181442
@@ -32,13 +32,13 @@ script = ExtResource("1_0i8p1")
 [node name="RigidBody2D" type="CharacterBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(-2.3841858e-07, 0)
 shape = SubResource("RectangleShape2D_4bqpq")
 
 [node name="3D" type="CanvasGroup" parent="."]
 material = SubResource("ShaderMaterial_xnb1e")
 
 [node name="Icon" type="Sprite2D" parent="3D"]
-position = Vector2(-1.9985735, -1.0028479)
 texture = SubResource("AtlasTexture_iuhv6")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_fxk1r")]

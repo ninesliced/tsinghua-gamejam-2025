@@ -133,8 +133,8 @@ _data = {
 &"run": SubResource("Animation_je7p5")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_x7p2l"]
-radius = 6.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gx1jg"]
+size = Vector2(9.25, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dovo2"]
 atlas = ExtResource("1_8afob")
@@ -175,8 +175,8 @@ func _on_state_machine_on_state_changed(old_state, new_state):
 "
 
 [node name="Player" type="CharacterBody2D"]
+y_sort_enabled = true
 collision_mask = 2
-motion_mode = 1
 script = ExtResource("1_dovo2")
 
 [node name="PlayerAnimationManager" type="AnimationPlayer" parent="." node_paths=PackedStringArray("display_node")]
@@ -188,7 +188,8 @@ script = ExtResource("2_fm80t")
 display_node = NodePath("../Display")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_x7p2l")
+position = Vector2(-0.625, -4)
+shape = SubResource("RectangleShape2D_gx1jg")
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state", "entity") instance=ExtResource("2_75vfm")]
 initial_state = NodePath("Normal")
@@ -211,6 +212,7 @@ lose_speed_stack_interval = 0.2
 
 [node name="Display" type="Node2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(0, -9)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Display"]
 position = Vector2(-1, -3)
@@ -247,11 +249,13 @@ movement_component = NodePath("..")
 
 [node name="AnchorManager" type="Node2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(0, -9)
 script = ExtResource("4_lvxji")
 anchor_max = 5
 
 [node name="InteractionZoneComponent" parent="." instance=ExtResource("10_je7p5")]
 unique_name_in_owner = true
+position = Vector2(0, -9)
 
 [node name="StateDebug" type="Label" parent="."]
 visible = false

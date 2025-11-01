@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=4 uid="uid://dbbx7yvd7myye"]
 
 [ext_resource type="PackedScene" uid="uid://cwp27or88qkvo" path="res://scenes/player/player.tscn" id="1_7i0yp"]
-[ext_resource type="PackedScene" uid="uid://djy7d8gmx84od" path="res://scenes/train/railway.tscn" id="2_8c0u5"]
+[ext_resource type="PackedScene" path="res://scenes/train/railway.tscn" id="2_8c0u5"]
 [ext_resource type="PackedScene" uid="uid://b8phwynxhybcm" path="res://scenes/train/train.tscn" id="3_5xjal"]
 [ext_resource type="TileSet" uid="uid://dckjsir55y6u4" path="res://assets/tilemap/map.tres" id="4_8c0u5"]
 [ext_resource type="PackedScene" uid="uid://ccbafmp5xuv54" path="res://scenes/enemy/enemy.tscn" id="5_5xjal"]
@@ -40,13 +40,10 @@ timers = Array[float]([5.0, 10.0])
 [node name="Train" parent="Railway" instance=ExtResource("3_5xjal")]
 unique_name_in_owner = true
 position = Vector2(6, 8)
-rotation = 1.4506875
-rotates = true
 loop = false
 
 [node name="Player" parent="." instance=ExtResource("1_7i0yp")]
 position = Vector2(68, 54)
-motion_mode = 0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
