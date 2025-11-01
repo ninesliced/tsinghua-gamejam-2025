@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdnlnhk5r3btg"]
+
+[ext_resource type="PackedScene" uid="uid://d2i4w4joysljq" path="res://scenes/ui/components/button.tscn" id="1_pkkl3"]
+[ext_resource type="Theme" uid="uid://dcy1yh8ymfebr" path="res://scenes/ui/main_menu/CharacterSelection/small_green_button.tres" id="2_oxis4"]
+
+[node name="Button" instance=ExtResource("1_pkkl3")]
+custom_minimum_size = Vector2(0, 0)
+offset_right = 16.0
+offset_bottom = 8.0
+pivot_offset = Vector2(0, 0)
+theme = ExtResource("2_oxis4")
+text = ""

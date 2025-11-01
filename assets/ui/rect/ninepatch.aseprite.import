@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://btlx3ntyenvsl"
+path="res://.godot/imported/ninepatch.aseprite-27e2e764dcb122f2c75b40f154b956ff.res"
+
+[deps]
+
+source_file="res://assets/images/ui/rect/ninepatch.aseprite"
+dest_files=["res://.godot/imported/ninepatch.aseprite-27e2e764dcb122f2c75b40f154b956ff.res"]
+
+[params]
+

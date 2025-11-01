@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://corsid2ks3g8f"
+path="res://.godot/imported/rect_interface.aseprite-ae8f889cefc3d3443be8d12b05fe5e50.res"
+
+[deps]
+
+source_file="res://assets/images/ui/rect/rect_interface.aseprite"
+dest_files=["res://.godot/imported/rect_interface.aseprite-ae8f889cefc3d3443be8d12b05fe5e50.res"]
+
+[params]
+

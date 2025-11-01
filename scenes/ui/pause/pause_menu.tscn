@@ -1,0 +1,111 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3xh7flyjm5dw"]
+
+[ext_resource type="Script" uid="uid://c00gipcbyqble" path="res://scenes/ui/pause/pause_menu.gd" id="1_cx0sj"]
+[ext_resource type="PackedScene" uid="uid://d2i4w4joysljq" path="res://scenes/ui/components/button.tscn" id="2_ntye7"]
+[ext_resource type="PackedScene" uid="uid://cjoh1cki2stxg" path="res://scenes/ui/components/vertical_slider.tscn" id="3_cghgw"]
+[ext_resource type="Texture2D" uid="uid://b7r2tlus6gvld" path="res://assets/ui/rect/music.png" id="4_1pxh0"]
+[ext_resource type="Texture2D" uid="uid://bdf605nufn62d" path="res://assets/ui/rect/sfx.png" id="5_e11en"]
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_cx0sj")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0278613, 0.106185, 0.159808, 0.643137)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxActionContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="PausedLabel" type="Label" parent="HBoxContainer/VBoxActionContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="ResumeButton" parent="HBoxContainer/VBoxActionContainer" instance=ExtResource("2_ntye7")]
+layout_mode = 2
+text = "Resume
+"
+
+[node name="MainMenuButton" parent="HBoxContainer/VBoxActionContainer" instance=ExtResource("2_ntye7")]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="LeftMarginContainer" type="MarginContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(1, 0)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="RightMarginContainer" type="MarginContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(6, 0)
+layout_mode = 2
+
+[node name="HBoxVolumeContainer" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxMusicVolumeContainer" type="VBoxContainer" parent="HBoxContainer/HBoxVolumeContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="MusicVolumeSlider" parent="HBoxContainer/HBoxVolumeContainer/VBoxMusicVolumeContainer" instance=ExtResource("3_cghgw")]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+value = 100.0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/HBoxVolumeContainer/VBoxMusicVolumeContainer"]
+layout_mode = 2
+texture = ExtResource("4_1pxh0")
+
+[node name="VBoxSFXVolumeContainer" type="VBoxContainer" parent="HBoxContainer/HBoxVolumeContainer"]
+layout_mode = 2
+
+[node name="SFXVolumeSlider" parent="HBoxContainer/HBoxVolumeContainer/VBoxSFXVolumeContainer" instance=ExtResource("3_cghgw")]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+value = 100.0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/HBoxVolumeContainer/VBoxSFXVolumeContainer"]
+layout_mode = 2
+texture = ExtResource("5_e11en")
+
+[connection signal="pressed" from="HBoxContainer/VBoxActionContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxActionContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="value_changed" from="HBoxContainer/HBoxVolumeContainer/VBoxMusicVolumeContainer/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/HBoxVolumeContainer/VBoxSFXVolumeContainer/SFXVolumeSlider" to="." method="_on_sfx_volume_slider_value_changed"]

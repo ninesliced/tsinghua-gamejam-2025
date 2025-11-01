@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cl0slftput1yx"
+path="res://.godot/imported/rect_summer.aseprite-fac3563e27b4cf9e580e19430a63e2a9.res"
+
+[deps]
+
+source_file="res://assets/images/ui/rect/rect_summer.aseprite"
+dest_files=["res://.godot/imported/rect_summer.aseprite-fac3563e27b4cf9e580e19430a63e2a9.res"]
+
+[params]
+
