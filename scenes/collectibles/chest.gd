@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var item_data: Array[Resource] = []
+@export var items: Array[Resource] = []
 var is_open : bool = false
 
 @onready var animated_sprite_2d: AnimatedSprite2D = %AnimatedSprite2D
@@ -10,11 +10,17 @@ func _on_interaction_area_body_entered(body: Node) -> void:
 	if body is Player and !is_open:
 		is_open = true
 		animated_sprite_2d.play("open")
-		if (len(item_data) > 0):
-			item_data.shuffle()
-			var selected_item = item_data[0]
-			print("Player collected item from chest:", selected_item)
-			#body.inventory.add_item(selected_item)
+		if len(items) > 0:
+			items.shuffle()
+			var selected_item = items[0]
+			if selected_item is WeaponData:
+				var object = preload("res://scenes/collectibles/weapon_item.tscn").instantiate()
+				get_parent().add_child(object)
+				var weapon = object as WeaponItem
+				weapon.weapon_data = selected_item
+				weapon.global_position = global_position
+			else:
+				pass
 
 func _ready() -> void:
 	interaction_area.body_entered.connect(_on_interaction_area_body_entered)
