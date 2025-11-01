@@ -1,9 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://cwp27or88qkvo"]
+[gd_scene load_steps=26 format=3 uid="uid://cwp27or88qkvo"]
 
 [ext_resource type="Texture2D" uid="uid://c0vgnvipqqoaj" path="res://placeholder/place_holder_sprite.png" id="1_8afob"]
 [ext_resource type="Script" uid="uid://bcy3y0yh1qhom" path="res://scenes/player/player.gd" id="1_dovo2"]
 [ext_resource type="PackedScene" uid="uid://b62c81khntjjv" path="res://addons/shaker/components/gameplay/state_machine/state_machine.tscn" id="2_75vfm"]
-[ext_resource type="Script" path="res://scenes/player/player_animation_manager.gd" id="2_fm80t"]
+[ext_resource type="Script" uid="uid://b28k41i5rvxp2" path="res://scenes/player/player_animation_manager.gd" id="2_fm80t"]
 [ext_resource type="PackedScene" uid="uid://dbph4hfobefpw" path="res://addons/shaker/components/gameplay/state_machine/state.tscn" id="3_0owmy"]
 [ext_resource type="PackedScene" uid="uid://bhw42if6pyrcm" path="res://scenes/player/components/movement_component.tscn" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://cd3vndlmhk4b" path="res://scenes/player/states/normal.gd" id="4_0owmy"]
@@ -13,7 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://dqieuqmaqtj3n" path="res://scenes/components/interaction_zone_component.tscn" id="10_je7p5"]
 [ext_resource type="Script" uid="uid://d1b7pxmk0hej1" path="res://scenes/player/components/movement_dash_component.gd" id="11_gx1jg"]
 [ext_resource type="Texture2D" uid="uid://v0dc4lx8vsnp" path="res://assets/tilesheet/tilesheet.png" id="11_je7p5"]
-[ext_resource type="PackedScene" uid="uid://i0ufqfa6xvld" path="res://scenes/player/components/energy_component.tscn" id="14_ugbui"]
+[ext_resource type="PackedScene" path="res://scenes/player/components/energy_component.tscn" id="14_ugbui"]
+[ext_resource type="Script" uid="uid://udwnk2ypudek" path="res://scenes/player/components/energy_component.gd" id="15_fcs02"]
 
 [sub_resource type="Animation" id="Animation_ugbui"]
 resource_name = "Anchored"
@@ -268,6 +269,7 @@ script = SubResource("GDScript_h17s1")
 
 [node name="EnergyComponent" parent="." instance=ExtResource("14_ugbui")]
 unique_name_in_owner = true
+script = ExtResource("15_fcs02")
 
 [connection signal="on_state_changed" from="StateMachine" to="StateDebug" method="_on_state_machine_on_state_changed"]
 [connection signal="on_move" from="MovementComponent" to="PlayerAnimationManager" method="_on_movement_component_on_move"]
