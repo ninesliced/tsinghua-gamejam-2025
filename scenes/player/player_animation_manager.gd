@@ -20,6 +20,14 @@ func _on_movement_component_on_stop():
 	pass # Replace with function body.
 
 func _on_movement_component_on_move(direction: Vector2):
-	play("run",1)
-	display_node.scale.x = 1 if direction.x >= 0 else -1
+	print(direction)
+	if (direction.y != 0):
+		print("Vertical movement detected")
+		if direction.y < 0:
+			play("up")
+		else:
+			play("down")
+	else:
+		play("side")
+		display_node.scale.x = 1 if direction.x >= 0 else -1
 	pass # Replace with function body.
