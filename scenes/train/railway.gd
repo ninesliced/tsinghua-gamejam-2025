@@ -5,15 +5,14 @@ class_name Railway
 @export var ways: Array[Curve2D] = []
 @export var timers: Array[float] = []
 
-var _way_index: int = 0
+signal on_new_way()
+
+var _way_index: int = -1
 var _timer_index: int = 0
 
 func _ready() -> void:
-	GameGlobal.train.train_reached_end.connect(_start_next_timer)
-
-	curve = ways[_way_index]
-	$Timer.wait_time = timers[_way_index]
-	$Timer.start()
+	on_new_way.connect(GameGlobal.train._train_next_way)
+	pass
 
 func next_way() -> bool:
 	_way_index += 1
@@ -22,26 +21,13 @@ func next_way() -> bool:
 	curve = ways[_way_index]
 	return true
 
-func is_last_way() -> bool:
-	return _way_index >= ways.size() - 1
-
-func _on_timer_timeout() -> void:
-	if _timer_index == 0:
-		GameGlobal.train.reached_end = false
-	else:
-		GameGlobal.train.train_next_way.emit()
-
-func _start_next_timer() -> void:
-	pass
-	# GameGlobal.game.c
-	# _timer_index += 1
-	# if _timer_index >= timers.size():
-	# 	return
-	# $Timer.wait_time = timers[_timer_index]
-	# $Timer.start()
-
 
 func _on_game_on_game_state_changed(old_state: Game.GameState, new_state: Game.GameState):
 	if new_state == Game.GameState.FIGHT:
-		$Timer.start()
+		on_new_way.emit()
+		if _way_index == -1:
+			_way_index = 0
+			return
+		next_way()
+
 	pass # Replace with function body.

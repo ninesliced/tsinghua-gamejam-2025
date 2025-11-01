@@ -47,5 +47,4 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 func _train_next_way() -> void:
 	reached_end = false
-	if _railway.next_way():
-		progress_ratio = 0
+	progress_ratio = 0

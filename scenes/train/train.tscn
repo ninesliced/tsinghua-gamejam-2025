@@ -23,7 +23,7 @@ atlas = ExtResource("4_0drc4")
 region = Rect2(3, 67, 55, 41)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0i8p1"]
-radius = 20.0
+radius = 44.181442
 
 [node name="Train" type="PathFollow2D"]
 rotates = false
@@ -43,6 +43,7 @@ texture = SubResource("AtlasTexture_iuhv6")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_fxk1r")]
 unique_name_in_owner = true
+position = Vector2(1, 0)
 
 [node name="Area2D" type="Area2D" parent="."]
 

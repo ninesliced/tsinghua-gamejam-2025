@@ -8,9 +8,9 @@
 
 [sub_resource type="Curve2D" id="Curve2D_tbgi4"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 6, 8, -25.36522, 1.3780842, 25.36522, -1.3780842, 33.67508, 56.279068, 0, 0, 0, 0, 78.895905, 35.81395, 0, 0, 0, 0, 105.35489, 20.930231, 0, 0, 0, 0, 122.19243, 55.81395, 0, 0, 0, 0, 112, 141, 0, 0, 0, 0, 125, 101, 0, 0, 0, 0, 139, 47, 0, 0, 0, 0, 178, 16, 0, 0, 0, 0, 214, 19, 0, 0, 0, 0, 244, 39, 0, 0, 0, 0, 274, 66, 0, 0, 0, 0, 298, 122, 0, 0, 0, 0, 311, 168)
+"points": PackedVector2Array(0, 0, 0, 0, 6, 8, -25.36522, 1.3780842, 25.36522, -1.3780842, 33.67508, 56.279068, 0, 0, 0, 0, 78.895905, 35.81395, 0, 0, 0, 0, 105.35489, 20.930231)
 }
-point_count = 14
+point_count = 4
 
 [sub_resource type="Curve2D" id="Curve2D_8c0u5"]
 _data = {
@@ -32,7 +32,7 @@ script = ExtResource("1_jyhfs")
 metadata/_edit_horizontal_guides_ = [648.0]
 
 [node name="Railway" parent="." instance=ExtResource("2_sugp2")]
-position = Vector2(53, 40)
+position = Vector2(51, 39)
 curve = SubResource("Curve2D_tbgi4")
 ways = Array[Curve2D]([SubResource("Curve2D_8c0u5"), SubResource("Curve2D_5xjal")])
 timers = Array[float]([5.0, 10.0])

@@ -12,9 +12,9 @@ enum GameState {
 var game_state : GameState = GameState.INIT_PREPARATION
 
 var time_dict : Dictionary = {
-	GameState.INIT_PREPARATION: 10.0,
+	GameState.INIT_PREPARATION: 3.0,
 	GameState.FIGHT: 60.0,
-	GameState.EXPLORATION: 45.0
+	GameState.EXPLORATION: 1.0
 }
 
 var time_left : float = time_each_round
@@ -24,6 +24,8 @@ signal on_game_state_changed(old_state: GameState, new_state: GameState)
 func _ready():
 	GameGlobal.game = self
 	setup_time()
+	GameGlobal.train.train_reached_end.connect(change_to_exploration)
+	print(GameGlobal.train)
 	pass # Replace with function body.
 
 
@@ -33,6 +35,10 @@ func _process(delta):
 	emit_signal("on_time_changed", time_left)
 	if time_left <= 0:
 		on_time_up()
+
+func change_to_exploration():
+	print("Change to exploration")
+	change_state(GameState.EXPLORATION)
 
 func change_state(new_state: GameState):
 	var old_state = game_state
@@ -54,5 +60,6 @@ func on_time_up():
 func setup_time():
 	if time_dict.has(game_state):
 		time_left = time_dict[game_state]
+		print("Time set to %f" % time_left)
 	else:
 		time_left = time_each_round
