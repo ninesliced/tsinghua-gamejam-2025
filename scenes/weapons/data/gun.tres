@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=4 format=3 uid="uid://b1sdk6ix7es80"]
+
+[ext_resource type="Script" uid="uid://ds1dp5nfypweh" path="res://scenes/weapons/weapon_data.gd" id="1_05h1b"]
+[ext_resource type="Texture2D" uid="uid://cx1hl3ywjwx30" path="res://assets/tilesheet/tilemap_packed.png" id="2_px1ld"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fb3xp"]
+atlas = ExtResource("2_px1ld")
+region = Rect2(144, 160, 16, 16)
+
+[resource]
+script = ExtResource("1_05h1b")
+texture = SubResource("AtlasTexture_fb3xp")
+delay = 0.1
+bullets_per_shot = 3
+fire_rate = 0.2
+spread_angle = 20.0
+automatic = true
+metadata/_custom_type_script = "uid://ds1dp5nfypweh"

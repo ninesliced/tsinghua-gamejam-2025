@@ -30,10 +30,10 @@ func _process(delta: float) -> void:
 	if generator_linkeds.size() == 0:
 		return
 
-	if int(i) % 1 != 0:
-		i += delta*1000
-		return
-	i = 0
+	# if int(i) % 10 != 0 or int(i) == 0:
+	# 	i += delta*1000
+	# 	return
+	# i = 0
 	for i in range(linked_anchors.size()):
 		var anchor = linked_anchors[i]
 		var line_node = line_nodes[i]

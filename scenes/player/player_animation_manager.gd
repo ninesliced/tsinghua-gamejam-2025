@@ -3,7 +3,7 @@ class_name PlayerAnimationManager
 
 
 @export var display_node : Node2D
-
+@export var particules_node : CPUParticles2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -15,12 +15,16 @@ func _process(delta):
 
 
 
+
 func _on_movement_component_on_stop():
 	play("idle", 1)
+	particules_node.emitting = false
+	#await 3 seconds
+	await get_tree().create_timer(0.2).timeout
 	pass # Replace with function body.
 
 func _on_movement_component_on_move(direction: Vector2):
-	print(direction)
+	particules_node.emitting = true
 	if (direction.y != 0):
 		print("Vertical movement detected")
 		if direction.y < 0:

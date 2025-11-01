@@ -12,7 +12,7 @@ default_color = Color(1, 0.814, 0.38, 1)
 script = ExtResource("1_1nqw7")
 noise_amplitude = 4.0
 number_of_segments = 10
-update_frequency = 0.125
+update_frequency = 0.3
 
 [node name="Area" type="Area2D" parent="."]
 collision_layer = 4
