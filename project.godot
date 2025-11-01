@@ -40,6 +40,10 @@ folder_colors={
 "res://scenes/": "pink"
 }
 
+[gui]
+
+theme/custom_font="uid://d33lnrubkro5l"
+
 [input]
 
 right={

@@ -12,6 +12,9 @@ var _timer_index: int = 0
 
 func _ready() -> void:
 	on_new_way.connect(GameGlobal.train._train_next_way)
+	if !GameGlobal.game:
+		await GameGlobal.game_ready
+	GameGlobal.game.on_game_state_changed.connect(_on_game_on_game_state_changed)
 	pass
 
 func next_way() -> bool:
