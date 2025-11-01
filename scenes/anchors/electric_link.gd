@@ -97,7 +97,6 @@ func _create_line(anchor: Anchor):
 	line.hide()
 
 func surcharge(generator_anchor: Anchor):
-	print("surcharging anchor")
 	if generator_anchor in generator_linkeds:
 		return
 	generator_linkeds.append(generator_anchor)
