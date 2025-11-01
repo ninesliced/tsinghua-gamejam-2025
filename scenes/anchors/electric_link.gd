@@ -16,6 +16,22 @@ func _ready():
 func on_anchor_disabled():
 	unlink_all()
 
+var i = 0
+func _process(delta: float) -> void:
+	if int(i) % 1 != 0:
+		i += delta*1000
+		return
+	i = 0
+	print(linked_anchors.size())
+	for i in range(linked_anchors.size()):
+		var anchor = linked_anchors[i]
+		var line_node = line_nodes[i]
+		var start = get_parent().anchor_mark.position
+		var end = anchor.anchor_mark.global_position - get_parent().anchor_mark.global_position + get_parent().anchor_mark.position
+		line_node.set_endpoints(start, end)
+		line_node.setup_line()
+		line_node.update_line()
+
 func link(anchor: Anchor):
 	_create_line(anchor)
 	linked_anchors.append(anchor)
@@ -50,3 +66,9 @@ func _create_line(anchor: Anchor):
 	line_nodes.append(line)
 	if get_instance_id() > anchor.electric_link.get_instance_id():
 		line.hide()
+
+
+func _on_electric_field_zone_area_exited(area: Area2D):
+	var anchor = area.get_parent() as Anchor
+	unlink_anchor(anchor)
+	pass # Replace with function body.

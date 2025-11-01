@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://cwbc5foggxevb"]
+[gd_scene load_steps=15 format=4 uid="uid://cwbc5foggxevb"]
 
 [ext_resource type="Script" uid="uid://dun17vq27vq80" path="res://scenes/game.gd" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://cwp27or88qkvo" path="res://scenes/player/player.tscn" id="1_o5qli"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b8phwynxhybcm" path="res://scenes/train/train.tscn" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://i6b2gcav1qjt" path="res://ui/game/time.gd" id="5_tbgi4"]
 [ext_resource type="Shader" uid="uid://b02bw466pwk5a" path="res://addons/shaker/components/vfx/shaders/outline.gdshader" id="5_tefeu"]
+[ext_resource type="PackedScene" uid="uid://lheoc2svvmfo" path="res://scenes/anchors/generator.tscn" id="7_choun"]
 [ext_resource type="TileSet" uid="uid://dckjsir55y6u4" path="res://assets/tilemap/map.tres" id="7_tipki"]
 [ext_resource type="PackedScene" uid="uid://ccbafmp5xuv54" path="res://scenes/enemy/enemy.tscn" id="8_85g3d"]
 [ext_resource type="Script" uid="uid://1x64j0v2rlif" path="res://scenes/UI/minimap/minimap_sub_viewport.gd" id="9_ya4ey"]
@@ -22,7 +23,7 @@ region = Rect2(18, 252, 16, 16)
 
 [sub_resource type="Curve2D" id="Curve2D_tipki"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 6, 8, 0, 0, 0, 0, 13, 66, 0, 0, 0, 0, 32, 131, 0, 0, 0, 0, 54.47213, 315.2, 0, 0, 0, 0, 198.47214, 339.2, 0, 0, 0, 0, 286.47214, 203.2, 0, 0, 0, 0, 254.47214, 123.2, 0, 0, 0, 0, 318.47214, 67.2, 0, 0, 0, 0, 406.47214, 83.2, 0, 0, 0, 0, 454.47214, 99.2, 0, 0, 0, 0, 502.47214, 179.2, 0, 0, 0, 0, 510.47214, 251.2, 0, 0, 0, 0, 502.47214, 347.2, 0, 0, 0, 0, 606.4721, 331.2, 0, 0, 0, 0, 638.4721, 243.2, 0, 0, 0, 0, 654.4721, 131.2)
+"points": PackedVector2Array(0, 0, 0, 0, -8, 24, 0, 0, 0, 0, 13, 66, 0, 0, 0, 0, 32, 131, 0, 0, 0, 0, 54.47213, 315.2, 0, 0, 0, 0, 198.47214, 339.2, 0, 0, 0, 0, 286.47214, 203.2, 0, 0, 0, 0, 254.47214, 123.2, 0, 0, 0, 0, 318.47214, 67.2, 0, 0, 0, 0, 406.47214, 83.2, 0, 0, 0, 0, 454.47214, 99.2, 0, 0, 0, 0, 502.47214, 179.2, 0, 0, 0, 0, 510.47214, 251.2, 0, 0, 0, 0, 502.47214, 347.2, 0, 0, 0, 0, 606.4721, 331.2, 0, 0, 0, 0, 638.4721, 243.2, 0, 0, 0, 0, 654.4721, 131.2)
 }
 point_count = 16
 
@@ -102,7 +103,7 @@ tile_set = ExtResource("7_tipki")
 
 [node name="Railway" parent="." instance=ExtResource("2_sugp2")]
 y_sort_enabled = true
-position = Vector2(-6.472131, -11.200001)
+position = Vector2(-8, 8)
 curve = SubResource("Curve2D_tipki")
 ways = Array[Curve2D]([SubResource("Curve2D_8c0u5"), SubResource("Curve2D_5xjal")])
 timers = Array[float]([5.0, 10.0])
@@ -110,10 +111,11 @@ timers = Array[float]([5.0, 10.0])
 [node name="Train" parent="Railway" instance=ExtResource("3_jyhfs")]
 unique_name_in_owner = true
 y_sort_enabled = true
-position = Vector2(6, 8)
-rotation = 1.4506875
-rotates = true
+position = Vector2(-8, 24)
 loop = false
+
+[node name="Anchor" parent="Railway" instance=ExtResource("7_choun")]
+position = Vector2(-48, 112)
 
 [node name="Player" parent="." instance=ExtResource("1_o5qli")]
 position = Vector2(48, 56)
@@ -123,39 +125,39 @@ wall_min_slide_angle = 3.1415927
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("8_85g3d")]
 position = Vector2(269, 263)
-target = NodePath("../TileMapLayer2")
+target = NodePath("../Railway/Train")
 
 [node name="Enemy2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("8_85g3d")]
 position = Vector2(35, 382)
-target = NodePath("../TileMapLayer2")
+target = NodePath("../Railway/Train")
 
 [node name="Enemy3" parent="." node_paths=PackedStringArray("target") instance=ExtResource("8_85g3d")]
 position = Vector2(514, 157)
-target = NodePath("../TileMapLayer2")
+target = NodePath("../Railway/Train")
 
 [node name="Enemy4" parent="." node_paths=PackedStringArray("target") instance=ExtResource("8_85g3d")]
 position = Vector2(542, 416)
-target = NodePath("../TileMapLayer2")
+target = NodePath("../Railway/Train")
 
 [node name="Enemy5" parent="." node_paths=PackedStringArray("target") instance=ExtResource("8_85g3d")]
 position = Vector2(257, 26)
-target = NodePath("../TileMapLayer2")
+target = NodePath("../Railway/Train")
 
 [node name="Enemy6" parent="." node_paths=PackedStringArray("target") instance=ExtResource("8_85g3d")]
 position = Vector2(675, 204)
-target = NodePath("../TileMapLayer2")
+target = NodePath("../Railway/Train")
 
 [node name="Enemy7" parent="." node_paths=PackedStringArray("target") instance=ExtResource("8_85g3d")]
 position = Vector2(407, 454)
-target = NodePath("../TileMapLayer2")
+target = NodePath("../Railway/Train")
 
 [node name="Enemy8" parent="." node_paths=PackedStringArray("target") instance=ExtResource("8_85g3d")]
 position = Vector2(-110, 451)
-target = NodePath("../TileMapLayer2")
+target = NodePath("../Railway/Train")
 
 [node name="Enemy9" parent="." node_paths=PackedStringArray("target") instance=ExtResource("8_85g3d")]
 position = Vector2(-127, 221)
-target = NodePath("../TileMapLayer2")
+target = NodePath("../Railway/Train")
 
 [node name="UI" parent="." instance=ExtResource("9_85g3d")]
 

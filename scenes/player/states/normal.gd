@@ -28,7 +28,7 @@ func _input(event):
 		if interaction_zone == null:
 			return
 		var parent = interaction_zone.get_parent()
-		if parent is Anchor and can_be_anchored(parent):
+		if parent is Anchor and can_be_anchored(parent) and parent.can_be_anchored_state:
 			anchored_state.selected_anchor = parent
 			state_finished.emit(self, "Anchored")
 
