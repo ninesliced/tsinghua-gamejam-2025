@@ -1,6 +1,7 @@
 extends Node
 
 @export var player: Player
+@export var normal: Normal
 @export var movement_component: MovementComponent
 @export var dash_speed: float = 350.0
 @export var dash_duration: float = 0.2
@@ -38,7 +39,7 @@ func _physics_process(delta: float) -> void:
 		player.velocity = dash_direction * dash_speed
 
 func can_dash() -> bool:
-	return not is_dashing and cooldown_time_remaining <= 0
+	return not is_dashing and normal.enabled and cooldown_time_remaining <= 0
 
 func start_dash() -> void:
 	var input_dir = Input.get_vector("left", "right", "up", "down").normalized()

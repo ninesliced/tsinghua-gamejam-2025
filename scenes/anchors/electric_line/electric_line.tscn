@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://k4wl84m08hb5"]
+[gd_scene load_steps=3 format=3 uid="uid://k4wl84m08hb5"]
 
 [ext_resource type="Script" uid="uid://c30n30gmpxb8p" path="res://scenes/anchors/electric_line/electric_line.gd" id="1_1nqw7"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_1nqw7"]
+resource_local_to_scene = true
 
 [node name="ElectricLine" type="Line2D"]
 points = PackedVector2Array(55, 39, 195, 51)
@@ -10,3 +13,13 @@ script = ExtResource("1_1nqw7")
 noise_amplitude = 4.0
 number_of_segments = 10
 update_frequency = 0.125
+
+[node name="Area" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 7
+
+[node name="CollisionLine" type="CollisionShape2D" parent="Area"]
+unique_name_in_owner = true
+shape = SubResource("SegmentShape2D_1nqw7")
+
+[connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]

@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccbafmp5xuv54"]
+
+[ext_resource type="Texture2D" uid="uid://dji4tw1swaehw" path="res://icon.svg" id="1_4a83h"]
+[ext_resource type="Script" uid="uid://xdt5oe2unl8l" path="res://scenes/enemy/enemy.gd" id="1_a3pup"]
+[ext_resource type="PackedScene" uid="uid://bucl4ei3ylyu8" path="res://scenes/components/health_component.tscn" id="3_40wdo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_40wdo"]
+radius = 5.0
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_mask = 2
+motion_mode = 1
+script = ExtResource("1_a3pup")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_40wdo")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_4a83h")
+
+[node name="NavigationAgent" type="NavigationAgent2D" parent="."]
+unique_name_in_owner = true
+path_desired_distance = 3.0
+target_desired_distance = 3.0
+path_postprocessing = 1
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_40wdo")]
+unique_name_in_owner = true
+max_health = 1
+health_bar = false
+
+[connection signal="target_reached" from="NavigationAgent" to="." method="_on_navigation_agent_target_reached"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="on_dead" from="HealthComponent" to="." method="_on_health_component_on_dead"]

@@ -3,10 +3,7 @@ extends Node2D
 class_name HealthComponent
 
 @export var max_health: int = 100
-@export var health_bar: bool = true :
-	set(x):
-		_health_bar.visible = x
-		health_bar = x
+@export var health_bar: bool = true
 
 var _current_health: int :
 	set(x):
@@ -22,6 +19,7 @@ signal on_dead()
 
 func _ready() -> void:
 	_current_health = max_health
+	_health_bar.visible = health_bar
 
 func damage(amount: int) -> void:
 	on_damaged.emit(amount)
