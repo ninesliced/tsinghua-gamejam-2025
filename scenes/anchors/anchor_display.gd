@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 class_name AnchorDisplay
 var anchor_target: Node2D
 @onready var anchor_sprite: AnimatedSprite2D = %AnchorSprite
@@ -8,7 +8,7 @@ var speed_wave := 4.0
 
 @export var min_distance_to_target := 15.0
 @export var max_distance_to_target := 20.0
-@export var speed_move := 5.0
+@export var speed_move := 100.0
 
 var anchors_display_to_push := []
 
@@ -17,19 +17,20 @@ func _process(delta):
 	handle_wave_animation(delta)
 	if anchor_target == null:
 		return
-	var direction = anchor_target.position - position
+	var direction = anchor_target.global_position - global_position
 	var distance = direction.length()
-	if distance < min_distance_to_target:
-		global_position -= direction.normalized() * speed_move * delta
-	elif distance > max_distance_to_target:
-		global_position += direction.normalized() * distance * speed_move * delta
+
+	if distance > max_distance_to_target:
+		velocity = direction.normalized() * speed_move * distance * distance / 2000
+	else:
+		velocity = velocity.move_toward(Vector2.ZERO, speed_move * delta * 1.5)
 	
 	for anchor_display in anchors_display_to_push:
 		var dir_push = position - anchor_display.position
 		var dist_push = dir_push.length()
-		if dist_push < max_distance_to_target:
-			global_position += dir_push.normalized() * delta * speed_move
-			print("PUSHING ANCHOR DISPLAY")
+		if dist_push < min_distance_to_target and dir_push != Vector2.ZERO:
+			velocity += dir_push.normalized() * delta * speed_move * 2
+	move_and_slide()
 
 
 func handle_wave_animation(delta):

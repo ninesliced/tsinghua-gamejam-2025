@@ -23,17 +23,17 @@ func _input(event):
 	if event.is_action_pressed("place_anchor"):
 		anchor_manager.handle_anchor_action()
 
-	#if event.is_action_pressed("interact"):
-	#	var interaction_zone = interaction_zone_component.get_nearest_interaction_zone(entity)
-	#	if interaction_zone == null:
-	#		return
-	#	var parent = interaction_zone.get_parent()
-	#	if parent is Anchor and can_be_anchored(parent) and parent.can_be_anchored_state:
-	#		anchored_state.selected_anchor = parent
-	#		state_finished.emit(self, "Anchored")
+	# if event.is_action_pressed("interact"):
+	# 	var interaction_zone = interaction_zone_component.get_nearest_interaction_zone(entity)
+	# 	if interaction_zone == null:
+	# 		return
+	# 	var parent = interaction_zone.get_parent()
+	# 	if parent is Anchor and can_be_anchored(parent) and parent.can_be_anchored_state:
+	# 		anchored_state.selected_anchor = parent
+	# 		state_finished.emit(self, "Anchored")
 
 func can_be_anchored(anchor: Anchor) -> bool:
-	var anchor_elec_link := anchor.electric_link
+	var anchor_elec_link = anchor.electric_link
 	if anchor_elec_link.surcharged == false:
 		return false
 	if anchor.electric_link.linked_anchors.size() > 0:

@@ -12,7 +12,6 @@ func _ready() -> void:
 	SignalBus.on_anchor_unlinked.connect(give_energy)
 
 func give_energy(_anchor: Anchor) -> void:
-	print("azezae")
 	for anchor in anchors_surcharged:
 		anchor.electric_link.decharge(get_parent() as Anchor)
 			

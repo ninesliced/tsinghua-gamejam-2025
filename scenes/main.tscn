@@ -13,7 +13,6 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o6xl0"]
 shader = ExtResource("5_tefeu")
-shader_parameter/color = Color(0, 0, 0, 1)
 
 [sub_resource type="Curve2D" id="Curve2D_tipki"]
 _data = {
@@ -81,9 +80,11 @@ unique_name_in_owner = true
 y_sort_enabled = true
 position = Vector2(-8, 24)
 loop = false
+speed = 30.0
 
 [node name="Anchor" parent="Railway" instance=ExtResource("7_choun")]
 position = Vector2(-72, 32)
+can_be_anchored_state = false
 
 [node name="Player" parent="." instance=ExtResource("1_o5qli")]
 position = Vector2(48, 56)

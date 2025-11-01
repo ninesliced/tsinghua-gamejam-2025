@@ -11,6 +11,7 @@ var _way_index: int = -1
 var _timer_index: int = 0
 
 func _ready() -> void:
+	curve = ways[0]
 	on_new_way.connect(GameGlobal.train._train_next_way)
 	if !GameGlobal.game:
 		await GameGlobal.game_ready

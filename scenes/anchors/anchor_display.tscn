@@ -42,9 +42,10 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_22pa6"]
 radius = 9.0
 
-[node name="AnchorDisplay" type="Node2D"]
+[node name="AnchorDisplay" type="CharacterBody2D"]
 top_level = true
 script = ExtResource("1_22pa6")
+max_distance_to_target = 22.0
 
 [node name="AnchorSprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("electric_line")]
 unique_name_in_owner = true
