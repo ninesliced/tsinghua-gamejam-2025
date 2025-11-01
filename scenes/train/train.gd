@@ -4,7 +4,7 @@ class_name Train
 
 @export var speed: float = 50
 var moving: bool = false
-var reached_end: bool = false
+var reached_end: bool = true
 
 var _railway: Railway = null
 
@@ -22,6 +22,7 @@ func _ready() -> void:
 		assert(false, "Train must be a child of Railway")
 	
 	train_next_way.connect(_train_next_way)
+	GameGlobal.train = self
 
 func _process(delta: float) -> void:
 	if not moving or reached_end:

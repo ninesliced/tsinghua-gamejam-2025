@@ -28,9 +28,11 @@ point_count = 7
 position = Vector2(68, 54)
 
 [node name="Railway" parent="." instance=ExtResource("2_8c0u5")]
-position = Vector2(0, -2)
+position = Vector2(-6.472131, -11.200001)
+scale = Vector2(2.0786886, 2.15)
 curve = SubResource("Curve2D_7i0yp")
 ways = Array[Curve2D]([SubResource("Curve2D_8c0u5"), SubResource("Curve2D_5xjal")])
+timers = Array[float]([5.0, 10.0])
 
 [node name="Train" parent="Railway" instance=ExtResource("3_5xjal")]
 unique_name_in_owner = true
