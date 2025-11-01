@@ -1,14 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://hxftew76u0of"]
+[gd_scene load_steps=8 format=3 uid="uid://hxftew76u0of"]
 
 [ext_resource type="Script" uid="uid://1x64j0v2rlif" path="res://scenes/UI/minimap/minimap_sub_viewport.gd" id="1_nj03n"]
 [ext_resource type="Texture2D" uid="uid://cm4ueixrueyux" path="res://assets/tilesheet/UI_spritesheet.png" id="2_byepb"]
 [ext_resource type="Texture2D" uid="uid://ce267gyq77c17" path="res://assets/tilesheet/UI_tilemap.png" id="3_bioq6"]
+[ext_resource type="FontFile" uid="uid://b43fnbe7haseo" path="res://assets/m5x7.ttf" id="4_byepb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y4ga5"]
 atlas = ExtResource("2_byepb")
 region = Rect2(18, 252, 16, 16)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ux01x"]
+
+[sub_resource type="FontVariation" id="FontVariation_nj03n"]
+base_font = ExtResource("4_byepb")
 
 [node name="UI" type="CanvasLayer"]
 
@@ -66,3 +70,11 @@ patch_margin_left = 8
 patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = 79.0
+offset_top = 6.0
+offset_right = 328.0
+offset_bottom = 23.0
+theme_override_fonts/font = SubResource("FontVariation_nj03n")
+theme_override_font_sizes/font_size = 16

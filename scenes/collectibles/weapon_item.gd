@@ -1,4 +1,5 @@
 extends Node2D
+class_name WeaponItem
 
 @export var weapon_data: WeaponData :
 	set(x):
