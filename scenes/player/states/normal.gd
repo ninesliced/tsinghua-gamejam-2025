@@ -1,5 +1,7 @@
 extends State
 
+class_name Normal
+
 @export var anchor_manager : AnchorManager
 @export var interaction_zone_component: InteractionZoneComponent
 @export var anchored_state : Anchored
