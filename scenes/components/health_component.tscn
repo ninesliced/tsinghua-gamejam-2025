@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bucl4ei3ylyu8"]
+
+[ext_resource type="Script" uid="uid://mx76o3wfb0st" path="res://scenes/components/health_component.gd" id="1_3ivr3"]
+
+[node name="HealthComponent" type="Node2D"]
+script = ExtResource("1_3ivr3")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_right = 4.0
+offset_bottom = 27.0

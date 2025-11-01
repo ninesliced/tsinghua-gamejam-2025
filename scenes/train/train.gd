@@ -8,6 +8,8 @@ var reached_end: bool = true
 
 var _railway: Railway = null
 
+@onready var health_component: HealthComponent = %HealthComponent
+
 signal train_start_moving()
 signal train_stop_moving()
 signal train_reached_end()
