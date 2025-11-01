@@ -12,9 +12,9 @@ enum GameState {
 var game_state : GameState = GameState.INIT_PREPARATION
 
 var time_dict : Dictionary = {
-	GameState.INIT_PREPARATION: 3.0,
+	GameState.INIT_PREPARATION: 5.0,
 	GameState.FIGHT: 60.0,
-	GameState.EXPLORATION: 1.0
+	GameState.EXPLORATION: 30.0
 }
 
 var time_left : float = time_each_round

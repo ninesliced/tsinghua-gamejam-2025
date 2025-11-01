@@ -17,6 +17,7 @@ func _ready() -> void:
 	transparent_bg = true
 
 	create_player_minimap_sprite()
+	init_create_anchor_minimap_sprite()
 	create_train_minimap_sprite()
 	create_railway_line()
 
@@ -79,6 +80,11 @@ func _update_anchor_lines() -> void:
 			add_child(line)
 			anchor_lines.append(line)
 
+func init_create_anchor_minimap_sprite() -> void:
+	for anchor in get_tree().get_nodes_in_group("Anchors"):
+		if anchor is Anchor:
+			var sprite = create_anchor_minimap_sprite(anchor)
+			anchor_minimap_sprites[anchor] = sprite
 
 func create_player_minimap_sprite() -> void:
 	player_minimap_sprite = Sprite2D.new()
