@@ -1,12 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwbc5foggxevb"]
+[gd_scene load_steps=10 format=3 uid="uid://cwbc5foggxevb"]
 
+[ext_resource type="Script" uid="uid://dun17vq27vq80" path="res://scenes/game.gd" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://cwp27or88qkvo" path="res://scenes/player/player.tscn" id="1_o5qli"]
 [ext_resource type="PackedScene" path="res://scenes/train/railway.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://b8phwynxhybcm" path="res://scenes/train/train.tscn" id="3_jyhfs"]
+[ext_resource type="Script" uid="uid://i6b2gcav1qjt" path="res://ui/game/time.gd" id="5_tbgi4"]
 
 [sub_resource type="Curve2D" id="Curve2D_tbgi4"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 6, 8, 0, 0, 0, 0, 33.67508, 56.279068, 0, 0, 0, 0, 78.895905, 35.81395, 0, 0, 0, 0, 105.35489, 20.930231, 0, 0, 0, 0, 122.19243, 55.81395, 0, 0, 0, 0, 112, 141, 0, 0, 0, 0, 125, 101, 0, 0, 0, 0, 139, 47, 0, 0, 0, 0, 178, 16, 0, 0, 0, 0, 214, 19, 0, 0, 0, 0, 244, 39, 0, 0, 0, 0, 274, 66, 0, 0, 0, 0, 298, 122, 0, 0, 0, 0, 311, 168)
+"points": PackedVector2Array(0, 0, 0, 0, 6, 8, -25.36522, 1.3780842, 25.36522, -1.3780842, 33.67508, 56.279068, 0, 0, 0, 0, 78.895905, 35.81395, 0, 0, 0, 0, 105.35489, 20.930231, 0, 0, 0, 0, 122.19243, 55.81395, 0, 0, 0, 0, 112, 141, 0, 0, 0, 0, 125, 101, 0, 0, 0, 0, 139, 47, 0, 0, 0, 0, 178, 16, 0, 0, 0, 0, 214, 19, 0, 0, 0, 0, 244, 39, 0, 0, 0, 0, 274, 66, 0, 0, 0, 0, 298, 122, 0, 0, 0, 0, 311, 168)
 }
 point_count = 14
 
@@ -25,7 +27,8 @@ point_count = 7
 [sub_resource type="TileSet" id="TileSet_sugp2"]
 physics_layer_0/collision_layer = 1
 
-[node name="Main" type="Node2D"]
+[node name="Game" type="Node2D"]
+script = ExtResource("1_jyhfs")
 metadata/_edit_horizontal_guides_ = [648.0]
 
 [node name="Railway" parent="." instance=ExtResource("2_sugp2")]
@@ -48,3 +51,29 @@ position = Vector2(144, 107)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="AnimatedSprite2D"]
 tile_set = SubResource("TileSet_sugp2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Time" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -62.0
+offset_top = 13.0
+offset_right = 62.0
+offset_bottom = 36.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 8
+text = "TIME: "
+horizontal_alignment = 1
+script = ExtResource("5_tbgi4")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="NavigationLink2D" type="NavigationLink2D" parent="."]
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="NavigationLink2D"]
+radius = 13.61
+
+[connection signal="on_game_state_changed" from="." to="Railway" method="_on_game_on_game_state_changed"]
+[connection signal="on_time_changed" from="." to="CanvasLayer/Time" method="_on_game_on_time_changed"]

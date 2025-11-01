@@ -37,3 +37,7 @@ func _start_next_timer() -> void:
 		return
 	$Timer.wait_time = timers[_timer_index]
 	$Timer.start()
+
+
+func _on_game_on_game_state_changed(old_state: Game.GameState, new_state: Game.GameState):
+	pass # Replace with function body.
