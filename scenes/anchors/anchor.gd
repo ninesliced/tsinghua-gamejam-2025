@@ -7,6 +7,10 @@ var player: Player = null
 signal on_disabled()
 signal on_enabled()
 
+@export var pickable: bool = true
+@export var can_be_anchored_state: bool = true
+@export var enabled_by_default : bool = false
+
 @onready var animated_sprite_2d: AnimatedSprite2D = %AnchorSprite
 @onready var electric_link: ElectricLink = $ElectricLink
 @onready var electric_field_zone: ElectricFieldZone = $ElectricFieldZone
@@ -28,6 +32,12 @@ func _on_player_interaction_zone_on_player_entered(player: Player):
 	self.player = player
 	player.anchor_manager.anchors_in_range.append(self)
 
+func _ready():
+	if enabled_by_default:
+		enable()
+		print("Anchor enabled by default")
+		set_process(true)
+
 func disable():
 	can_collect = false
 	set_process(false)
@@ -44,16 +54,10 @@ func enable():
 	on_enabled.emit()
 
 func set_all_areas(bool_value: bool):
-	# why tf does electric_field_zone get affected like that but not the other
+	if !electric_field_zone or !player_interaction_zone:
+		return
 	electric_field_zone.monitorable = bool_value
 	electric_field_zone.monitoring = bool_value
 
 	player_interaction_zone.monitorable = bool_value
 	player_interaction_zone.monitoring = bool_value
-
-	# #talking about this
-	# for area in areas:
-	# 	print(area.name)
-	# 	print("Setting area ", area.name, " to ", bool_value)
-	# 	area.monitoring = bool_value
-	# 	area.monitorable = bool_value

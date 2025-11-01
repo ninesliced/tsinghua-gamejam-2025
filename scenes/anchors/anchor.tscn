@@ -94,6 +94,7 @@ offset_right = 19.0
 offset_bottom = -27.0
 
 [connection signal="area_entered" from="ElectricFieldZone" to="ElectricFieldZone" method="_on_area_entered"]
+[connection signal="area_exited" from="ElectricFieldZone" to="ElectricLink" method="_on_electric_field_zone_area_exited"]
 [connection signal="on_player_entered" from="PlayerInteractionZone" to="." method="_on_player_interaction_zone_on_player_entered"]
 [connection signal="on_player_exited" from="PlayerInteractionZone" to="." method="_on_player_interaction_zone_on_player_exited"]
 [connection signal="on_emptied" from="ElectricLink" to="AnchorSprite" method="_on_electric_link_on_emptied"]

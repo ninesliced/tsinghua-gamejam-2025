@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://lheoc2svvmfo"]
+
+[ext_resource type="PackedScene" uid="uid://i8mrq45e3ure" path="res://scenes/anchors/anchor.tscn" id="1_ew1ci"]
+[ext_resource type="Texture2D" uid="uid://b2s8r3m7hit0y" path="res://assets/tilesheet/tile_sheet.png" id="2_ncwfm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrmtw"]
+atlas = ExtResource("2_ncwfm")
+region = Rect2(60, 0, 30, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ew1ci"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrmtw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Anchor" instance=ExtResource("1_ew1ci")]
+pickable = false
+can_be_anchored_state = false
+
+[node name="AnchorSprite" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_ew1ci")
+
+[node name="GenerateEnergy" type="Node" parent="." index="4"]
