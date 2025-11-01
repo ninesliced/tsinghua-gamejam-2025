@@ -168,7 +168,6 @@ func create_enemy_minimap_sprite(enemy: Enemy) -> Sprite2D:
 	return enemy_sprite
 
 func _track_enemy(enemy: Enemy) -> void:
-	print("Tracking enemy on minimap:", enemy)
 	if enemy_minimap_sprites.has(enemy):
 		return
 	var sprite := create_enemy_minimap_sprite(enemy)
