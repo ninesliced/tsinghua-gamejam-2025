@@ -14,6 +14,7 @@ width = 2.0
 default_color = Color(0.113572694, 0.62519765, 0.6786568, 1)
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(1, 0)

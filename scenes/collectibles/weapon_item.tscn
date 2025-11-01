@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://cf4cyxtoeoidg"]
+
+[ext_resource type="Script" uid="uid://bym5jc4g73s6e" path="res://scenes/collectibles/weapon_item.gd" id="1_8d6st"]
+[ext_resource type="Resource" uid="uid://b1sdk6ix7es80" path="res://scenes/weapons/data/gun.tres" id="2_i4rrb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8d6st"]
+radius = 20.0
+
+[node name="WeaponItem" type="Node2D"]
+script = ExtResource("1_8d6st")
+weapon_data = ExtResource("2_i4rrb")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+
+[node name="PickupArea" type="Area2D" parent="."]
+
+[node name="CollisionShape" type="CollisionShape2D" parent="PickupArea"]
+shape = SubResource("CircleShape2D_8d6st")
+
+[node name="HintText" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -54.0
+offset_top = -24.0
+offset_right = 56.0
+offset_bottom = -4.0
+theme_override_font_sizes/font_size = 8
+text = "Press E to collect"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]

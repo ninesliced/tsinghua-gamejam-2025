@@ -1,6 +1,7 @@
 extends Node
 
 var train: Train = null
+var player: Player = null
 var game: Game = null:
 	set(value):
 		game = value

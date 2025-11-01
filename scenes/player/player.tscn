@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cwp27or88qkvo"]
+[gd_scene load_steps=29 format=3 uid="uid://cwp27or88qkvo"]
 
 [ext_resource type="Script" uid="uid://bcy3y0yh1qhom" path="res://scenes/player/player.gd" id="1_dovo2"]
 [ext_resource type="PackedScene" uid="uid://b62c81khntjjv" path="res://addons/shaker/components/gameplay/state_machine/state_machine.tscn" id="2_75vfm"]
@@ -12,9 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://cx8d4vvddypx3" path="res://assets/player/player_sheet.png" id="8_fcs02"]
 [ext_resource type="PackedScene" uid="uid://dqieuqmaqtj3n" path="res://scenes/components/interaction_zone_component.tscn" id="10_je7p5"]
 [ext_resource type="Script" uid="uid://d1b7pxmk0hej1" path="res://scenes/player/components/movement_dash_component.gd" id="11_gx1jg"]
-[ext_resource type="PackedScene" path="res://scenes/player/components/energy_component.tscn" id="14_ugbui"]
-[ext_resource type="Script" uid="uid://udwnk2ypudek" path="res://scenes/player/components/energy_component.gd" id="15_fcs02"]
 [ext_resource type="Script" uid="uid://bjhtjigiy7f1t" path="res://scenes/player/anchor_displayer.gd" id="15_myrg7"]
+[ext_resource type="PackedScene" uid="uid://dgtr4jc6gcnqx" path="res://scenes/player/components/weapon_component.tscn" id="16_myrg7"]
 
 [sub_resource type="Animation" id="Animation_ugbui"]
 resource_name = "Anchored"
@@ -360,9 +359,9 @@ offset_right = 20.0
 offset_bottom = 33.0
 script = SubResource("GDScript_h17s1")
 
-[node name="EnergyComponent" parent="." instance=ExtResource("14_ugbui")]
+[node name="WeaponComponent" parent="." instance=ExtResource("16_myrg7")]
 unique_name_in_owner = true
-script = ExtResource("15_fcs02")
+position = Vector2(8, -7)
 
 [connection signal="on_state_changed" from="StateMachine" to="StateDebug" method="_on_state_machine_on_state_changed"]
 [connection signal="on_move" from="MovementComponent" to="PlayerAnimationManager" method="_on_movement_component_on_move"]

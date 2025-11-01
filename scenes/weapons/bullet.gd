@@ -10,6 +10,9 @@ func _process(delta: float) -> void:
 	global_position += direction * speed * delta
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is Player:
+		return
+
 	queue_free()
 	
 	if body is Enemy:
