@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://scenes/player/states/anchored.gd" id="5_5gtgg"]
 [ext_resource type="Script" uid="uid://bapsr6p3avfvj" path="res://scenes/player/components/movement_anchor_component.gd" id="7_qek5x"]
 [ext_resource type="PackedScene" uid="uid://dqieuqmaqtj3n" path="res://scenes/components/interaction_zone_component.tscn" id="10_je7p5"]
-[ext_resource type="Script" path="res://scenes/player/components/movement_dash_component.gd" id="11_gx1jg"]
+[ext_resource type="Script" uid="uid://d1b7pxmk0hej1" path="res://scenes/player/components/movement_dash_component.gd" id="11_gx1jg"]
 [ext_resource type="Texture2D" uid="uid://v0dc4lx8vsnp" path="res://assets/tilesheet/tilesheet.png" id="11_je7p5"]
 
 [sub_resource type="Animation" id="Animation_ugbui"]
@@ -239,9 +239,11 @@ script = ExtResource("7_qek5x")
 anchor_manager = NodePath("../../AnchorManager")
 movement_component = NodePath("..")
 
-[node name="MovementDashComponent" type="Node" parent="MovementComponent" node_paths=PackedStringArray("player")]
+[node name="MovementDashComponent" type="Node" parent="MovementComponent" node_paths=PackedStringArray("player", "normal", "movement_component")]
 script = ExtResource("11_gx1jg")
 player = NodePath("../..")
+normal = NodePath("../../StateMachine/Normal")
+movement_component = NodePath("..")
 
 [node name="AnchorManager" type="Node2D" parent="."]
 unique_name_in_owner = true
