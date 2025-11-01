@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dji4tw1swaehw" path="res://icon.svg" id="1_tnona"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0i8p1"]
+radius = 20.0
 
 [node name="Train" type="PathFollow2D"]
 script = ExtResource("1_0i8p1")
