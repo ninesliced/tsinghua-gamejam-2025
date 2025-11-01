@@ -4,6 +4,7 @@ class_name Anchored
 @export var speed : float = 150.0
 @export var max_speed : float = 300.0
 @export var speed_multiplier : float = 1.2
+@export var player_shape: CollisionShape2D
 var current_speed : float = 0.0:
 	set(value):
 		current_speed = value
@@ -31,6 +32,7 @@ func lose_speed_stack():
 		current_speed = max(current_speed / speed_multiplier, speed)
 
 func enter():
+	player_shape.disabled = true
 	enabled = true
 	movement_component.disable()
 	player.velocity = Vector2(0, 0)
@@ -47,7 +49,7 @@ func enter():
 func _input(event):
 	if not enabled:
 		return
-	if event.is_action_pressed("interact"):
+	if event.is_action_pressed("interact") and !moving_to_anchor:
 		call_deferred("emit_state_finished")
 	pass
 
@@ -72,6 +74,7 @@ func physics_process(delta):
 	pass
 
 func exit():
+	player_shape.disabled = false
 	current_speed = speed
 	enabled = false
 	movement_component.enable()

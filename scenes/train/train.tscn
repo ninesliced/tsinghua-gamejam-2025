@@ -1,26 +1,54 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8phwynxhybcm"]
+[gd_scene load_steps=10 format=3 uid="uid://b8phwynxhybcm"]
 
 [ext_resource type="Script" uid="uid://1ujwelwmaxt1" path="res://scenes/train/train.gd" id="1_0i8p1"]
-[ext_resource type="Texture2D" uid="uid://dji4tw1swaehw" path="res://icon.svg" id="1_tnona"]
+[ext_resource type="Shader" uid="uid://c0o26cj1bvehw" path="res://assets/shaders/3d.gdshader" id="2_4bqpq"]
 [ext_resource type="PackedScene" uid="uid://bucl4ei3ylyu8" path="res://scenes/components/health_component.tscn" id="2_fxk1r"]
+[ext_resource type="Texture2D" uid="uid://bi8fr58i55knl" path="res://assets/tilesheet/3Dcolor.png" id="3_b0oxr"]
+[ext_resource type="Texture2D" uid="uid://v0dc4lx8vsnp" path="res://assets/tilesheet/tilesheet.png" id="4_0drc4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4bqpq"]
+size = Vector2(31.978601, 15.045567)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xnb1e"]
+shader = ExtResource("2_4bqpq")
+shader_parameter/ground_cols = ExtResource("3_b0oxr")
+shader_parameter/number_of_ground_cols = 2
+shader_parameter/uniform_shadow = Color(0, 0, 0, 1)
+shader_parameter/color_fill = Color(0, 0, 0, 1)
+shader_parameter/force = 0.0
+shader_parameter/height = 4.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iuhv6"]
+atlas = ExtResource("4_0drc4")
+region = Rect2(3, 67, 55, 41)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0i8p1"]
 radius = 20.0
 
 [node name="Train" type="PathFollow2D"]
+rotates = false
 script = ExtResource("1_0i8p1")
+
+[node name="RigidBody2D" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("RectangleShape2D_4bqpq")
+
+[node name="3D" type="CanvasGroup" parent="."]
+material = SubResource("ShaderMaterial_xnb1e")
+
+[node name="Icon" type="Sprite2D" parent="3D"]
+position = Vector2(-1.9985735, -1.0028479)
+texture = SubResource("AtlasTexture_iuhv6")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_fxk1r")]
 unique_name_in_owner = true
-
-[node name="Icon" type="Sprite2D" parent="."]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("1_tnona")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_0i8p1")
+debug_color = Color(0, 0.6, 0.69803923, 0)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

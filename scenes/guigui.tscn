@@ -1,7 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://kc1des6ujkfo"]
+[gd_scene load_steps=17 format=3 uid="uid://kc1des6ujkfo"]
 
 [ext_resource type="PackedScene" uid="uid://cwp27or88qkvo" path="res://scenes/player/player.tscn" id="1_fk7tf"]
 [ext_resource type="Texture2D" uid="uid://cmpqgl6r63xa" path="res://assets/tilesheet/train-Sheet.png" id="2_gfv14"]
+[ext_resource type="Shader" uid="uid://c0o26cj1bvehw" path="res://assets/shaders/3d.gdshader" id="3_bff3v"]
+[ext_resource type="Texture2D" uid="uid://v0dc4lx8vsnp" path="res://assets/tilesheet/tilesheet.png" id="3_p1tfl"]
+[ext_resource type="Texture2D" uid="uid://bi8fr58i55knl" path="res://assets/tilesheet/3Dcolor.png" id="4_t7646"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p1tfl"]
 atlas = ExtResource("2_gfv14")
@@ -67,13 +70,36 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t7646"]
+shader = ExtResource("3_bff3v")
+shader_parameter/ground_cols = ExtResource("4_t7646")
+shader_parameter/number_of_ground_cols = 2
+shader_parameter/uniform_shadow = Color(0, 0, 0, 1)
+shader_parameter/color_fill = Color(0, 0, 0, 1)
+shader_parameter/force = 0.0
+shader_parameter/height = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbqmg"]
+atlas = ExtResource("3_p1tfl")
+region = Rect2(3, 67, 55, 41)
+
 [node name="Guigui" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_fk7tf")]
-position = Vector2(37, 32)
+position = Vector2(40, 32)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(80, 40)
 sprite_frames = SubResource("SpriteFrames_fbqmg")
-frame_progress = 0.11387587
+autoplay = "default"
+frame_progress = 0.68936545
+
+[node name="3D" type="CanvasGroup" parent="."]
+material = SubResource("ShaderMaterial_t7646")
+position = Vector2(24, 16)
+rotation = 2.272398
+
+[node name="Sprite2D" type="Sprite2D" parent="3D"]
+texture = SubResource("AtlasTexture_fbqmg")

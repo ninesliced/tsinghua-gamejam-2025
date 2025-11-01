@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cwp27or88qkvo"]
+[gd_scene load_steps=24 format=3 uid="uid://cwp27or88qkvo"]
 
 [ext_resource type="Texture2D" uid="uid://c0vgnvipqqoaj" path="res://placeholder/place_holder_sprite.png" id="1_8afob"]
 [ext_resource type="Script" uid="uid://bcy3y0yh1qhom" path="res://scenes/player/player.gd" id="1_dovo2"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scenes/player/states/anchored.gd" id="5_5gtgg"]
 [ext_resource type="Script" uid="uid://bapsr6p3avfvj" path="res://scenes/player/components/movement_anchor_component.gd" id="7_qek5x"]
 [ext_resource type="PackedScene" uid="uid://dqieuqmaqtj3n" path="res://scenes/components/interaction_zone_component.tscn" id="10_je7p5"]
+[ext_resource type="Script" path="res://scenes/player/components/movement_dash_component.gd" id="11_gx1jg"]
 [ext_resource type="Texture2D" uid="uid://v0dc4lx8vsnp" path="res://assets/tilesheet/tilesheet.png" id="11_je7p5"]
 
 [sub_resource type="Animation" id="Animation_ugbui"]
@@ -175,6 +176,7 @@ func _on_state_machine_on_state_changed(old_state, new_state):
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 2
+motion_mode = 1
 script = ExtResource("1_dovo2")
 
 [node name="PlayerAnimationManager" type="AnimationPlayer" parent="." node_paths=PackedStringArray("display_node")]
@@ -198,12 +200,13 @@ anchor_manager = NodePath("../../AnchorManager")
 interaction_zone_component = NodePath("../../InteractionZoneComponent")
 anchored_state = NodePath("../Anchored")
 
-[node name="Anchored" parent="StateMachine" node_paths=PackedStringArray("movement_component") instance=ExtResource("3_0owmy")]
+[node name="Anchored" parent="StateMachine" node_paths=PackedStringArray("movement_component", "player_shape") instance=ExtResource("3_0owmy")]
 script = ExtResource("5_5gtgg")
 movement_component = NodePath("../../MovementComponent")
 speed = 150.0
 max_speed = 300.0
 speed_multiplier = 1.2
+player_shape = NodePath("../../CollisionShape2D")
 lose_speed_stack_interval = 0.2
 
 [node name="Display" type="Node2D" parent="."]
@@ -235,6 +238,10 @@ texture = SubResource("AtlasTexture_fm80t")
 script = ExtResource("7_qek5x")
 anchor_manager = NodePath("../../AnchorManager")
 movement_component = NodePath("..")
+
+[node name="MovementDashComponent" type="Node" parent="MovementComponent" node_paths=PackedStringArray("player")]
+script = ExtResource("11_gx1jg")
+player = NodePath("../..")
 
 [node name="AnchorManager" type="Node2D" parent="."]
 unique_name_in_owner = true
