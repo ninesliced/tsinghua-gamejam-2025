@@ -27,6 +27,8 @@ point_count = 7
 [node name="Player" parent="." instance=ExtResource("1_7i0yp")]
 position = Vector2(68, 54)
 
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
 [node name="Railway" parent="." instance=ExtResource("2_8c0u5")]
 position = Vector2(-6.472131, -11.200001)
 scale = Vector2(2.0786886, 2.15)
@@ -37,6 +39,5 @@ timers = Array[float]([5.0, 10.0])
 [node name="Train" parent="Railway" instance=ExtResource("3_5xjal")]
 unique_name_in_owner = true
 position = Vector2(6, 8)
-rotation = 1.4506875
 rotates = false
 loop = false
