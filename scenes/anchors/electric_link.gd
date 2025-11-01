@@ -52,7 +52,6 @@ func decharge(anchor: Anchor):
 		for line in line_nodes.values():
 			line.hide()
 		surcharged = false
-		print("decharged")
 		on_decharged.emit()
 
 func link(anchor: Anchor):

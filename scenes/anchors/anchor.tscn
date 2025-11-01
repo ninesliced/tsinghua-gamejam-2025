@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://i8mrq45e3ure"]
+[gd_scene load_steps=13 format=3 uid="uid://i8mrq45e3ure"]
 
 [ext_resource type="Script" uid="uid://bjeuw8oor4ins" path="res://scenes/anchors/anchor.gd" id="1_xdr0r"]
 [ext_resource type="Script" uid="uid://d0ncy2pvdp87m" path="res://scenes/anchors/electric_field_zone.gd" id="2_b7jhl"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bej1q2jw7wtyw" path="res://scenes/anchors/anchor_sprite.gd" id="4_qb2g3"]
 [ext_resource type="Script" uid="uid://b4mwtdmf2m4om" path="res://scenes/anchors/electric_link.gd" id="5_ps13o"]
 [ext_resource type="Script" uid="uid://c30n30gmpxb8p" path="res://scenes/anchors/electric_line/electric_line.gd" id="7_ijs5a"]
+[ext_resource type="Script" uid="uid://cplp75jj3012" path="res://scenes/player/anchor_preview.gd" id="8_oracw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ayfc7"]
 radius = 64.0
@@ -92,6 +93,10 @@ offset_left = -21.0
 offset_top = -50.0
 offset_right = 19.0
 offset_bottom = -27.0
+
+[node name="AnchorPreview" type="Node2D" parent="."]
+script = ExtResource("8_oracw")
+color = Color(0.83, 0.8217, 0.8217, 0.5019608)
 
 [connection signal="area_entered" from="ElectricFieldZone" to="ElectricFieldZone" method="_on_area_entered"]
 [connection signal="area_exited" from="ElectricFieldZone" to="ElectricLink" method="_on_electric_field_zone_area_exited"]
