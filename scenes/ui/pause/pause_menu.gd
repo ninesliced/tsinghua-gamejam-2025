@@ -13,7 +13,7 @@ func _input(event):
 			
 
 func _on_main_menu_button_pressed():
-	GameGlobal.change_scene_to_main_menu()
+	await GameGlobal.change_scene_to_main_menu()
 	resume_game()
 
 

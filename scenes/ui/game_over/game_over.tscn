@@ -61,7 +61,7 @@ text = "Seed"
 
 [node name="Retry" parent="." instance=ExtResource("4_b6337")]
 custom_minimum_size = Vector2(48, 0)
-layout_mode = 2
+layout_mode = 0
 offset_left = 65.0
 offset_top = 102.0
 offset_right = 113.0
@@ -71,7 +71,7 @@ text = "Retry"
 
 [node name="Menu" parent="." instance=ExtResource("4_b6337")]
 custom_minimum_size = Vector2(48, 0)
-layout_mode = 2
+layout_mode = 0
 offset_left = 117.0
 offset_top = 102.0
 offset_right = 165.0

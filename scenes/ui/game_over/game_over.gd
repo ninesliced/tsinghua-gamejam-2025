@@ -13,7 +13,7 @@ func show_menu() -> void:
 	visible = true
 
 func _on_retry_pressed() -> void:
-	# TransitionManager.reload_scene("square_gradient")
+	TransitionManager.reload_scene("square_gradient")
 	pass # Replace with function body.
 
 
