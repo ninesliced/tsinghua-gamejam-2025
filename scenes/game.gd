@@ -37,7 +37,6 @@ func _process(delta):
 		on_time_up()
 
 func change_to_exploration():
-	print("Change to exploration")
 	change_state(GameState.EXPLORATION)
 
 func change_state(new_state: GameState):
@@ -60,6 +59,5 @@ func on_time_up():
 func setup_time():
 	if time_dict.has(game_state):
 		time_left = time_dict[game_state]
-		print("Time set to %f" % time_left)
 	else:
 		time_left = time_each_round

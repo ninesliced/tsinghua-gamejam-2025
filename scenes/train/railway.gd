@@ -16,6 +16,8 @@ func _ready() -> void:
 
 func next_way() -> bool:
 	_way_index += 1
+	if _way_index == 0:
+		return true
 	if _way_index >= ways.size():
 		return false
 	curve = ways[_way_index]
@@ -24,10 +26,7 @@ func next_way() -> bool:
 
 func _on_game_on_game_state_changed(old_state: Game.GameState, new_state: Game.GameState):
 	if new_state == Game.GameState.FIGHT:
-		on_new_way.emit()
-		if _way_index == -1:
-			_way_index = 0
-			return
-		next_way()
+		if (next_way()):
+			on_new_way.emit()
 
 	pass # Replace with function body.
