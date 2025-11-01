@@ -1,3 +1,45 @@
-[gd_scene format=3 uid="uid://cwbc5foggxevb"]
+[gd_scene load_steps=7 format=3 uid="uid://cwbc5foggxevb"]
+
+[ext_resource type="PackedScene" uid="uid://cwp27or88qkvo" path="res://scenes/player/player.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" path="res://scenes/train/railway.tscn" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://b8phwynxhybcm" path="res://scenes/train/train.tscn" id="3_jyhfs"]
+
+[sub_resource type="Curve2D" id="Curve2D_tbgi4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 6, 8, 0, 0, 0, 0, 13, 66, 0, 0, 0, 0, 32, 131, 0, 0, 0, 0, 54, 158, 0, 0, 0, 0, 91, 161, 0, 0, 0, 0, 112, 141, 0, 0, 0, 0, 125, 101, 0, 0, 0, 0, 139, 47, 0, 0, 0, 0, 178, 16, 0, 0, 0, 0, 214, 19, 0, 0, 0, 0, 244, 39, 0, 0, 0, 0, 274, 66, 0, 0, 0, 0, 298, 122, 0, 0, 0, 0, 311, 168)
+}
+point_count = 14
+
+[sub_resource type="Curve2D" id="Curve2D_8c0u5"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 6, 8, 0, 0, 0, 0, 13, 66, 0, 0, 0, 0, 32, 131, 0, 0, 0, 0, 54, 158, 0, 0, 0, 0, 91, 161, 0, 0, 0, 0, 112, 141, 0, 0, 0, 0, 125, 101)
+}
+point_count = 7
+
+[sub_resource type="Curve2D" id="Curve2D_5xjal"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 139, 47, 0, 0, 0, 0, 178, 16, 0, 0, 0, 0, 214, 19, 0, 0, 0, 0, 244, 39, 0, 0, 0, 0, 274, 66, 0, 0, 0, 0, 298, 122, 0, 0, 0, 0, 311, 168)
+}
+point_count = 7
 
 [node name="Main" type="Node2D"]
+metadata/_edit_horizontal_guides_ = [648.0]
+
+[node name="Railway" parent="." instance=ExtResource("2_sugp2")]
+position = Vector2(53, 40)
+scale = Vector2(2.0786886, 2.15)
+curve = SubResource("Curve2D_tbgi4")
+ways = Array[Curve2D]([SubResource("Curve2D_8c0u5"), SubResource("Curve2D_5xjal")])
+timers = Array[float]([5.0, 10.0])
+
+[node name="Train" parent="Railway" instance=ExtResource("3_jyhfs")]
+unique_name_in_owner = true
+position = Vector2(6, 8)
+rotation = 1.4506875
+rotates = false
+loop = false
+
+[node name="Player" parent="." instance=ExtResource("1_o5qli")]
+position = Vector2(144, 107)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
