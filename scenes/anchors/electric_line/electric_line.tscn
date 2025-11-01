@@ -4,7 +4,7 @@
 
 [node name="ElectricLine" type="Line2D"]
 points = PackedVector2Array(55, 39, 195, 51)
-width = 1.2
+width = 2.0
 default_color = Color(1, 0.814, 0.38, 1)
 script = ExtResource("1_1nqw7")
 noise_amplitude = 4.0
