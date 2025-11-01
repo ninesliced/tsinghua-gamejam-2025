@@ -11,5 +11,4 @@ region = Rect2(144, 160, 16, 16)
 script = ExtResource("1_05h1b")
 texture = SubResource("AtlasTexture_fb3xp")
 delay = 0.1
-bullet_speed = 100.0
 metadata/_custom_type_script = "uid://ds1dp5nfypweh"
