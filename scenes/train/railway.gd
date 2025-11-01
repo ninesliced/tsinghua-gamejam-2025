@@ -32,12 +32,16 @@ func _on_timer_timeout() -> void:
 		GameGlobal.train.train_next_way.emit()
 
 func _start_next_timer() -> void:
-	_timer_index += 1
-	if _timer_index >= timers.size():
-		return
-	$Timer.wait_time = timers[_timer_index]
-	$Timer.start()
+	pass
+	# GameGlobal.game.c
+	# _timer_index += 1
+	# if _timer_index >= timers.size():
+	# 	return
+	# $Timer.wait_time = timers[_timer_index]
+	# $Timer.start()
 
 
 func _on_game_on_game_state_changed(old_state: Game.GameState, new_state: Game.GameState):
+	if new_state == Game.GameState.FIGHT:
+		$Timer.start()
 	pass # Replace with function body.
