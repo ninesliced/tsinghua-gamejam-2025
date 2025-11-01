@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://brac0v3p34xaj" path="res://scenes/collectibles/battery.tscn" id="2_vixcw"]
 [ext_resource type="PackedScene" uid="uid://sdetkwwl3mhv" path="res://scenes/UI/minimap/ui.tscn" id="4_ux01x"]
 [ext_resource type="PackedScene" uid="uid://ccbafmp5xuv54" path="res://scenes/enemy/enemy.tscn" id="7_eljnv"]
+[ext_resource type="PackedScene" uid="uid://djy7d8gmx84od" path="res://scenes/train/railway.tscn" id="8_71p4b"]
+[ext_resource type="PackedScene" uid="uid://b8phwynxhybcm" path="res://scenes/train/train.tscn" id="9_axu7r"]
 
 [node name="Louis" type="Node2D"]
 script = ExtResource("1_tk4lf")

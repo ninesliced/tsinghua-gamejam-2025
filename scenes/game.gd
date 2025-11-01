@@ -18,18 +18,18 @@ var time_dict : Dictionary = {
 }
 
 var time_left : float = time_each_round
+var level : int = 0
+
 signal on_time_changed(time_left: float)
 signal on_game_state_changed(old_state: GameState, new_state: GameState)
-# Called when the node enters the scene tree for the first time.
+signal on_level_changed(new_level: int)
+
 func _ready():
 	GameGlobal.game = self
 	setup_time()
 	GameGlobal.train.train_reached_end.connect(change_to_exploration)
-	print(GameGlobal.train)
-	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	time_left -= delta
 	emit_signal("on_time_changed", time_left)
@@ -43,16 +43,20 @@ func change_state(new_state: GameState):
 	var old_state = game_state
 	game_state = new_state
 	on_game_state_changed.emit(old_state, new_state)
+	
+	if new_state == GameState.FIGHT:
+		level += 1
+		on_level_changed.emit(level)
 	setup_time()
 
 func on_time_up():
 	match game_state:
 		GameState.INIT_PREPARATION:
-			game_state = GameState.FIGHT
+			return change_state(GameState.FIGHT)
 		GameState.FIGHT:
-			game_state = GameState.GAME_OVER
+			return change_state(GameState.EXPLORATION)
 		GameState.EXPLORATION:
-			game_state = GameState.FIGHT
+			return change_state(GameState.FIGHT)
 	on_game_state_changed.emit(game_state, game_state)
 	setup_time()
 

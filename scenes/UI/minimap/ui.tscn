@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://sdetkwwl3mhv"]
+[gd_scene load_steps=6 format=3 uid="uid://hxftew76u0of"]
 
 [ext_resource type="Script" uid="uid://1x64j0v2rlif" path="res://scenes/UI/minimap/minimap_sub_viewport.gd" id="1_nj03n"]
 [ext_resource type="Texture2D" uid="uid://cm4ueixrueyux" path="res://assets/tilesheet/UI_spritesheet.png" id="2_byepb"]
@@ -29,7 +29,7 @@ render_target_update_mode = 4
 script = ExtResource("1_nj03n")
 
 [node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport"]
-zoom = Vector2(0.15, 0.15)
+zoom = Vector2(0.1, 0.1)
 
 [node name="Line2D" type="Line2D" parent="SubViewportContainer"]
 visible = false
