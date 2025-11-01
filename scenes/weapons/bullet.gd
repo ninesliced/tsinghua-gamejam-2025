@@ -18,7 +18,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	
 	if body is Enemy:
 		body.health_component.damage(damage)
-
+		print(direction, speed)
+		body.apply_knockback(direction, 50, 1)
 
 func _on_timer_timeout() -> void:
 	queue_free()
