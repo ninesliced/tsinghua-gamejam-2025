@@ -50,7 +50,7 @@ func decharge(anchor: Anchor):
 	generator_linkeds.erase(anchor)
 	if generator_linkeds.size() == 0:
 		for line in line_nodes.values():
-			line.hide()
+			line.disable()
 		surcharged = false
 		on_decharged.emit()
 
@@ -94,7 +94,7 @@ func _create_line(anchor: Anchor):
 	line.set_endpoints(start, end)
 	get_parent().add_child(line)
 	line_nodes[anchor] = line
-	line.hide()
+	line.disable()
 
 func surcharge(generator_anchor: Anchor):
 	if generator_anchor in generator_linkeds:
@@ -103,7 +103,7 @@ func surcharge(generator_anchor: Anchor):
 
 	surcharged = true
 	for line in line_nodes.values():
-		line.show()
+		line.enable()
 	on_surcharged.emit()
 
 func _on_electric_field_zone_area_exited(area: Area2D):
