@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Godot 2D project"
-run/main_scene="uid://cwbc5foggxevb"
+run/main_scene="uid://ds7eh20eiv5le"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/bg_color=Color(0.913725, 0.992157, 0.870588, 1)
 boot_splash/fullsize=false
@@ -23,6 +23,9 @@ Global="*res://globals/global.gd"
 GameGlobal="*res://globals/game_global.gd"
 SignalBus="*res://globals/signal_bus.gd"
 Enum="*res://globals/enum.gd"
+TransitionManager="*res://addons/shaker/components/ui/transition_manager/transition_manager.tscn"
+UIManager="*res://addons/shaker/components/ui/ui_manager/ui_manager.tscn"
+PauseManager="*res://addons/shaker/components/core/pause_manager/pause_manager.tscn"
 
 [display]
 
@@ -31,6 +34,10 @@ window/size/viewport_height=225
 window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="viewport"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/shaker/plugin.cfg")
 
 [file_customization]
 

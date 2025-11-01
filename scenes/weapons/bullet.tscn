@@ -1,14 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://evyd13f57b12"]
+[gd_scene load_steps=6 format=3 uid="uid://evyd13f57b12"]
 
 [ext_resource type="Script" uid="uid://7k30jy3mchsj" path="res://scenes/weapons/bullet.gd" id="1_mx1hr"]
+[ext_resource type="PackedScene" uid="uid://k4wl84m08hb5" path="res://scenes/anchors/electric_line/electric_line.tscn" id="2_dnt7v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dnt7v"]
-size = Vector2(2, 2)
+size = Vector2(14, 4)
+
+[sub_resource type="Curve" id="Curve_dnt7v"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_dnt7v"]
+resource_local_to_scene = true
 
 [node name="Bullet" type="Node2D"]
 script = ExtResource("1_mx1hr")
 
 [node name="Line2D" type="Line2D" parent="."]
+visible = false
 points = PackedVector2Array(0, 0, 2, 0, 1, 0)
 width = 2.0
 default_color = Color(0.113572694, 0.62519765, 0.6786568, 1)
@@ -17,8 +26,24 @@ default_color = Color(0.113572694, 0.62519765, 0.6786568, 1)
 collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(1, 0)
+position = Vector2(7, 0)
 shape = SubResource("RectangleShape2D_dnt7v")
+
+[node name="ElectricLine" parent="." instance=ExtResource("2_dnt7v")]
+unique_name_in_owner = true
+position = Vector2(1.0000076, 0)
+scale = Vector2(3.5581396, 1.25)
+points = PackedVector2Array(3.6535928, 0, -0.2810479, 0)
+width_curve = SubResource("Curve_dnt7v")
+noise_amplitude = 1.0
+update_frequency = 0.1
+auto_update_line = true
+
+[node name="Area" parent="ElectricLine" index="0"]
+visible = false
+
+[node name="CollisionLine" parent="ElectricLine/Area" index="0"]
+shape = SubResource("SegmentShape2D_dnt7v")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
@@ -26,3 +51,5 @@ autostart = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="ElectricLine"]

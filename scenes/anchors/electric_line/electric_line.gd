@@ -4,6 +4,7 @@ var original_points: Array = []
 @export var noise_amplitude: float = 0.1
 @export var number_of_segments: int = 3
 @export var update_frequency: float = 0.5
+@export var auto_update_line: bool = false
 var num_points: int = 0
 var timer: Timer = null
 var start : Vector2
@@ -13,18 +14,23 @@ var end : Vector2
 @onready var area: Area2D = %Area
 # Called when the node enters the scene tree for the first time.
 func _ready():
+
+	if start == Vector2.ZERO and end == Vector2.ZERO:
+		start = get_point_position(0)
+		end = get_point_position(points.size() - 1)
+
 	show()
 	setup_line()
 	area.monitorable = false
 	area.monitoring = false
 	#TIMER SETUP
-	# timer = Timer.new()
-	# timer.wait_time = update_frequency
-	# timer.one_shot = false
-	# timer.autostart = true
-	# add_child(timer)
-	# timer.timeout.connect(update_line)
-
+	if auto_update_line:
+		timer = Timer.new()
+		timer.wait_time = update_frequency
+		timer.one_shot = false
+		timer.autostart = true
+		add_child(timer)
+		timer.timeout.connect(update_line)
 func disable():
 	hide()
 	area.monitoring = false
