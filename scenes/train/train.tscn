@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b8phwynxhybcm"]
+[gd_scene load_steps=17 format=3 uid="uid://b8phwynxhybcm"]
 
 [ext_resource type="Script" uid="uid://1ujwelwmaxt1" path="res://scenes/train/train.gd" id="1_0i8p1"]
 [ext_resource type="Shader" uid="uid://c0o26cj1bvehw" path="res://assets/shaders/3d.gdshader" id="2_4bqpq"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://sqw5tby22km7" path="res://assets/tilesheet/trainsheet.png" id="4_b0oxr"]
 [ext_resource type="Script" uid="uid://heku5mp20agj" path="res://scenes/train/train_display.gd" id="5_0drc4"]
 [ext_resource type="PackedScene" uid="uid://i8mrq45e3ure" path="res://scenes/anchors/anchor.tscn" id="7_xnb1e"]
+[ext_resource type="Script" uid="uid://dvstqj5ifa08v" path="res://scenes/train/train_charge.gd" id="8_iuhv6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0drc4"]
 radius = 12.0
@@ -67,6 +68,7 @@ radius = 44.181442
 [node name="Train" type="PathFollow2D"]
 rotates = false
 script = ExtResource("1_0i8p1")
+speed = 15.0
 
 [node name="RigidBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(0, -24)
@@ -99,13 +101,17 @@ debug_color = Color(0, 0.6, 0.69803923, 0)
 [node name="Anchor" parent="." instance=ExtResource("7_xnb1e")]
 z_index = 1
 position = Vector2(1, -46)
-enabled = true
 
 [node name="AnchorSprite" parent="Anchor" index="1"]
 sprite_frames = SubResource("SpriteFrames_xnb1e")
 
 [node name="AnchorMark" parent="Anchor/AnchorSprite" index="0"]
 position = Vector2(-1, 22)
+
+[node name="TrainCharge" type="Node" parent="." node_paths=PackedStringArray("anchor", "train")]
+script = ExtResource("8_iuhv6")
+anchor = NodePath("../Anchor")
+train = NodePath("..")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

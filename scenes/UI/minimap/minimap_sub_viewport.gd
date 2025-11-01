@@ -29,8 +29,8 @@ func _ready() -> void:
 		player.anchor_manager.on_anchor_added.connect(_on_anchor_added)
 
 	_register_existing_enemies()
-	get_tree().node_added.connect(_on_tree_node_added)
-	get_tree().node_removed.connect(_on_tree_node_removed)
+
+	SignalBus.on_enemy_created.connect(_track_enemy)
 
 	if is_instance_valid(railway):
 		railway.on_new_way.connect(_update_railway_line)
@@ -188,14 +188,6 @@ func _register_existing_enemies() -> void:
 			_track_enemy(n)
 		for c in n.get_children():
 			stack.append(c)
-
-func _on_tree_node_added(node: Node) -> void:
-	if node is Enemy:
-		_track_enemy(node)
-
-func _on_tree_node_removed(node: Node) -> void:
-	if node is Enemy:
-		_untrack_enemy(node)
 
 func _on_enemy_tree_exited(enemy: Enemy) -> void:
 	_untrack_enemy(enemy)

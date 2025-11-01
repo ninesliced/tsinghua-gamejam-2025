@@ -10,6 +10,7 @@ class_name Enemy
 
 func _ready() -> void:
 	make_path()
+	SignalBus.on_enemy_created.emit(self)
 
 func _physics_process(delta: float) -> void:
 	var next_path_position: Vector2 = _agent.get_next_path_position()

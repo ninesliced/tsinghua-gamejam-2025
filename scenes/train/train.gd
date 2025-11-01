@@ -35,15 +35,15 @@ func _process(delta: float) -> void:
 		train_reached_end.emit()
 		reached_end = true
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body is Player:
-		moving = true
-		train_start_moving.emit()
+# func _on_area_2d_body_entered(body: Node2D) -> void:
+# 	if body is Player:
+# 		moving = true
+# 		train_start_moving.emit()
 
-func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body is Player:
-		moving = false
-		train_stop_moving.emit()
+# func _on_area_2d_body_exited(body: Node2D) -> void:
+# 	if body is Player:
+# 		moving = false
+# 		train_stop_moving.emit()
 
 func _train_next_way() -> void:
 	reached_end = false

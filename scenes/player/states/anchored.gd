@@ -15,7 +15,7 @@ var selected_anchor: Anchor = null
 var anchor_checkeds: Array[Anchor] = []
 
 var moving_to_anchor: bool = false
-
+var target_anchor: Anchor = null
 var lose_speed_stack_timer: Timer = null
 var velocity : Vector2 = Vector2.ZERO
 var direction : Vector2 = Vector2.ZERO
@@ -57,6 +57,11 @@ func emit_state_finished():
 	state_finished.emit(self, "Normal")
 
 func process(delta):
+	if target_anchor == null:
+		print("No target anchor selected")
+		return
+	if target_anchor.electric_link.surcharged == false:
+		emit_state_finished()
 	pass
 
 func physics_process(delta):
@@ -81,11 +86,14 @@ func exit():
 	anchor_checkeds.clear()
 	lose_speed_stack_timer.stop()
 	# player.velocity = velocity
-	tween.stop()
+	if tween != null:
+		tween.stop()
 	moving_to_anchor = false
 	pass
 
 func move_to_anchor(target_anchor: Anchor) -> void:
+	self.target_anchor = target_anchor
+	print(self.target_anchor)
 	lose_speed_stack_timer.stop()
 	current_speed = min(current_speed * speed_multiplier, max_speed)
 		
