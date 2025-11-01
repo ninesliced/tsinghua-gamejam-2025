@@ -11,4 +11,5 @@ func _on_anchor_surcharged():
 	train.moving = true
 
 func _on_anchor_decharged():
+	print("train stopped")
 	train.moving = false
