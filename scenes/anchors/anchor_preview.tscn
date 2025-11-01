@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://coryu46ck21v"]
+
+[ext_resource type="Script" uid="uid://cplp75jj3012" path="res://scenes/player/anchor_preview.gd" id="1_62ybb"]
+
+[node name="AnchorPreview" type="Node2D"]
+script = ExtResource("1_62ybb")
+color = Color(0.83, 0.8217, 0.8217, 0.5019608)
