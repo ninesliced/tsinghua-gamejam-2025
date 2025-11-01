@@ -12,11 +12,19 @@ func _ready() -> void:
 	SignalBus.on_anchor_unlinked.connect(give_energy)
 
 func give_energy(_anchor: Anchor) -> void:
+
+	var old_anchors_surcharged: Array[Anchor] = anchors_surcharged.duplicate()
 	for anchor in anchors_surcharged:
-		anchor.electric_link.decharge(get_parent() as Anchor)
-			
+		anchor.electric_link.generator_linkeds.erase(get_parent() as Anchor)
+	anchors_surcharged.clear()
 	for anchor in electric_link.linked_anchors:
 		give_energy_to_anchor(anchor)
+
+	for anchor in old_anchors_surcharged:
+		if anchors_surcharged.has(anchor) == false:
+			anchor.electric_link.decharge(get_parent() as Anchor)
+
+
 
 func _on_linked(anchor: Anchor) -> void:
 	give_energy_to_anchor(anchor)

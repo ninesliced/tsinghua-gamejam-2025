@@ -365,7 +365,6 @@ position = Vector2(8, -7)
 
 [node name="AnchorPreview" type="Node2D" parent="."]
 script = ExtResource("16_myrg7")
-zone_radius = 98.0
 color = Color(0.83, 0.8217, 0.8217, 0.5019608)
 
 [connection signal="on_state_changed" from="StateMachine" to="StateDebug" method="_on_state_machine_on_state_changed"]
