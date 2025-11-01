@@ -1,6 +1,71 @@
-[gd_scene load_steps=2 format=3 uid="uid://kc1des6ujkfo"]
+[gd_scene load_steps=12 format=3 uid="uid://kc1des6ujkfo"]
 
 [ext_resource type="PackedScene" uid="uid://cwp27or88qkvo" path="res://scenes/player/player.tscn" id="1_fk7tf"]
+[ext_resource type="Texture2D" uid="uid://cmpqgl6r63xa" path="res://assets/tilesheet/train-Sheet.png" id="2_gfv14"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1tfl"]
+atlas = ExtResource("2_gfv14")
+region = Rect2(0, 0, 48, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bff3v"]
+atlas = ExtResource("2_gfv14")
+region = Rect2(48, 0, 48, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7646"]
+atlas = ExtResource("2_gfv14")
+region = Rect2(96, 0, 48, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwjos"]
+atlas = ExtResource("2_gfv14")
+region = Rect2(144, 0, 48, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yj3ko"]
+atlas = ExtResource("2_gfv14")
+region = Rect2(192, 0, 48, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1pyd"]
+atlas = ExtResource("2_gfv14")
+region = Rect2(240, 0, 48, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ii521"]
+atlas = ExtResource("2_gfv14")
+region = Rect2(288, 0, 48, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccvnb"]
+atlas = ExtResource("2_gfv14")
+region = Rect2(336, 0, 48, 59)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fbqmg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1tfl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bff3v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t7646")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fwjos")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yj3ko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1pyd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ii521")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ccvnb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Guigui" type="Node2D"]
 
@@ -8,3 +73,7 @@
 position = Vector2(37, 32)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fbqmg")
+frame_progress = 0.11387587
