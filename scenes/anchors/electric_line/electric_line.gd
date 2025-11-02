@@ -21,8 +21,9 @@ func _ready():
 
 	show()
 	setup_line()
-	area.monitorable = false
-	area.monitoring = false
+	if area:
+		area.monitorable = false
+		area.monitoring = false
 	#TIMER SETUP
 	if auto_update_line:
 		timer = Timer.new()
@@ -94,4 +95,4 @@ func _on_area_body_entered(body: Node2D) -> void:
 		return
 	
 	var enemy: Enemy = body
-	enemy.health_component.damage(1)
+	enemy.health_component.damage(10000)

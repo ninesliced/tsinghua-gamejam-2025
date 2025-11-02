@@ -40,7 +40,10 @@ update_frequency = 0.1
 auto_update_line = true
 
 [node name="Area" parent="ElectricLine" index="0"]
+unique_name_in_owner = false
 visible = false
+monitoring = false
+monitorable = false
 
 [node name="CollisionLine" parent="ElectricLine/Area" index="0"]
 shape = SubResource("SegmentShape2D_dnt7v")

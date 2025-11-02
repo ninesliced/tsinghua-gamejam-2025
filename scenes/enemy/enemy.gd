@@ -56,6 +56,8 @@ func apply_knockback(direction: Vector2, force: float) -> void:
 	
 func _on_health_component_on_damage(amount: int) -> void:
 	$AnimationPlayer.play("new_animation")
+	Audio.hit.play()
+
 	
 
 func _on_navigation_agent_target_reached() -> void:
