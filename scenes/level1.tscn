@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=4 uid="uid://ds7eh20eiv5le"]
+[gd_scene load_steps=24 format=4 uid="uid://ds7eh20eiv5le"]
 
 [ext_resource type="Script" uid="uid://dun17vq27vq80" path="res://scenes/game.gd" id="1_d3jkd"]
 [ext_resource type="PackedScene" uid="uid://hxftew76u0of" path="res://scenes/ui/minimap/ui.tscn" id="2_u3awl"]
 [ext_resource type="TileSet" uid="uid://dckjsir55y6u4" path="res://assets/tilemap/map.tres" id="3_2ku1j"]
+[ext_resource type="PackedScene" uid="uid://ccbafmp5xuv54" path="res://scenes/enemy/enemy.tscn" id="4_u3awl"]
 [ext_resource type="PackedScene" path="res://scenes/train/railway.tscn" id="6_i8kv5"]
 [ext_resource type="PackedScene" uid="uid://b8phwynxhybcm" path="res://scenes/train/train.tscn" id="7_dxn3v"]
 [ext_resource type="PackedScene" uid="uid://lheoc2svvmfo" path="res://scenes/anchors/generator.tscn" id="8_14jow"]
@@ -67,9 +68,13 @@ size = Vector2(47.69922, 200.3125)
 script = ExtResource("1_d3jkd")
 metadata/_edit_horizontal_guides_ = [648.0]
 
+[node name="Enemy" parent="." instance=ExtResource("4_u3awl")]
+position = Vector2(336, 120)
+
 [node name="UI" parent="." instance=ExtResource("2_u3awl")]
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("11_2ku1j")]
+visible = false
 
 [node name="GameOver" parent="UI" instance=ExtResource("12_f31uk")]
 

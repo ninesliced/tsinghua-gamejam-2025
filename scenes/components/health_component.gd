@@ -13,7 +13,7 @@ var _current_health: int :
 		if _health_bar:
 			_health_bar.value = float(_current_health) / float(max_health) * 100.0
 
-@onready var _health_bar : ProgressBar = %HealthBar
+@onready var _health_bar : TextureProgressBar = %HealthBar
 
 signal on_damaged(amount: int)
 signal on_healed(amount: int)

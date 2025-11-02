@@ -1,4 +1,4 @@
-extends ProgressBar
+extends TextureProgressBar
 
 @onready var train: Train = $"../../Railway/Train"
 
