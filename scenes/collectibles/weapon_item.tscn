@@ -20,6 +20,7 @@ shape = SubResource("CircleShape2D_8d6st")
 
 [node name="HintText" type="Label" parent="."]
 unique_name_in_owner = true
+visible = false
 offset_left = -54.0
 offset_top = -24.0
 offset_right = 56.0
@@ -30,3 +31,4 @@ text = "Press E to collect"
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]
+[connection signal="body_exited" from="PickupArea" to="." method="_on_pickup_area_body_exited"]
