@@ -18,3 +18,4 @@ material = SubResource("ShaderMaterial_rtlul")
 
 [node name="HealthComponent" parent="." index="4"]
 position = Vector2(-10, -15.333334)
+max_health = 300

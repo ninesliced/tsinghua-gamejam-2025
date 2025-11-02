@@ -15,6 +15,13 @@ signal on_spawner_deactivated()
 func _ready() -> void:
 	await GameGlobal.game_ready
 	GameGlobal.game.on_level_changed.connect(_level_changed)
+	GameGlobal.game.on_game_state_changed.connect(_exploration_mode)
+
+func _exploration_mode(old_state: Game.GameState, new_state: Game.GameState) -> void:
+	if _active and new_state == Game.GameState.EXPLORATION:
+		_active = false
+		_spawn_timer.stop()
+		on_spawner_deactivated.emit()
 
 func _level_changed(new_level: int) -> void:
 	if new_level == level:
@@ -22,7 +29,7 @@ func _level_changed(new_level: int) -> void:
 		_spawn_timer.wait_time = randf_range(spawn_interval.x, spawn_interval.y)
 		_spawn_timer.start()
 		on_spawner_activated.emit()
-	else:
+	elif _active:
 		_active = false
 		_spawn_timer.stop()
 		on_spawner_deactivated.emit()

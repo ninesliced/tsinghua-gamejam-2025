@@ -51,6 +51,7 @@ folder_colors={
 [global_group]
 
 Anchors=""
+Enemy=""
 
 [gui]
 

@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://hxftew76u0of"]
+[gd_scene load_steps=16 format=3 uid="uid://hxftew76u0of"]
 
-[ext_resource type="Script" uid="uid://1x64j0v2rlif" path="res://scenes/UI/minimap/minimap_sub_viewport.gd" id="1_nj03n"]
+[ext_resource type="Script" uid="uid://1x64j0v2rlif" path="res://scenes/ui/minimap/minimap_sub_viewport.gd" id="1_nj03n"]
 [ext_resource type="Texture2D" uid="uid://cm4ueixrueyux" path="res://assets/tilesheet/UI_spritesheet.png" id="2_byepb"]
 [ext_resource type="Texture2D" uid="uid://ce267gyq77c17" path="res://assets/tilesheet/UI_tilemap.png" id="3_bioq6"]
-[ext_resource type="FontFile" uid="uid://b43fnbe7haseo" path="res://assets/m5x7.ttf" id="4_byepb"]
-[ext_resource type="Script" uid="uid://dww5066gh1k11" path="res://scenes/UI/minimap/progress_bar.gd" id="5_6xly5"]
+[ext_resource type="Script" uid="uid://dww5066gh1k11" path="res://scenes/ui/minimap/progress_bar.gd" id="5_6xly5"]
 [ext_resource type="Shader" uid="uid://b02bw466pwk5a" path="res://addons/shaker/components/vfx/shaders/outline.gdshader" id="5_l51st"]
 [ext_resource type="Script" uid="uid://i6b2gcav1qjt" path="res://ui/game/time.gd" id="6_6xly5"]
 
@@ -14,14 +13,27 @@ region = Rect2(18, 252, 16, 16)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ux01x"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3757"]
+atlas = ExtResource("3_bioq6")
+region = Rect2(99, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_viy88"]
+texture = SubResource("AtlasTexture_u3757")
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6xly5"]
 bg_color = Color(0.3882353, 0.78039217, 0.3019608, 1)
 
 [sub_resource type="Theme" id="Theme_id7dy"]
+ProgressBar/styles/background = SubResource("StyleBoxTexture_viy88")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_6xly5")
 
-[sub_resource type="FontVariation" id="FontVariation_nj03n"]
-base_font = ExtResource("4_byepb")
+[sub_resource type="AtlasTexture" id="AtlasTexture_viy88"]
+atlas = ExtResource("3_bioq6")
+region = Rect2(336, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwrty"]
+atlas = ExtResource("3_bioq6")
+region = Rect2(336, 32, 32, 16)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_id7dy"]
 shader = ExtResource("5_l51st")
@@ -84,18 +96,24 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="ProgressBar" type="TextureProgressBar" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = 136.0
-offset_top = 64.0
+offset_top = 72.0
 offset_right = 199.0
-offset_bottom = 81.0
+offset_bottom = 82.0
 grow_horizontal = 2
 theme = SubResource("Theme_id7dy")
-theme_override_fonts/font = SubResource("FontVariation_nj03n")
-theme_override_font_sizes/font_size = 16
+value = 90.0
+nine_patch_stretch = true
+stretch_margin_left = 5
+stretch_margin_top = 5
+stretch_margin_right = 5
+stretch_margin_bottom = 5
+texture_under = SubResource("AtlasTexture_viy88")
+texture_progress = SubResource("AtlasTexture_mwrty")
 script = ExtResource("5_6xly5")
 
 [node name="Time" type="RichTextLabel" parent="."]

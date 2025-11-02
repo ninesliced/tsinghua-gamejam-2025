@@ -42,6 +42,10 @@ func change_to_exploration() -> void:
 	Audio.fighting.stop()
 	Audio.exploring.play()
 	
+	var enemies := get_tree().get_nodes_in_group("Enemy")
+	for enemy in enemies:
+		enemy.health_component.damage(10000)
+	
 	if GameGlobal.train.railway.is_over():
 		change_state(GameState.YOU_WIN)
 		return

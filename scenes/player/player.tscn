@@ -1,8 +1,9 @@
-[gd_scene load_steps=33 format=3 uid="uid://cwp27or88qkvo"]
+[gd_scene load_steps=35 format=3 uid="uid://cwp27or88qkvo"]
 
 [ext_resource type="Script" uid="uid://bcy3y0yh1qhom" path="res://scenes/player/player.gd" id="1_dovo2"]
 [ext_resource type="PackedScene" uid="uid://b62c81khntjjv" path="res://addons/shaker/components/gameplay/state_machine/state_machine.tscn" id="2_75vfm"]
 [ext_resource type="Script" uid="uid://b28k41i5rvxp2" path="res://scenes/player/player_animation_manager.gd" id="2_fm80t"]
+[ext_resource type="Script" uid="uid://blouvq6vn0e70" path="res://scenes/player/weapon_preview.gd" id="2_kvlxm"]
 [ext_resource type="PackedScene" uid="uid://dbph4hfobefpw" path="res://addons/shaker/components/gameplay/state_machine/state.tscn" id="3_0owmy"]
 [ext_resource type="PackedScene" uid="uid://bhw42if6pyrcm" path="res://scenes/player/components/movement_component.tscn" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://cd3vndlmhk4b" path="res://scenes/player/states/normal.gd" id="4_0owmy"]
@@ -16,6 +17,10 @@
 [ext_resource type="PackedScene" uid="uid://coryu46ck21v" path="res://scenes/anchors/anchor_preview.tscn" id="15_fcs02"]
 [ext_resource type="Script" uid="uid://bjhtjigiy7f1t" path="res://scenes/player/anchor_displayer.gd" id="15_myrg7"]
 [ext_resource type="PackedScene" uid="uid://dgtr4jc6gcnqx" path="res://scenes/player/components/weapon_component.tscn" id="16_myrg7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ydkj"]
+atlas = ExtResource("8_myrg7")
+region = Rect2(32, 256, 16, 16)
 
 [sub_resource type="Animation" id="Animation_ugbui"]
 resource_name = "Anchored"
@@ -245,7 +250,7 @@ size = Vector2(9.25, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lgqa7"]
 atlas = ExtResource("8_myrg7")
-region = Rect2(176, 241, 16, 15)
+region = Rect2(176, 240, 16, 16)
 
 [sub_resource type="Curve" id="Curve_ugbui"]
 _limits = [0.0, 4.0, 0.0, 1.0]
@@ -318,6 +323,15 @@ func _on_state_machine_on_state_changed(old_state, new_state):
 y_sort_enabled = true
 collision_mask = 3
 script = ExtResource("1_dovo2")
+
+[node name="WeaponPreview" type="Node2D" parent="."]
+script = ExtResource("2_kvlxm")
+color = Color(1, 1, 1, 0.49411765)
+
+[node name="Sprite2D" type="Sprite2D" parent="WeaponPreview"]
+position = Vector2(72, 0)
+rotation = 1.5779672
+texture = SubResource("AtlasTexture_8ydkj")
 
 [node name="AnchorDisplayer" type="Node2D" parent="." node_paths=PackedStringArray("anchor_manager")]
 y_sort_enabled = true
