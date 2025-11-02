@@ -54,7 +54,7 @@ func on_time_up():
 		GameState.INIT_PREPARATION:
 			return change_state(GameState.FIGHT)
 		GameState.FIGHT:
-			return change_state(GameState.EXPLORATION)
+			return change_state(GameState.GAME_OVER)
 		GameState.EXPLORATION:
 			return change_state(GameState.FIGHT)
 	on_game_state_changed.emit(game_state, game_state)

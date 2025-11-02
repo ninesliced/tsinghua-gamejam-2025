@@ -1,12 +1,16 @@
 extends NinePatchRect
 
-@onready var score_ui: TextValueUI = %Score
-@onready var seed_ui: TextValueUI = %Seed
+@onready var info_ui: RichTextLabel = %InfoLabel
 
 func _ready() -> void:
-	#SignalBus.on_player_died.connect(show_menu)
+	await GameGlobal.game_ready
+	GameGlobal.train.health_component.on_dead.connect(show_menu)
+	GameGlobal.game.on_game_state_changed.connect(_on_game_state_changed)
 	visible = false
-	pass
+
+func _on_game_state_changed(old_state: int, new_state: int) -> void:
+	if new_state == Game.GameState.GAME_OVER:
+		show_menu()
 
 func show_menu() -> void:
 	set_values()
@@ -14,19 +18,17 @@ func show_menu() -> void:
 
 func _on_retry_pressed() -> void:
 	TransitionManager.reload_scene("square_gradient")
-	pass # Replace with function body.
 
 
 func _on_menu_pressed() -> void:
-	Global.go_to_main_menu()
-	pass # Replace with function body.
+	GameGlobal.change_scene_to_main_menu()
 
 
 func set_values() -> void:
-	if !GameGlobal.score_manager:
+	if !GameGlobal.game:
 		return
-	var score = GameGlobal.score_manager.score
-	score_ui.set_value(str(score))
-
-	var seed = GameGlobal.rng_seed
-	seed_ui.set_value(str(seed))
+	
+	info_ui.text = "You reached the station %d/%d !\n" % [
+		GameGlobal.game.level - 1,
+		GameGlobal.train.railway.ways.size() - 1
+	]

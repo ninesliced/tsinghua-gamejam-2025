@@ -43,7 +43,7 @@ func use_anchor():
 	var anchor = list_anchors.pop_back()
 	
 	anchor.get_parent().remove_child(anchor)
-	get_tree().get_root().add_child(anchor)
+	get_tree().current_scene.add_child(anchor)
 	anchor.global_position = get_parent().global_position
 	anchor.enable()
 	on_anchor_used.emit(anchor)
