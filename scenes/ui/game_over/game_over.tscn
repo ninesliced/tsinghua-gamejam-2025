@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d2i4w4joysljq" path="res://scenes/ui/components/button.tscn" id="4_b6337"]
 
 [node name="GameOver" type="NinePatchRect"]
+process_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
