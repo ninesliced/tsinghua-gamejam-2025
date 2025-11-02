@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://i8mrq45e3ure" path="res://scenes/anchors/anchor.tscn" id="1_ew1ci"]
 [ext_resource type="Texture2D" uid="uid://b2s8r3m7hit0y" path="res://assets/tilesheet/tile_sheet.png" id="2_ncwfm"]
-[ext_resource type="Script" path="res://scenes/anchors/generator_component.gd" id="3_lrmtw"]
+[ext_resource type="Script" uid="uid://bbwwc1h51cnkv" path="res://scenes/anchors/generator_component.gd" id="3_lrmtw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lrmtw"]
 atlas = ExtResource("2_ncwfm")
@@ -20,6 +20,7 @@ animations = [{
 }]
 
 [node name="Anchor" groups=["Anchors"] instance=ExtResource("1_ew1ci")]
+y_sort_enabled = true
 pickable = false
 
 [node name="AnchorSprite" parent="." index="1"]
