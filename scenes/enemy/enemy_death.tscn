@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://dr1rhbgw5e6gm"]
+
+[ext_resource type="Script" uid="uid://ca8pb6ceeqdp" path="res://scenes/enemy/enemy_death.gd" id="1_ngpq2"]
+[ext_resource type="Texture2D" uid="uid://cx1hl3ywjwx30" path="res://assets/tilesheet/tilemap_packed.png" id="2_ifuua"]
+[ext_resource type="Script" path="res://scenes/enemy/explosion_particule.gd" id="3_07nk6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4gx4"]
+atlas = ExtResource("2_ifuua")
+region = Rect2(176, 240, 16, 16)
+
+[sub_resource type="Curve" id="Curve_sb35s"]
+_data = [Vector2(0, 0.4854645), 0.0, 0.0, 0, 0, Vector2(0.5046729, 0.91190326), 0.0, 0.0, 0, 0, Vector2(0.7990654, 0.9055195), 0.0, 0.0, 0, 0, Vector2(1, 0.24798661), -5.7377577, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_i5hdy"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.19201995, 0.39526185, 0.521197, 0.87905234)
+colors = PackedColorArray(1, 1, 1, 1, 0.99607843, 0.68235296, 0.20392157, 1, 1, 0, 0.26666668, 1, 0.22745098, 0.26666668, 0.4, 1, 0, 0, 0, 1)
+
+[node name="EnemyDeath" type="Node2D"]
+script = ExtResource("1_ngpq2")
+
+[node name="ExplosionParticule" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 32
+texture = SubResource("AtlasTexture_l4gx4")
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.93
+emission_shape = 1
+emission_sphere_radius = 24.0
+spread = 180.0
+gravity = Vector2(0, -20)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+linear_accel_min = -41.86
+linear_accel_max = -38.74
+scale_amount_min = 0.2
+scale_amount_curve = SubResource("Curve_sb35s")
+color_ramp = SubResource("Gradient_i5hdy")
+script = ExtResource("3_07nk6")
+
+[node name="TimeLossIndicator" type="Label" parent="."]
+unique_name_in_owner = true
+offset_right = 23.0
+offset_bottom = 20.0
+theme_override_colors/font_color = Color(0.3019608, 0.08627451, 0.09019608, 1)
+theme_override_colors/font_shadow_color = Color(0.5686275, 0.20392157, 0.047058824, 0.4627451)
+theme_override_font_sizes/font_size = 8
+text = "-5s"

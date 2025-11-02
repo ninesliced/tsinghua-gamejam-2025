@@ -15,11 +15,10 @@ var game_state : GameState = GameState.NOTHING
 
 @onready var time = $UI/Time
 
-
 var time_dict : Dictionary = {
 	GameState.INIT_PREPARATION: 10.0,
 	GameState.FIGHT: 60.0,
-	GameState.EXPLORATION: 30.0
+	GameState.EXPLORATION: 10.0
 }
 
 var time_left : float = time_each_round
@@ -32,6 +31,8 @@ signal on_level_changed(new_level: int)
 func _ready():
 	get_tree().paused = false
 	time.hide()
+	GameGlobal.train.railway.tutorial = true
+	GameGlobal.train.railway.is_tutorial()
 	GameGlobal.tutorial = self
 	setup_time()
 	GameGlobal.train.train_reached_end.connect(change_to_exploration)
@@ -40,10 +41,10 @@ func _ready():
 func _process(delta):
 	if (game_state != GameState.NOTHING):
 		time_left -= delta
-	emit_signal("on_time_changed", time_left)
-	if time_left <= 0:
-		on_time_up()
-	if (GameGlobal.train.moving and game_state != GameState.FIGHT):
+		if time_left <= 0:
+			on_time_up()
+		emit_signal("on_time_changed", time_left)
+	if (GameGlobal.train.moving and game_state == GameState.NOTHING):
 		change_to_fight()
 
 
