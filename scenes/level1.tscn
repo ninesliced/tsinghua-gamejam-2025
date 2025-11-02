@@ -69,7 +69,7 @@ script = ExtResource("1_d3jkd")
 metadata/_edit_horizontal_guides_ = [648.0]
 
 [node name="Enemy" parent="." instance=ExtResource("4_u3awl")]
-position = Vector2(336, 120)
+position = Vector2(-29, 106)
 
 [node name="UI" parent="." instance=ExtResource("2_u3awl")]
 
