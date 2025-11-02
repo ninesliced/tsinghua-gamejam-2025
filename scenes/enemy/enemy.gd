@@ -8,7 +8,6 @@ class_name Enemy
 @onready var _agent: NavigationAgent2D = %NavigationAgent
 
 @onready var health_component: HealthComponent = %HealthComponent
-@onready var time_loss_indicator: Label = %TimeLossIndicator
 
 var knockback: Vector2 = Vector2.ZERO
 var can_be_knockback: bool = true
@@ -61,8 +60,6 @@ func _on_health_component_on_damage(amount: int) -> void:
 	$AnimationPlayer.play("new_animation")
 	Audio.hit.play()
 
-	
-
 func _on_navigation_agent_target_reached() -> void:
 	if !state.ATTACK == current_state:
 		return
@@ -72,18 +69,10 @@ func _on_navigation_agent_target_reached() -> void:
 	else:
 		GameGlobal.game.time_left -= 5
 	
-	var offset := Vector2(randf_range(-10, 10), randf_range(-10, 10))
-	var rotation := randf_range(-0.2, 0.2)
-	
-	time_loss_indicator.visible = true
-	time_loss_indicator.text = "-5s"
-	time_loss_indicator.position = offset
-	time_loss_indicator.rotation = rotation
-	
-	var tween := create_tween()
-	tween.tween_property(time_loss_indicator, "position:y", offset.y - 20, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween.tween_property(time_loss_indicator, "modulate:a", 0.0, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween.connect("finished", queue_free)
+	var explosion: Node2D = preload("res://scenes/enemy/enemy_death.tscn").instantiate()
+	explosion.global_position = global_position
+	get_parent().add_child(explosion)
+	queue_free()
 
 
 func process_attacked_state(delta: float) -> void:
