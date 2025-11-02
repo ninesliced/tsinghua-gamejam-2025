@@ -1,7 +1,7 @@
 extends Node2D
-
 class_name Weapon
-
+@onready var recoil: Node2D = %Recoil
+@onready var cpuparticles_2d: CPUParticles2D = %CPUParticles2D
 @onready var _delay_timer: Timer = %DelayTimer
 @export var weapon_data: WeaponData :
 	set(x):
@@ -18,6 +18,17 @@ var _can_shoot: bool = true
 func _process(delta: float) -> void:
 	if not weapon_data:
 		return
+	recoil.position = recoil.position.move_toward(Vector2.ZERO, delta * 50)
+	var mouse_position: Vector2 = get_global_mouse_position()
+	var direction: Vector2 = (mouse_position - global_position).normalized()
+	if direction.x < 0:
+		%Sprite.flip_v = true
+		%Sprite.rotation = direction.angle()
+	else:
+		%Sprite.flip_v = false
+		%Sprite.rotation = direction.angle()
+
+	%Sprite.position = direction * 7
 	
 	if Input.is_action_pressed("shoot"):
 		if weapon_data.automatic:
@@ -34,13 +45,16 @@ func _process(delta: float) -> void:
 func shoot() -> void:
 	if not weapon_data:
 		return
+	cpuparticles_2d.emitting = true
 	
 	for i in range(weapon_data.bullets_per_shot):
 		var mouse_angle := (get_global_mouse_position() - global_position).angle()
 		var angle_offset := randf_range(-weapon_data.spread_angle / 2, weapon_data.spread_angle / 2)
+		recoil.position = Vector2(-5, 0).rotated(mouse_angle + angle_offset)
 		_spawn_bullet(mouse_angle + deg_to_rad(angle_offset))
 		if i < weapon_data.bullets_per_shot - 1:
 			await get_tree().create_timer(weapon_data.fire_rate).timeout
+			
 
 func _spawn_bullet(angle_offset: float) -> void:
 	var bullet_scene: PackedScene = preload("res://scenes/weapons/bullet.tscn")

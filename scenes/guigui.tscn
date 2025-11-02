@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://kc1des6ujkfo"]
+[gd_scene load_steps=19 format=3 uid="uid://kc1des6ujkfo"]
 
 [ext_resource type="PackedScene" uid="uid://cwp27or88qkvo" path="res://scenes/player/player.tscn" id="1_fk7tf"]
 [ext_resource type="Texture2D" uid="uid://cmpqgl6r63xa" path="res://assets/tilesheet/train-Sheet.png" id="2_gfv14"]
 [ext_resource type="Shader" uid="uid://c0o26cj1bvehw" path="res://assets/shaders/3d.gdshader" id="3_bff3v"]
 [ext_resource type="Texture2D" uid="uid://v0dc4lx8vsnp" path="res://assets/tilesheet/tilesheet.png" id="3_p1tfl"]
 [ext_resource type="Texture2D" uid="uid://bi8fr58i55knl" path="res://assets/tilesheet/3Dcolor.png" id="4_t7646"]
+[ext_resource type="Texture2D" uid="uid://cx1hl3ywjwx30" path="res://assets/tilesheet/tilemap_packed.png" id="6_fwjos"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p1tfl"]
 atlas = ExtResource("2_gfv14")
@@ -83,6 +84,10 @@ shader_parameter/height = 8.0
 atlas = ExtResource("3_p1tfl")
 region = Rect2(3, 67, 55, 41)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_6157r"]
+atlas = ExtResource("6_fwjos")
+region = Rect2(84, 242, 26, 13)
+
 [node name="Guigui" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_fk7tf")]
@@ -103,3 +108,7 @@ rotation = 2.272398
 
 [node name="Sprite2D" type="Sprite2D" parent="3D"]
 texture = SubResource("AtlasTexture_fbqmg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(51, 27)
+texture = SubResource("AtlasTexture_6157r")

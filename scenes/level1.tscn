@@ -98,6 +98,7 @@ loop = false
 
 [node name="Player" parent="." instance=ExtResource("9_mvsps")]
 position = Vector2(48, 56)
+collision_mask = 2
 wall_min_slide_angle = 3.1415927
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -132,18 +133,23 @@ level = 4
 spawn_interval = Vector2(1, 4)
 
 [node name="Anchor" parent="." instance=ExtResource("8_14jow")]
+y_sort_enabled = false
 position = Vector2(-80, 40)
 
 [node name="Anchor2" parent="." instance=ExtResource("8_14jow")]
+y_sort_enabled = false
 position = Vector2(1753, 97)
 
 [node name="Anchor3" parent="." instance=ExtResource("8_14jow")]
+y_sort_enabled = false
 position = Vector2(1347, 425)
 
 [node name="Anchor4" parent="." instance=ExtResource("8_14jow")]
+y_sort_enabled = false
 position = Vector2(782, 362)
 
 [node name="Anchor5" parent="." instance=ExtResource("8_14jow")]
+y_sort_enabled = false
 position = Vector2(230, 412)
 
 [node name="Chest" parent="." instance=ExtResource("11_u3awl")]

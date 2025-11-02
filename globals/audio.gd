@@ -4,6 +4,8 @@ extends Node2D
 @onready var charging = $ChargingSfx
 @onready var exploring = $ExplorationMusic
 @onready var fighting = $FightMusic
+@onready var menu = $MenuMusic
+
 
 func _ready() -> void:
 	pass # Replace with function body.
