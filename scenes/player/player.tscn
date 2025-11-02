@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cwp27or88qkvo"]
+[gd_scene load_steps=33 format=3 uid="uid://cwp27or88qkvo"]
 
 [ext_resource type="Script" uid="uid://bcy3y0yh1qhom" path="res://scenes/player/player.gd" id="1_dovo2"]
 [ext_resource type="PackedScene" uid="uid://b62c81khntjjv" path="res://addons/shaker/components/gameplay/state_machine/state_machine.tscn" id="2_75vfm"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://dylbnj0ifmbg1" path="res://scenes/player/states/anchored.gd" id="5_5gtgg"]
 [ext_resource type="Script" uid="uid://bapsr6p3avfvj" path="res://scenes/player/components/movement_anchor_component.gd" id="7_qek5x"]
 [ext_resource type="Texture2D" uid="uid://cx8d4vvddypx3" path="res://assets/player/player_sheet.png" id="8_fcs02"]
+[ext_resource type="Texture2D" uid="uid://cx1hl3ywjwx30" path="res://assets/tilesheet/tilemap_packed.png" id="8_myrg7"]
 [ext_resource type="PackedScene" uid="uid://dqieuqmaqtj3n" path="res://scenes/components/interaction_zone_component.tscn" id="10_je7p5"]
 [ext_resource type="Script" uid="uid://d1b7pxmk0hej1" path="res://scenes/player/components/movement_dash_component.gd" id="11_gx1jg"]
 [ext_resource type="PackedScene" uid="uid://coryu46ck21v" path="res://scenes/anchors/anchor_preview.tscn" id="15_fcs02"]
@@ -242,10 +243,18 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gx1jg"]
 size = Vector2(9.25, 8)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgqa7"]
+atlas = ExtResource("8_myrg7")
+region = Rect2(176, 241, 16, 15)
+
 [sub_resource type="Curve" id="Curve_ugbui"]
 _limits = [0.0, 4.0, 0.0, 1.0]
-_data = [Vector2(0, 0.57415944), 0.0, 0.0, 0, 0, Vector2(1, 1.7921228), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1.2013354), 0.0, 0.0, 0, 0, Vector2(1, 2.8100567), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_myrg7"]
+offsets = PackedFloat32Array(0, 0.6371571)
+colors = PackedColorArray(0.72156864, 0.43529412, 0.3137255, 1, 0.89411765, 0.6509804, 0.44705883, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_myrg7"]
 atlas = ExtResource("8_fcs02")
@@ -316,13 +325,14 @@ position = Vector2(0, -6)
 script = ExtResource("15_myrg7")
 anchor_manager = NodePath("../AnchorManager")
 
-[node name="PlayerAnimationManager" type="AnimationPlayer" parent="." node_paths=PackedStringArray("display_node", "particules_node")]
+[node name="PlayerAnimationManager" type="AnimationPlayer" parent="." node_paths=PackedStringArray("display_node", "particules_node", "dirt_particules_node")]
 libraries = {
 &"": SubResource("AnimationLibrary_fm80t")
 }
 script = ExtResource("2_fm80t")
 display_node = NodePath("../Display")
 particules_node = NodePath("../Display/CPUParticles2D")
+dirt_particules_node = NodePath("../Display/CPUParticles2D/CPUParticles2D2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.625, -4)
@@ -354,14 +364,31 @@ position = Vector2(0, -4)
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Display"]
 z_index = 1
 position = Vector2(-11, 3)
+amount = 16
+texture = SubResource("AtlasTexture_lgqa7")
 lifetime = 0.25
 speed_scale = 0.8
 emission_shape = 1
 emission_sphere_radius = 7.4
 gravity = Vector2(0, -100)
-scale_amount_min = 5.0
-scale_amount_max = 5.0
+scale_amount_min = 0.2
+scale_amount_max = 0.2
 scale_amount_curve = SubResource("Curve_ugbui")
+color_ramp = SubResource("Gradient_myrg7")
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="Display/CPUParticles2D"]
+z_index = 1
+amount = 4
+texture = SubResource("AtlasTexture_lgqa7")
+lifetime = 0.25
+speed_scale = 0.8
+emission_shape = 1
+emission_sphere_radius = 7.4
+gravity = Vector2(0, -100)
+scale_amount_min = 0.1
+scale_amount_max = 0.1
+scale_amount_curve = SubResource("Curve_ugbui")
+color = Color(0.54509807, 0.60784316, 0.7058824, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Display"]
 position = Vector2(0, -1)
