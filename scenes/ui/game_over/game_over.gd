@@ -11,6 +11,9 @@ func _ready() -> void:
 func _on_game_state_changed(old_state: int, new_state: int) -> void:
 	if new_state == Game.GameState.GAME_OVER:
 		show_menu()
+		Audio.menu.play()
+		Audio.fighting.stop()
+		Audio.exploring.stop()
 
 func show_menu() -> void:
 	set_values()
@@ -18,6 +21,7 @@ func show_menu() -> void:
 	get_tree().paused = true
 
 func _on_retry_pressed() -> void:
+	Audio.menu.stop()
 	TransitionManager.reload_scene("square_gradient")
 
 

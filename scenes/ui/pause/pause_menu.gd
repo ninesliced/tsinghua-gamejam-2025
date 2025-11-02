@@ -23,10 +23,12 @@ func _on_resume_button_pressed():
 
 func resume_game():
 	get_tree().paused = false
+	Audio.menu.stop()
 	hide()
 
 func pause_game():
 	get_tree().paused = true
+	Audio.menu.play()
 	show()
 
 

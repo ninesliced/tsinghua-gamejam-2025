@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://brsyl3fv8bvr3"]
+[gd_scene load_steps=7 format=3 uid="uid://brsyl3fv8bvr3"]
 
 [ext_resource type="Script" uid="uid://58wjb0f84uip" path="res://globals/audio.gd" id="1_pwspk"]
 [ext_resource type="AudioStream" uid="uid://cd8xpqv58unow" path="res://assets/sfx/electric_weapon_hit_short.wav" id="2_pwspk"]
 [ext_resource type="AudioStream" uid="uid://bu3i68bt2u8it" path="res://assets/sfx/SFX_is_Charging_v1.0.wav" id="3_gqwuu"]
 [ext_resource type="AudioStream" uid="uid://dpxmh3jqqubej" path="res://assets/sfx/Exploration_v2.0.wav" id="4_67lrt"]
+[ext_resource type="AudioStream" uid="uid://o5exf413mb1a" path="res://assets/sfx/Menu_BGM_v1.0.wav" id="5_3py8g"]
 [ext_resource type="AudioStream" uid="uid://b4nyh6ughhcas" path="res://assets/sfx/Fight_v2.0.wav" id="5_h7bca"]
 
 [node name="Audio" type="Node2D"]
@@ -22,6 +23,11 @@ bus = &"SFX"
 
 [node name="ExplorationMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_67lrt")
+volume_db = -16.0
+bus = &"Music"
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_3py8g")
 volume_db = -16.0
 bus = &"Music"
 
