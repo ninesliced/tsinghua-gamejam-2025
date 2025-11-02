@@ -38,6 +38,8 @@ func _physics_process(delta: float) -> void:
 			pass
 
 func make_path() -> void:
+	if !GameGlobal.train:
+		return
 	_agent.target_position = GameGlobal.train.global_position
 
 

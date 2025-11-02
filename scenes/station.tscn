@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://0vuffts4f02q"]
+
+[ext_resource type="Texture2D" path="res://assets/tilesheet/station.png" id="1_rod8h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pfghp"]
+size = Vector2(42, 7)
+
+[node name="Station" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Station" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -1)
+texture = ExtResource("1_rod8h")
+offset = Vector2(0, -12)
+
+[node name="Station2" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -1)
+texture = ExtResource("1_rod8h")
+offset = Vector2(0, -12)
+
+[node name="StaticBody2D" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(3.25, -4)
+shape = SubResource("RectangleShape2D_pfghp")
