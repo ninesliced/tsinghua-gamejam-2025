@@ -1,9 +1,10 @@
-[gd_scene load_steps=24 format=4 uid="uid://ds7eh20eiv5le"]
+[gd_scene load_steps=23 format=4 uid="uid://ds7eh20eiv5le"]
 
 [ext_resource type="Script" uid="uid://dun17vq27vq80" path="res://scenes/game.gd" id="1_d3jkd"]
 [ext_resource type="PackedScene" uid="uid://hxftew76u0of" path="res://scenes/ui/minimap/ui.tscn" id="2_u3awl"]
 [ext_resource type="TileSet" uid="uid://dckjsir55y6u4" path="res://assets/tilemap/map.tres" id="3_2ku1j"]
-[ext_resource type="PackedScene" path="res://scenes/train/railway.tscn" id="6_i8kv5"]
+[ext_resource type="PackedScene" uid="uid://boafhiic42wwg" path="res://scenes/ui/you_won/you_won.tscn" id="5_gnai3"]
+[ext_resource type="PackedScene" uid="uid://djy7d8gmx84od" path="res://scenes/train/railway.tscn" id="6_i8kv5"]
 [ext_resource type="PackedScene" uid="uid://b8phwynxhybcm" path="res://scenes/train/train.tscn" id="7_dxn3v"]
 [ext_resource type="PackedScene" uid="uid://lheoc2svvmfo" path="res://scenes/anchors/generator.tscn" id="8_14jow"]
 [ext_resource type="PackedScene" uid="uid://cwp27or88qkvo" path="res://scenes/player/player.tscn" id="9_mvsps"]
@@ -25,18 +26,6 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 24, 0, 0, 0, 0, -1, 92, 0, 0, 0, 0, 0, 212, 0, 0, 0, 0, 1, 460, 0, 0, 0, 0, 283, 459)
 }
 point_count = 5
-
-[sub_resource type="Curve2D" id="Curve2D_2ku1j"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 283, 459, 0, 0, 0, 0, 413, 460, 0, 0, 0, 0, 559, 459, 0, 0, 0, 0, 560, 537, 0, 0, 0, 0, 559, 622, 0, 0, 0, 0, 621, 622, 0, 0, 0, 0, 706, 622, 0, 0, 0, 0, 856, 621)
-}
-point_count = 8
-
-[sub_resource type="Curve2D" id="Curve2D_gnai3"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1460, 127, 0, 0, 0, 0, 1519, 128, 0, 0, 0, 0, 1519, 29, 0, 0, 0, 0, 1722, 30, 0, 0, 0, 0, 1793, 30, 0, 0, 0, 0, 1794, -85)
-}
-point_count = 6
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u3awl"]
 resource_local_to_scene = true
@@ -62,7 +51,7 @@ size = Vector2(148.79688, 137.25)
 resource_local_to_scene = true
 size = Vector2(47.69922, 200.3125)
 
-[node name="Game" type="Node2D"]
+[node name="Game2" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_d3jkd")
 metadata/_edit_horizontal_guides_ = [648.0]
@@ -72,6 +61,8 @@ metadata/_edit_horizontal_guides_ = [648.0]
 [node name="PauseMenu" parent="UI" instance=ExtResource("11_2ku1j")]
 
 [node name="GameOver" parent="UI" instance=ExtResource("12_f31uk")]
+
+[node name="YouWon" parent="UI" instance=ExtResource("5_gnai3")]
 
 [node name="GroundAndRock" type="TileMapLayer" parent="."]
 y_sort_enabled = true
@@ -87,7 +78,7 @@ tile_set = ExtResource("3_2ku1j")
 y_sort_enabled = true
 position = Vector2(-8, 8)
 curve = SubResource("Curve2D_u3awl")
-ways = Array[Curve2D]([SubResource("Curve2D_i8kv5"), SubResource("Curve2D_2ku1j"), SubResource("Curve2D_u3awl"), SubResource("Curve2D_gnai3")])
+ways = Array[Curve2D]([SubResource("Curve2D_i8kv5")])
 timers = Array[float]([5.0, 10.0])
 
 [node name="Train" parent="Railway" instance=ExtResource("7_dxn3v")]

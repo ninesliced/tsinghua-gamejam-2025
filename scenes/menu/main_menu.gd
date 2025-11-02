@@ -6,3 +6,7 @@ func _ready() -> void:
 func _on_button_pressed() -> void:
 	TransitionManager.change_scene(preload("res://scenes/level1.tscn"), "circle_gradient")
 	pass
+
+
+func _on_quit_pressed() -> void:
+	get_tree().quit()

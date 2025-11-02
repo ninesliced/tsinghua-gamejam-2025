@@ -34,3 +34,6 @@ func _on_game_on_game_state_changed(old_state: Game.GameState, new_state: Game.G
 			on_new_way.emit()
 
 	pass # Replace with function body.
+
+func is_over():
+	return _way_index >= ways.size() - 1

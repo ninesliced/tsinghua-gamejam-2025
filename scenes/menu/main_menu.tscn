@@ -9,7 +9,7 @@ script = ExtResource("1_3rkf3")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="Button" parent="UI" instance=ExtResource("1_nl8w3")]
+[node name="Play" parent="UI" instance=ExtResource("1_nl8w3")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -22,4 +22,19 @@ offset_bottom = 17.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[connection signal="pressed" from="UI/Button" to="." method="_on_button_pressed"]
+[node name="Quit" parent="UI" instance=ExtResource("1_nl8w3")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = 22.5
+offset_right = 64.0
+offset_bottom = 57.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit"
+
+[connection signal="pressed" from="UI/Play" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="UI/Quit" to="." method="_on_quit_pressed"]
