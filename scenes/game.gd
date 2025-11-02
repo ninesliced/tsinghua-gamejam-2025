@@ -58,7 +58,7 @@ func on_time_up():
 			Audio.fighting.play()
 			return change_state(GameState.FIGHT)
 		GameState.FIGHT:
-			return change_state(GameState.EXPLORATION)
+			return change_state(GameState.GAME_OVER)
 		GameState.EXPLORATION:
 			Audio.exploring.stop()
 			Audio.fighting.play()

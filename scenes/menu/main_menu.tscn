@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d2i4w4joysljq" path="res://scenes/ui/components/button.tscn" id="1_nl8w3"]
 
 [node name="MainMenu" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_3rkf3")
 
 [node name="UI" type="CanvasLayer" parent="."]

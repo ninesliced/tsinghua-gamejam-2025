@@ -6,7 +6,7 @@ class_name Train
 var moving: bool = false
 var reached_end: bool = true
 
-var _railway: Railway = null
+var railway: Railway = null
 
 @onready var health_component: HealthComponent = %HealthComponent
 
@@ -19,7 +19,7 @@ signal train_next_way()
 func _ready() -> void:
 	var parent: Node = get_parent()
 	if parent is Railway:
-		_railway = parent
+		railway = parent
 	else:
 		assert(false, "Train must be a child of Railway")
 	
