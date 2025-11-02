@@ -15,7 +15,6 @@ var game_state : GameState = GameState.NOTHING
 
 @onready var time = $UI/Time
 
-
 var time_dict : Dictionary = {
 	GameState.INIT_PREPARATION: 10.0,
 	GameState.FIGHT: 60.0,
@@ -32,6 +31,8 @@ signal on_level_changed(new_level: int)
 func _ready():
 	get_tree().paused = false
 	time.hide()
+	GameGlobal.train.railway.tutorial = true
+	GameGlobal.train.railway.is_tutorial()
 	GameGlobal.tutorial = self
 	setup_time()
 	GameGlobal.train.train_reached_end.connect(change_to_exploration)
