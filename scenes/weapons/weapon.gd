@@ -18,6 +18,17 @@ var _can_shoot: bool = true
 func _process(delta: float) -> void:
 	if not weapon_data:
 		return
+
+	var mouse_position: Vector2 = get_global_mouse_position()
+	var direction: Vector2 = (mouse_position - global_position).normalized()
+	if direction.x < 0:
+		%Sprite.flip_v = true
+		%Sprite.rotation = direction.angle()
+	else:
+		%Sprite.flip_v = false
+		%Sprite.rotation = direction.angle()
+
+	%Sprite.position = direction * 7
 	
 	if Input.is_action_pressed("shoot"):
 		if weapon_data.automatic:

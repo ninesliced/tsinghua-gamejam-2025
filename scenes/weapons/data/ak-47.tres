@@ -1,11 +1,11 @@
-[gd_resource type="Resource" script_class="WeaponData" load_steps=4 format=3 uid="uid://lkfe2iiq5hdl"]
+[gd_resource type="Resource" script_class="WeaponData" load_steps=4 format=3 uid="uid://c5j686f4dm608"]
 
 [ext_resource type="Script" uid="uid://ds1dp5nfypweh" path="res://scenes/weapons/weapon_data.gd" id="1_opbxh"]
 [ext_resource type="Texture2D" uid="uid://cx1hl3ywjwx30" path="res://assets/tilesheet/tilemap_packed.png" id="2_06ovi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_71doy"]
 atlas = ExtResource("2_06ovi")
-region = Rect2(96, 160, 16, 16)
+region = Rect2(160, 243, 16, 10)
 
 [resource]
 script = ExtResource("1_opbxh")

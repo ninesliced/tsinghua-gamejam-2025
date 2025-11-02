@@ -365,7 +365,7 @@ script = SubResource("GDScript_h17s1")
 
 [node name="WeaponComponent" parent="." instance=ExtResource("16_myrg7")]
 unique_name_in_owner = true
-position = Vector2(8, -7)
+position = Vector2(0, -8)
 
 [node name="AnchorPreview" parent="." instance=ExtResource("15_fcs02")]
 
