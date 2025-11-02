@@ -12,6 +12,7 @@ func _on_game_state_changed(old_state: Game.GameState, new_state: Game.GameState
 
 func show_menu() -> void:
 	visible = true
+	get_tree().paused = true
 
 func _on_retry_pressed() -> void:
 	TransitionManager.reload_scene("square_gradient")

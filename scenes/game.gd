@@ -26,6 +26,7 @@ signal on_game_state_changed(old_state: GameState, new_state: GameState)
 signal on_level_changed(new_level: int)
 
 func _ready():
+	get_tree().paused = false
 	GameGlobal.game = self
 	setup_time()
 	GameGlobal.train.train_reached_end.connect(change_to_exploration)
