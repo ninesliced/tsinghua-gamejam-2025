@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://xdt5oe2unl8l" path="res://scenes/enemy/enemy.gd" id="1_a3pup"]
 [ext_resource type="Texture2D" uid="uid://bocj4wlbgxhyr" path="res://assets/enemy/enemy_sheet.png" id="2_40wdo"]
-[ext_resource type="Shader" uid="uid://bjyedjjnquudh" path="res://scenes/enemy/enemy.gdshader" id="2_cwlon"]
+[ext_resource type="Shader" path="res://scenes/enemy/enemy.gdshader" id="2_cwlon"]
 [ext_resource type="PackedScene" uid="uid://bucl4ei3ylyu8" path="res://scenes/components/health_component.tscn" id="3_40wdo"]
 [ext_resource type="Texture2D" uid="uid://d0fww4avim5dn" path="res://assets/enemy/enemy_electrocute1.png" id="3_gl05p"]
 [ext_resource type="Texture2D" uid="uid://vqw7njehqss6" path="res://assets/enemy/enemy_electrocute2.png" id="4_gl05p"]
@@ -85,6 +85,21 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="Animation" id="Animation_nbhyu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/hit_flash_on")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_cwlon"]
 resource_name = "new_animation"
 length = 0.2
@@ -100,21 +115,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_nbhyu"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/hit_flash_on")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nbhyu"]
@@ -136,6 +136,7 @@ unique_name_in_owner = true
 path_desired_distance = 3.0
 target_desired_distance = 3.0
 path_postprocessing = 1
+debug_enabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
