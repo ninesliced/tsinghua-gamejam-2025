@@ -1,9 +1,8 @@
-[gd_scene load_steps=28 format=4 uid="uid://ds7eh20eiv5le"]
+[gd_scene load_steps=27 format=4 uid="uid://ds7eh20eiv5le"]
 
 [ext_resource type="Script" uid="uid://dun17vq27vq80" path="res://scenes/game.gd" id="1_d3jkd"]
 [ext_resource type="PackedScene" uid="uid://hxftew76u0of" path="res://scenes/ui/minimap/ui.tscn" id="2_u3awl"]
 [ext_resource type="TileSet" uid="uid://dckjsir55y6u4" path="res://assets/tilemap/map.tres" id="3_2ku1j"]
-[ext_resource type="PackedScene" uid="uid://ccbafmp5xuv54" path="res://scenes/enemy/enemy.tscn" id="4_u3awl"]
 [ext_resource type="PackedScene" uid="uid://boafhiic42wwg" path="res://scenes/ui/you_won/you_won.tscn" id="5_gnai3"]
 [ext_resource type="PackedScene" uid="uid://djy7d8gmx84od" path="res://scenes/train/railway.tscn" id="6_i8kv5"]
 [ext_resource type="PackedScene" uid="uid://b8phwynxhybcm" path="res://scenes/train/train.tscn" id="7_dxn3v"]
@@ -171,9 +170,6 @@ items = Array[Resource]([ExtResource("13_gnai3"), ExtResource("15_dxn3v"), ExtRe
 [node name="Chest4" parent="." instance=ExtResource("11_u3awl")]
 position = Vector2(1381, 577)
 items = Array[Resource]([ExtResource("13_gnai3"), ExtResource("15_dxn3v"), ExtResource("14_i8kv5")])
-
-[node name="Enemy" parent="." instance=ExtResource("4_u3awl")]
-position = Vector2(30, 134)
 
 [connection signal="on_time_changed" from="." to="UI/Time" method="_on_game_on_time_changed"]
 

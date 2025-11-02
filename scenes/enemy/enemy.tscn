@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ccbafmp5xuv54"]
+[gd_scene load_steps=26 format=3 uid="uid://ccbafmp5xuv54"]
 
 [ext_resource type="Script" uid="uid://xdt5oe2unl8l" path="res://scenes/enemy/enemy.gd" id="1_a3pup"]
 [ext_resource type="Texture2D" uid="uid://bocj4wlbgxhyr" path="res://assets/enemy/enemy_sheet.png" id="2_40wdo"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bucl4ei3ylyu8" path="res://scenes/components/health_component.tscn" id="3_40wdo"]
 [ext_resource type="Texture2D" uid="uid://d0fww4avim5dn" path="res://assets/enemy/enemy_electrocute1.png" id="3_gl05p"]
 [ext_resource type="Texture2D" uid="uid://vqw7njehqss6" path="res://assets/enemy/enemy_electrocute2.png" id="4_gl05p"]
+[ext_resource type="Texture2D" uid="uid://cx1hl3ywjwx30" path="res://assets/tilesheet/tilemap_packed.png" id="7_13gj6"]
+[ext_resource type="Script" path="res://scenes/enemy/explosion_particule.gd" id="7_nbhyu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_40wdo"]
 radius = 8.0
@@ -123,6 +125,19 @@ _data = {
 &"new_animation": SubResource("Animation_cwlon")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2f3il"]
+atlas = ExtResource("7_13gj6")
+region = Rect2(176, 240, 16, 16)
+
+[sub_resource type="Curve" id="Curve_dtxhd"]
+_data = [Vector2(0, 0.4854645), 0.0, 0.0, 0, 0, Vector2(0.5046729, 0.91190326), 0.0, 0.0, 0, 0, Vector2(0.7990654, 0.9055195), 0.0, 0.0, 0, 0, Vector2(1, 0.24798661), -5.7377577, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_so3kp"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.56962025, 0.6677215, 0.7848101, 0.87905234)
+colors = PackedColorArray(1, 1, 1, 1, 0.99607843, 0.68235296, 0.20392157, 1, 1, 0, 0.26666668, 1, 0.22745098, 0.26666668, 0.4, 1, 0, 0, 0, 1)
+
 [node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
 collision_mask = 2
 motion_mode = 1
@@ -159,6 +174,26 @@ health_bar = false
 libraries = {
 &"": SubResource("AnimationLibrary_nbhyu")
 }
+
+[node name="SpawnParticule" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 32
+texture = SubResource("AtlasTexture_2f3il")
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.93
+emission_shape = 1
+emission_sphere_radius = 16.0
+spread = 120.0
+gravity = Vector2(0, -20)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+linear_accel_min = -41.86
+linear_accel_max = -38.74
+scale_amount_min = 0.2
+scale_amount_curve = SubResource("Curve_dtxhd")
+color_ramp = SubResource("Gradient_so3kp")
+script = ExtResource("7_nbhyu")
 
 [connection signal="target_reached" from="NavigationAgent" to="." method="_on_navigation_agent_target_reached"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
