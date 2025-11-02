@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bucl4ei3ylyu8" path="res://scenes/components/health_component.tscn" id="2_fxk1r"]
 [ext_resource type="Texture2D" uid="uid://bi8fr58i55knl" path="res://assets/tilesheet/3Dcolor.png" id="3_b0oxr"]
 [ext_resource type="Texture2D" uid="uid://sqw5tby22km7" path="res://assets/tilesheet/trainsheet.png" id="4_b0oxr"]
-[ext_resource type="Script" uid="uid://heku5mp20agj" path="res://scenes/train/train_display.gd" id="5_0drc4"]
+[ext_resource type="Script" path="res://scenes/train/train_display.gd" id="5_0drc4"]
 [ext_resource type="PackedScene" uid="uid://i8mrq45e3ure" path="res://scenes/anchors/anchor.tscn" id="7_xnb1e"]
 [ext_resource type="Script" uid="uid://dvstqj5ifa08v" path="res://scenes/train/train_charge.gd" id="8_iuhv6"]
 

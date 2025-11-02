@@ -3,7 +3,7 @@ extends PathFollow2D
 class_name Train
 
 @export var speed: float = 50
-var moving: bool = false
+@export var moving: bool = false
 var reached_end: bool = true
 
 var railway: Railway = null

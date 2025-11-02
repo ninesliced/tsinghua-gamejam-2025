@@ -6,8 +6,13 @@ var game: Game = null:
 	set(value):
 		game = value
 		game_ready.emit()
+var tutorial: Tutorial = null:
+	set(value):
+		tutorial = value
+		tutorial_ready.emit()
 
 signal game_ready()
+signal tutorial_ready()
 
 func change_scene_to_main_menu():
 	await TransitionManager.change_scene(preload("res://scenes/menu/main_menu.tscn"), "circle_gradient")
