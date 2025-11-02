@@ -1,10 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://evyd13f57b12"]
+[gd_scene load_steps=11 format=3 uid="uid://evyd13f57b12"]
 
 [ext_resource type="Script" uid="uid://7k30jy3mchsj" path="res://scenes/weapons/bullet.gd" id="1_mx1hr"]
 [ext_resource type="PackedScene" uid="uid://k4wl84m08hb5" path="res://scenes/anchors/electric_line/electric_line.tscn" id="2_dnt7v"]
+[ext_resource type="Shader" uid="uid://birv8v71nvo3v" path="res://addons/shaker/components/vfx/shaders/fill_color.gdshader" id="3_1t05q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dnt7v"]
-size = Vector2(17, 4)
+size = Vector2(19, 4)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1t05q"]
+resource_local_to_scene = true
+shader = ExtResource("3_1t05q")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/force = 1.0
 
 [sub_resource type="Curve" id="Curve_dnt7v"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -13,12 +20,41 @@ point_count = 2
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_dnt7v"]
 resource_local_to_scene = true
 
-[sub_resource type="Animation" id="Animation_dnt7v"]
+[sub_resource type="Animation" id="Animation_1t05q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ElectricLine:material:shader_parameter/force")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_ymvs7"]
 resource_name = "shoot"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ElectricLine:material:shader_parameter/force")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.01, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1t05q"]
 _data = {
-&"shoot": SubResource("Animation_dnt7v")
+&"RESET": SubResource("Animation_1t05q"),
+&"shoot": SubResource("Animation_ymvs7")
 }
 
 [node name="Bullet" type="Node2D"]
@@ -34,11 +70,12 @@ default_color = Color(0.113572694, 0.62519765, 0.6786568, 1)
 collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(8.5, 0)
+position = Vector2(9.5, 0)
 shape = SubResource("RectangleShape2D_dnt7v")
 
 [node name="ElectricLine" parent="." instance=ExtResource("2_dnt7v")]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_1t05q")
 position = Vector2(1.0000076, 0)
 scale = Vector2(3.5581396, 1.25)
 points = PackedVector2Array(3.6535928, 0, -0.2810479, 0)
@@ -64,6 +101,7 @@ autostart = true
 libraries = {
 &"": SubResource("AnimationLibrary_1t05q")
 }
+autoplay = "shoot"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
