@@ -4,21 +4,29 @@ class_name Railway
 
 @export var ways: Array[Curve2D] = []
 @export var timers: Array[float] = []
+@export var tutorial: bool = false
 
 signal on_new_way()
 
 var _way_index: int = -1
 var _timer_index: int = 0
 
+func is_tutorial() -> void:
+	if (!GameGlobal.tutorial):
+		await GameGlobal.tutorial_ready
+	GameGlobal.tutorial.on_tutorial_state_changed.connect(_on_tutorial_on_game_state_changed)
+
 func _ready() -> void:
 	curve = ways[0]
 	on_new_way.connect(GameGlobal.train._train_next_way)
-	if !GameGlobal.tutorial:
-		await GameGlobal.tutorial_ready
+	if tutorial:
+		if (!GameGlobal.tutorial):
+			await GameGlobal.tutorial_ready
 		GameGlobal.tutorial.on_tutorial_state_changed.connect(_on_tutorial_on_game_state_changed)
-	if !GameGlobal.game:
-		await GameGlobal.game_ready
-		GameGlobal.game._on_game_on_time_changedon_game_state_changed.connect(_on_game_on_game_state_changed)
+	if !tutorial:
+		if (!GameGlobal.game):
+			await GameGlobal.game_ready
+		GameGlobal.game.on_game_state_changed.connect(_on_game_on_game_state_changed)
 	pass
 
 func next_way() -> bool:
