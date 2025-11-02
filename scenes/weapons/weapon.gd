@@ -46,8 +46,8 @@ func shoot() -> void:
 	if not weapon_data:
 		return
 	cpuparticles_2d.emitting = true
-	SignalBus.on_shoot.emit()
 	for i in range(weapon_data.bullets_per_shot):
+		SignalBus.on_shoot.emit()
 		var mouse_angle := (get_global_mouse_position() - global_position).angle()
 		var angle_offset := randf_range(-weapon_data.spread_angle / 2, weapon_data.spread_angle / 2)
 		recoil.position = Vector2(-5, 0).rotated(mouse_angle + angle_offset)

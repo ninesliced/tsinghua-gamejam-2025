@@ -21,8 +21,9 @@ texture = ExtResource("1_vfrx6")
 region_rect = Rect2(0, 0, 11, 11)
 patch_margin_left = 5
 patch_margin_top = 3
-patch_margin_right = 5
+patch_margin_right = 4
 patch_margin_bottom = 7
+axis_stretch_horizontal = 1
 script = ExtResource("2_i64fd")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
