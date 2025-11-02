@@ -123,7 +123,7 @@ _data = {
 &"new_animation": SubResource("Animation_cwlon")
 }
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_a3pup")
@@ -135,7 +135,7 @@ shape = SubResource("CircleShape2D_40wdo")
 [node name="NavigationAgent" type="NavigationAgent2D" parent="."]
 unique_name_in_owner = true
 path_desired_distance = 3.0
-target_desired_distance = 30.0
+target_desired_distance = 20.0
 path_postprocessing = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -159,6 +159,16 @@ health_bar = false
 libraries = {
 &"": SubResource("AnimationLibrary_nbhyu")
 }
+
+[node name="TimeLossIndicator" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_right = 23.0
+offset_bottom = 20.0
+theme_override_colors/font_color = Color(0.3019608, 0.08627451, 0.09019608, 1)
+theme_override_colors/font_shadow_color = Color(0.5686275, 0.20392157, 0.047058824, 0.4627451)
+theme_override_font_sizes/font_size = 8
+text = "-5s"
 
 [connection signal="target_reached" from="NavigationAgent" to="." method="_on_navigation_agent_target_reached"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

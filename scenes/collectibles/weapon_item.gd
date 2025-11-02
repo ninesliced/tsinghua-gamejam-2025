@@ -10,7 +10,8 @@ class_name WeaponItem
 var _can_pickup := false :
 	set(x):
 		_can_pickup = x
-		%HintText.visible = x
+		if %HintText:
+			%HintText.visible = x
 
 func _ready() -> void:
 	%Sprite.texture = weapon_data.texture
@@ -32,3 +33,10 @@ func _on_pickup_area_body_entered(body: Node2D) -> void:
 		return
 	
 	_can_pickup = true
+
+
+func _on_pickup_area_body_exited(body: Node2D) -> void:	
+	if not body is Player:
+		return
+	
+	_can_pickup = false

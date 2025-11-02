@@ -26,6 +26,7 @@ func _ready() -> void:
 func damage(amount: int) -> void:
 	_health_bar.visible = true
 	on_damaged.emit(amount)
+	amount = min(amount, _current_health)
 	_current_health -= amount
 	if _current_health <= 0:
 		_current_health = 0
