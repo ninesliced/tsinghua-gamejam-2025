@@ -172,13 +172,13 @@ position = Vector2(276, 420)
 position = Vector2(-88, 40)
 
 [node name="Station" parent="." instance=ExtResource("13_f31uk")]
-position = Vector2(320, 440)
+position = Vector2(328, 440)
 
 [node name="Station2" parent="." instance=ExtResource("13_f31uk")]
-position = Vector2(880, 600)
+position = Vector2(888, 600)
 
 [node name="Station3" parent="." instance=ExtResource("13_f31uk")]
-position = Vector2(1456, 104)
+position = Vector2(1472, 104)
 
 [connection signal="on_time_changed" from="." to="UI/Time" method="_on_game_on_time_changed"]
 

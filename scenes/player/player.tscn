@@ -275,6 +275,7 @@ collision_mask = 3
 script = ExtResource("1_dovo2")
 
 [node name="AnchorDisplayer" type="Node2D" parent="." node_paths=PackedStringArray("anchor_manager")]
+y_sort_enabled = true
 position = Vector2(0, -6)
 script = ExtResource("15_myrg7")
 anchor_manager = NodePath("../AnchorManager")
