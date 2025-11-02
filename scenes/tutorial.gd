@@ -54,6 +54,7 @@ func change_to_exploration() -> void:
 	
 	if GameGlobal.train.railway.is_over():
 		change_state(GameState.YOU_WIN)
+		GameGlobal.change_scene_to_main_menu()
 		return
 	
 	change_state(GameState.EXPLORATION)
