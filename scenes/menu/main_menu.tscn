@@ -1,13 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8a6vv3f5yqvj"]
+[gd_scene load_steps=5 format=3 uid="uid://c8a6vv3f5yqvj"]
 
 [ext_resource type="Script" uid="uid://b3inqq4n8b8j" path="res://scenes/menu/main_menu.gd" id="1_3rkf3"]
 [ext_resource type="PackedScene" uid="uid://d2i4w4joysljq" path="res://scenes/ui/components/button.tscn" id="1_nl8w3"]
+[ext_resource type="Texture2D" uid="uid://b07cutk27danl" path="res://assets/logo.png" id="3_247la"]
+[ext_resource type="Texture2D" uid="uid://dfwi7gmb0jwh6" path="res://assets/name.png" id="3_kiqgm"]
 
 [node name="MainMenu" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_3rkf3")
 
 [node name="UI" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="ColorRect" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.10494261, 0.091711454, 0.15005583, 0.43529412)
 
 [node name="Play" parent="UI" instance=ExtResource("1_nl8w3")]
 anchors_preset = 8
@@ -35,6 +45,14 @@ offset_bottom = 57.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Quit"
+
+[node name="Name" type="Sprite2D" parent="UI"]
+position = Vector2(192, 40)
+texture = ExtResource("3_kiqgm")
+
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(200, 112)
+texture = ExtResource("3_247la")
 
 [connection signal="pressed" from="UI/Play" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="UI/Quit" to="." method="_on_quit_pressed"]
