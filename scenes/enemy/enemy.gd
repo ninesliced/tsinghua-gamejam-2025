@@ -50,9 +50,8 @@ func _on_health_component_on_dead() -> void:
 func apply_knockback(direction: Vector2, force: float) -> void:
 	knockback = direction * force
 	if can_be_knockback:
-		velocity += knockback
-		var max_knockback: Vector2 = Vector2(abs(knockback.x), abs(knockback.y))
-		velocity = velocity.clamp(-max_knockback * 1.5, max_knockback * 1.5)
+		velocity = knockback
+
 		can_be_knockback = false
 	
 func _on_health_component_on_damage(amount: int) -> void:

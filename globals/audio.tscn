@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3lxu2b1v7d1v"]
+
+[ext_resource type="Script" uid="uid://58wjb0f84uip" path="res://globals/audio.gd" id="1_pwspk"]
+[ext_resource type="AudioStream" uid="uid://cd8xpqv58unow" path="res://assets/sfx/electric_weapon_hit_short.wav" id="2_pwspk"]
+[ext_resource type="AudioStream" uid="uid://bu3i68bt2u8it" path="res://assets/sfx/SFX_is_Charging_v1.0.wav" id="3_gqwuu"]
+[ext_resource type="AudioStream" uid="uid://dpxmh3jqqubej" path="res://assets/sfx/Exploration_v2.0.wav" id="4_67lrt"]
+[ext_resource type="AudioStream" uid="uid://b4nyh6ughhcas" path="res://assets/sfx/Fight_v2.0.wav" id="5_h7bca"]
+
+[node name="Audio" type="Node2D"]
+script = ExtResource("1_pwspk")
+
+[node name="AudioHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_pwspk")
+volume_db = -16.0
+max_polyphony = 2
+
+[node name="ChargingSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_gqwuu")
+max_polyphony = 2
+
+[node name="ExplorationMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_67lrt")
+volume_db = -16.0
+
+[node name="FightMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_h7bca")
+volume_db = -16.0

@@ -37,6 +37,8 @@ func _process(delta):
 		on_time_up()
 
 func change_to_exploration():
+	Audio.fighting.stop()
+	Audio.exploring.play()
 	change_state(GameState.EXPLORATION)
 
 func change_state(new_state: GameState):
@@ -52,10 +54,14 @@ func change_state(new_state: GameState):
 func on_time_up():
 	match game_state:
 		GameState.INIT_PREPARATION:
+			Audio.exploring.stop()
+			Audio.fighting.play()
 			return change_state(GameState.FIGHT)
 		GameState.FIGHT:
 			return change_state(GameState.EXPLORATION)
 		GameState.EXPLORATION:
+			Audio.exploring.stop()
+			Audio.fighting.play()
 			return change_state(GameState.FIGHT)
 	on_game_state_changed.emit(game_state, game_state)
 	setup_time()
