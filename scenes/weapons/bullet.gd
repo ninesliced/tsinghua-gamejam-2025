@@ -18,7 +18,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	queue_free()
 	
 	if body is Enemy:
-		Audio.hit.play()
 		body.health_component.damage(damage)
 		body.apply_knockback(direction, 10)
 
