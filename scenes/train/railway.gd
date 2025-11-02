@@ -12,6 +12,7 @@ var _way_index: int = -1
 var _timer_index: int = 0
 
 func is_tutorial() -> void:
+	tutorial = true
 	if (!GameGlobal.tutorial):
 		await GameGlobal.tutorial_ready
 	GameGlobal.tutorial.on_tutorial_state_changed.connect(_on_tutorial_on_game_state_changed)

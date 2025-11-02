@@ -66,8 +66,11 @@ func _on_health_component_on_damage(amount: int) -> void:
 func _on_navigation_agent_target_reached() -> void:
 	if !state.ATTACK == current_state:
 		return
-
-	GameGlobal.game.time_left -= 5
+	
+	if (GameGlobal.tutorial):
+		GameGlobal.tutorial.time_left -= 5
+	else:
+		GameGlobal.game.time_left -= 5
 	
 	var offset := Vector2(randf_range(-10, 10), randf_range(-10, 10))
 	var rotation := randf_range(-0.2, 0.2)
