@@ -30,5 +30,5 @@ func set_values() -> void:
 	
 	info_ui.text = "You reached the station %d/%d !\n" % [
 		GameGlobal.game.level - 1,
-		GameGlobal.train.railway.ways.size() - 1
+		GameGlobal.train.railway.ways.size()
 	]
