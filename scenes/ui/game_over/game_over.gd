@@ -4,7 +4,6 @@ extends NinePatchRect
 
 func _ready() -> void:
 	await GameGlobal.game_ready
-	GameGlobal.train.health_component.on_dead.connect(show_menu)
 	GameGlobal.game.on_game_state_changed.connect(_on_game_state_changed)
 	visible = false
 
