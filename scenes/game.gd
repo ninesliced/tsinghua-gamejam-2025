@@ -5,7 +5,8 @@ enum GameState {
 	INIT_PREPARATION,
 	FIGHT,
 	EXPLORATION,
-	GAME_OVER
+	GAME_OVER,
+	YOU_WIN
 }
 
 @export var time_each_round : float = 60.0
@@ -25,6 +26,7 @@ signal on_game_state_changed(old_state: GameState, new_state: GameState)
 signal on_level_changed(new_level: int)
 
 func _ready():
+	get_tree().paused = false
 	GameGlobal.game = self
 	setup_time()
 	GameGlobal.train.train_reached_end.connect(change_to_exploration)
@@ -36,9 +38,14 @@ func _process(delta):
 	if time_left <= 0:
 		on_time_up()
 
-func change_to_exploration():
+func change_to_exploration() -> void:
 	Audio.fighting.stop()
 	Audio.exploring.play()
+	
+	if GameGlobal.train.railway.is_over():
+		change_state(GameState.YOU_WIN)
+		return
+	
 	change_state(GameState.EXPLORATION)
 
 func change_state(new_state: GameState):

@@ -44,16 +44,16 @@ radius = 9.0
 
 [node name="AnchorDisplay" type="CharacterBody2D"]
 top_level = true
+y_sort_enabled = true
 script = ExtResource("1_22pa6")
 max_distance_to_target = 22.0
 
-[node name="AnchorSprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("electric_line")]
+[node name="AnchorSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(2, -5)
 rotation = 0.32838622
 sprite_frames = SubResource("SpriteFrames_3ac10")
 script = ExtResource("2_22pa6")
-electric_line = NodePath("")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2048

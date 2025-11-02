@@ -271,10 +271,11 @@ func _on_state_machine_on_state_changed(old_state, new_state):
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
-collision_mask = 2
+collision_mask = 3
 script = ExtResource("1_dovo2")
 
 [node name="AnchorDisplayer" type="Node2D" parent="." node_paths=PackedStringArray("anchor_manager")]
+y_sort_enabled = true
 position = Vector2(0, -6)
 script = ExtResource("15_myrg7")
 anchor_manager = NodePath("../AnchorManager")
@@ -312,7 +313,7 @@ lose_speed_stack_interval = 0.2
 
 [node name="Display" type="Node2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -9)
+position = Vector2(0, -4)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Display"]
 z_index = 1
@@ -327,7 +328,9 @@ scale_amount_max = 5.0
 scale_amount_curve = SubResource("Curve_ugbui")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Display"]
+position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_x7p2l")
+offset = Vector2(0, -5)
 
 [node name="MovementComponent" parent="." instance=ExtResource("3_gmlin")]
 

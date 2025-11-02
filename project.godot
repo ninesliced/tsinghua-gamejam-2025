@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Godot 2D project"
-run/main_scene="uid://ds7eh20eiv5le"
+run/main_scene="uid://c8a6vv3f5yqvj"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/bg_color=Color(0.913725, 0.992157, 0.870588, 1)
 boot_splash/fullsize=false

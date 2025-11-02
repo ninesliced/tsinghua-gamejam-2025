@@ -6,6 +6,7 @@
 resource_local_to_scene = true
 
 [node name="ElectricLine" type="Line2D"]
+z_index = 5
 points = PackedVector2Array(55, 39, 195, 51)
 width = 2.0
 default_color = Color(1, 0.814, 0.38, 1)

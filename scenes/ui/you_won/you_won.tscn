@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bi4gq7xlh8bub"]
+[gd_scene load_steps=4 format=3 uid="uid://boafhiic42wwg"]
 
-[ext_resource type="Texture2D" uid="uid://3tdc4o7fiqnb" path="res://assets/ui/rect/right_panel.png" id="1_vfrx6"]
-[ext_resource type="Script" uid="uid://ct4w07n8fb31t" path="res://scenes/ui/game_over/game_over.gd" id="2_i64fd"]
-[ext_resource type="PackedScene" uid="uid://d2i4w4joysljq" path="res://scenes/ui/components/button.tscn" id="4_b6337"]
+[ext_resource type="Texture2D" uid="uid://3tdc4o7fiqnb" path="res://assets/ui/rect/right_panel.png" id="1_y2oob"]
+[ext_resource type="Script" uid="uid://ufb23ndcf8d1" path="res://scenes/ui/you_won/you_won.gd" id="2_67pnr"]
+[ext_resource type="PackedScene" uid="uid://d2i4w4joysljq" path="res://scenes/ui/components/button.tscn" id="3_cxocl"]
 
-[node name="GameOver" type="NinePatchRect"]
+[node name="YouWon" type="NinePatchRect"]
+process_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -16,13 +17,13 @@ offset_right = 115.0
 offset_bottom = 69.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_vfrx6")
+texture = ExtResource("1_y2oob")
 region_rect = Rect2(0, 0, 11, 11)
 patch_margin_left = 5
 patch_margin_top = 3
 patch_margin_right = 5
 patch_margin_bottom = 7
-script = ExtResource("2_i64fd")
+script = ExtResource("2_67pnr")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -36,30 +37,28 @@ offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GameOverLabel" type="RichTextLabel" parent="VBoxContainer2"]
+[node name="YouWonLabel" type="RichTextLabel" parent="VBoxContainer2"]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 8
 bbcode_enabled = true
-text = "[center][wave amp=6.0 freq=10 ]GAME OVER"
+text = "[center][wave amp=6.0 freq=10 ]YOU WON !"
 fit_content = true
 
-[node name="BLNTLabel" type="RichTextLabel" parent="VBoxContainer2"]
+[node name="ThanksLabel" type="RichTextLabel" parent="VBoxContainer2"]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 8
-text = "Better luck next time !"
+text = "Thanks for playing our game :D"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="InfoLabel" type="RichTextLabel" parent="VBoxContainer2"]
-unique_name_in_owner = true
-process_mode = 3
+[node name="MoreLabel" type="RichTextLabel" parent="VBoxContainer2"]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 8
-text = "You reached the station 5/7 !"
+text = "Let us know what you thought about our game !"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="Retry" parent="." instance=ExtResource("4_b6337")]
+[node name="Retry" parent="." instance=ExtResource("3_cxocl")]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 0
 offset_left = 65.0
@@ -69,7 +68,7 @@ offset_bottom = 124.0
 pivot_offset = Vector2(24, 12)
 text = "Retry"
 
-[node name="Menu" parent="." instance=ExtResource("4_b6337")]
+[node name="Menu" parent="." instance=ExtResource("3_cxocl")]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 0
 offset_left = 117.0
