@@ -13,9 +13,12 @@ var _timer_index: int = 0
 func _ready() -> void:
 	curve = ways[0]
 	on_new_way.connect(GameGlobal.train._train_next_way)
+	if !GameGlobal.tutorial:
+		await GameGlobal.tutorial_ready
+		GameGlobal.tutorial.on_tutorial_state_changed.connect(_on_tutorial_on_game_state_changed)
 	if !GameGlobal.game:
 		await GameGlobal.game_ready
-	GameGlobal.game.on_game_state_changed.connect(_on_game_on_game_state_changed)
+		GameGlobal.game._on_game_on_time_changedon_game_state_changed.connect(_on_game_on_game_state_changed)
 	pass
 
 func next_way() -> bool:
@@ -30,6 +33,13 @@ func next_way() -> bool:
 
 func _on_game_on_game_state_changed(old_state: Game.GameState, new_state: Game.GameState):
 	if new_state == Game.GameState.FIGHT:
+		if (next_way()):
+			on_new_way.emit()
+
+	pass # Replace with function body.
+
+func _on_tutorial_on_game_state_changed(old_state: Tutorial.GameState, new_state: Tutorial.GameState):
+	if new_state == Tutorial.GameState.FIGHT:
 		if (next_way()):
 			on_new_way.emit()
 
