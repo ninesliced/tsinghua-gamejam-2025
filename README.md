@@ -1,20 +1,28 @@
+# Electrain
 
-downlaod the project zip
-
-# Installation setup
-
-go to AssetLib -> import
-![image](https://github.com/user-attachments/assets/aea0e528-5f28-454a-9761-e1b06c7a502e)  
+This game was made for the NAGO Game Jam 2025 with the theme "???"
 
 
-ignore asset root  
+The game is about a robot that can connect his body parts to electricity, and his objective is to protect a train from bomb monsters that want to destroy it. You can make the train move by connecting the electric generators with your body parts and also defend it using weapons you can find in various chests.
 
-![image](https://github.com/user-attachments/assets/c737d89a-1e4c-4018-8dd2-6abdab69be11)  
+## Participants
 
-remove README.md  and shaker_example  
-![image](https://github.com/user-attachments/assets/04fe9886-0d48-4292-9685-ab6e0f2b5a71)  
+- Harry
+- Notgoyome
+- Paralaxe
+- Theobosse
 
+## Is this game open source?
+**No.** In contrast to [open source software](https://en.wikipedia.org/wiki/Open-source_software), this game is only [source available](https://en.wikipedia.org/wiki/Source-available_software). **Not having a licence means that by default we reserve all original rights for the game, even if the code is public.**  
 
-go in project_settings/plugins and enable Shaker
+However, we are very lax with what you can do with the source code. This is just to legally cover our asses from abusers. 
 
-![image](https://github.com/user-attachments/assets/38abf623-38de-4ff9-9ec8-3eacac066412)
+### Examples of things that ARE okay:
+- Reusing some sprites or small bits of code (functions, classes, Godot nodes...) in your games, even commercial, and crediting us.
+- Forking this repo and making your own mods, as long as you are not profiting from them.
+
+### Examples of things that are NOT okay:
+- Taking any pre-existing or self-built executables, with no or minor modifications, or a major part of the source code, and reuploading it to other places, whether you are directly or indirectly profiting from it or not.
+- We just don't like what you are doing. (e.g., AI-powered NFT crypto trading cards)
+
+If you have any doubts please [contact us](https://ninesliced.com/#contact). We don't bite! :)
