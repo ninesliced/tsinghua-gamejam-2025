@@ -1,6 +1,10 @@
+@tool
 extends CollisionShape2D
 
-@export var level: int = 1
+@export var level: int = 1:
+	set(value):
+		level = value
+		%Label.text = str(level)
 @export var spawn_interval: Vector2 = Vector2(1, 3)
 @export var enemy_scene: PackedScene
 
@@ -16,6 +20,7 @@ func _ready() -> void:
 	await GameGlobal.game_ready
 	GameGlobal.game.on_level_changed.connect(_level_changed)
 	GameGlobal.game.on_game_state_changed.connect(_exploration_mode)
+	%Label.hide()
 
 func _exploration_mode(old_state: Game.GameState, new_state: Game.GameState) -> void:
 	if _active and new_state == Game.GameState.EXPLORATION:
