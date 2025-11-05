@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://hxftew76u0of" path="res://scenes/ui/minimap/ui.tscn" id="2_u3awl"]
 [ext_resource type="TileSet" uid="uid://dckjsir55y6u4" path="res://assets/tilemap/map.tres" id="3_2ku1j"]
 [ext_resource type="PackedScene" uid="uid://boafhiic42wwg" path="res://scenes/ui/you_won/you_won.tscn" id="5_gnai3"]
-[ext_resource type="PackedScene" uid="uid://djy7d8gmx84od" path="res://scenes/train/railway.tscn" id="6_i8kv5"]
+[ext_resource type="PackedScene" path="res://scenes/train/railway.tscn" id="6_i8kv5"]
 [ext_resource type="PackedScene" uid="uid://b8phwynxhybcm" path="res://scenes/train/train.tscn" id="7_dxn3v"]
 [ext_resource type="PackedScene" uid="uid://lheoc2svvmfo" path="res://scenes/anchors/generator.tscn" id="8_14jow"]
 [ext_resource type="PackedScene" uid="uid://cwp27or88qkvo" path="res://scenes/player/player.tscn" id="9_mvsps"]
@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bi4gq7xlh8bub" path="res://scenes/ui/game_over/game_over.tscn" id="12_f31uk"]
 [ext_resource type="Resource" uid="uid://ch6py7ka15eau" path="res://scenes/weapons/data/tommy_gun.tres" id="13_gnai3"]
 [ext_resource type="Resource" uid="uid://c5j686f4dm608" path="res://scenes/weapons/data/ak-47.tres" id="14_i8kv5"]
-[ext_resource type="Resource" uid="uid://cof3joqgsk08f" path="res://scenes/weapons/data/sniper.tres" id="15_dxn3v"]
+[ext_resource type="Resource" uid="uid://dnc7xd3cdp0h0" path="res://scenes/weapons/data/sniper.tres" id="15_dxn3v"]
 
 [sub_resource type="Curve2D" id="Curve2D_dxn3v"]
 _data = {

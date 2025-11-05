@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cwp27or88qkvo" path="res://scenes/player/player.tscn" id="1_7i0yp"]
 [ext_resource type="Script" uid="uid://dun17vq27vq80" path="res://scenes/game.gd" id="1_jucne"]
-[ext_resource type="PackedScene" uid="uid://djy7d8gmx84od" path="res://scenes/train/railway.tscn" id="2_8c0u5"]
+[ext_resource type="PackedScene" path="res://scenes/train/railway.tscn" id="2_8c0u5"]
 [ext_resource type="PackedScene" uid="uid://b8phwynxhybcm" path="res://scenes/train/train.tscn" id="3_5xjal"]
 [ext_resource type="TileSet" uid="uid://dckjsir55y6u4" path="res://assets/tilemap/map.tres" id="4_8c0u5"]
 [ext_resource type="PackedScene" uid="uid://iv7okvrk67fi" path="res://scenes/spawner/spawner.tscn" id="5_5xjal"]

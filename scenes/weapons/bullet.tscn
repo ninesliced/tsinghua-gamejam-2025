@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://evyd13f57b12"]
 
-[ext_resource type="Script" uid="uid://7k30jy3mchsj" path="res://scenes/weapons/bullet.gd" id="1_mx1hr"]
+[ext_resource type="Script" path="res://scenes/weapons/bullet.gd" id="1_mx1hr"]
 [ext_resource type="PackedScene" uid="uid://k4wl84m08hb5" path="res://scenes/anchors/electric_line/electric_line.tscn" id="2_dnt7v"]
 [ext_resource type="Shader" uid="uid://birv8v71nvo3v" path="res://addons/shaker/components/vfx/shaders/fill_color.gdshader" id="3_1t05q"]
 
@@ -46,7 +46,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0.01, 0.1),
-"transitions": PackedFloat32Array(1, 1),
+"transitions": PackedFloat32Array(6.96441, 1),
 "update": 0,
 "values": [1.0, 0.0]
 }
