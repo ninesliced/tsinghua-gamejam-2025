@@ -1,6 +1,6 @@
 # Electrain
 
-This game was made for the NAGO Game Jam 2025 with the theme "???"
+This game was made for the NAGO Game Jam 2025 with the theme "闪" (
 
 
 The game is about a robot that can connect his body parts to electricity, and his objective is to protect a train from bomb monsters that want to destroy it. You can make the train move by connecting the electric generators with your body parts and also defend it using weapons you can find in various chests.

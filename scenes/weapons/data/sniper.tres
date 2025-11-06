@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="WeaponData" load_steps=4 format=3 uid="uid://dnc7xd3cdp0h0"]
 
-[ext_resource type="Script" path="res://scenes/weapons/weapon_data.gd" id="1_i2lv1"]
+[ext_resource type="Script" uid="uid://ds1dp5nfypweh" path="res://scenes/weapons/weapon_data.gd" id="1_i2lv1"]
 [ext_resource type="Texture2D" uid="uid://cx1hl3ywjwx30" path="res://assets/tilesheet/tilemap_packed.png" id="2_7iy7w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ntfm"]

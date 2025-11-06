@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d0fww4avim5dn" path="res://assets/enemy/enemy_electrocute1.png" id="3_gl05p"]
 [ext_resource type="Texture2D" uid="uid://vqw7njehqss6" path="res://assets/enemy/enemy_electrocute2.png" id="4_gl05p"]
 [ext_resource type="Texture2D" uid="uid://cx1hl3ywjwx30" path="res://assets/tilesheet/tilemap_packed.png" id="7_13gj6"]
-[ext_resource type="Script" uid="uid://x8plmwhvkm6r" path="res://scenes/enemy/explosion_particule.gd" id="7_nbhyu"]
+[ext_resource type="Script" path="res://scenes/enemy/explosion_particule.gd" id="7_nbhyu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_40wdo"]
 radius = 8.0
@@ -150,7 +150,6 @@ shape = SubResource("CircleShape2D_40wdo")
 [node name="NavigationAgent" type="NavigationAgent2D" parent="."]
 unique_name_in_owner = true
 path_desired_distance = 3.0
-target_desired_distance = 20.0
 path_postprocessing = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
