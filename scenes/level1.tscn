@@ -160,13 +160,13 @@ spawn_interval = Vector2(1, 14)
 position = Vector2(640, 735)
 shape = SubResource("RectangleShape2D_d3jkd")
 level = 2
-spawn_interval = Vector2(1, 4)
+spawn_interval = Vector2(2, 4)
 
 [node name="Spawner2_2" parent="Spawners" instance=ExtResource("10_d3jkd")]
 position = Vector2(798.0625, 348.04688)
 shape = SubResource("RectangleShape2D_ai3nx")
 level = 2
-spawn_interval = Vector2(1, 4)
+spawn_interval = Vector2(3, 6)
 
 [node name="Spawner3_1" parent="Spawners" instance=ExtResource("10_d3jkd")]
 position = Vector2(1008, 87)
