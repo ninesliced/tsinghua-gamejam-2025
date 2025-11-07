@@ -11,7 +11,7 @@ region = Rect2(89, 242, 21, 9)
 [resource]
 script = ExtResource("1_i2lv1")
 texture = SubResource("AtlasTexture_8ntfm")
-damage = 100
+damage = 1000
 delay = 1.5
 sound = ExtResource("2_8ntfm")
 metadata/_custom_type_script = "uid://ds1dp5nfypweh"
