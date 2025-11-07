@@ -16,6 +16,7 @@ func _ready() -> void:
 	await GameGlobal.tutorial_ready
 	GameGlobal.tutorial.on_level_changed.connect(_level_changed)
 	GameGlobal.tutorial.on_tutorial_state_changed.connect(_exploration_mode)
+	%Label.hide()
 
 func _exploration_mode(old_state: Tutorial.GameState, new_state: Tutorial.GameState) -> void:
 	if _active and new_state == Tutorial.GameState.EXPLORATION:
