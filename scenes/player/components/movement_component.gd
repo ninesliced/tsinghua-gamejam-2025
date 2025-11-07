@@ -7,6 +7,7 @@ var velocity = Vector2(0, 0)
 var can_accelerate = true
 var can_decelerate = true
 var _disabled = false
+var _moving = false
 @export var time_to_accelerate = 0.2
 @export var time_to_decelerate = 0.1
 @export var speed = 150
@@ -49,9 +50,12 @@ func handle_movement(delta, velocity):
 	if vec == Vector2(0, 0):
 		emit_signal("on_stop")
 		movement_sound.stop()
+		_moving = false
 	else:
 		emit_signal("on_move", vec)
-		movement_sound.play()
+		if !_moving:
+			_moving = true
+			movement_sound.play()
 	new_velocity = handle_acceleration_decceleration(delta, vec, velocity)
 	
 	return new_velocity
