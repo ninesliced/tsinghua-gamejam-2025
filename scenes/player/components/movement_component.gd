@@ -10,6 +10,7 @@ var _disabled = false
 @export var time_to_accelerate = 0.2
 @export var time_to_decelerate = 0.1
 @export var speed = 150
+@onready var movement_sound = $Movement
 
 signal on_move(velocity: Vector2)
 signal on_stop()
@@ -47,8 +48,10 @@ func handle_movement(delta, velocity):
 	vec = vec.normalized()
 	if vec == Vector2(0, 0):
 		emit_signal("on_stop")
+		movement_sound.stop()
 	else:
 		emit_signal("on_move", vec)
+		movement_sound.play()
 	new_velocity = handle_acceleration_decceleration(delta, vec, velocity)
 	
 	return new_velocity

@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cwp27or88qkvo" path="res://scenes/player/player.tscn" id="9_mvsps"]
 [ext_resource type="PackedScene" uid="uid://iv7okvrk67fi" path="res://scenes/spawner/spawner.tscn" id="10_d3jkd"]
 [ext_resource type="PackedScene" uid="uid://c3xh7flyjm5dw" path="res://scenes/ui/pause/pause_menu.tscn" id="11_2ku1j"]
-[ext_resource type="PackedScene" uid="uid://djqcocd2xyiyq" path="res://scenes/enemy/big_enemy.tscn" id="11_14jow"]
+[ext_resource type="PackedScene" path="res://scenes/enemy/big_enemy.tscn" id="11_14jow"]
 [ext_resource type="PackedScene" uid="uid://b4halr0pru6gq" path="res://scenes/collectibles/chest.tscn" id="11_u3awl"]
 [ext_resource type="Resource" uid="uid://b1sdk6ix7es80" path="res://scenes/weapons/data/gun.tres" id="12_2ku1j"]
 [ext_resource type="PackedScene" uid="uid://bi4gq7xlh8bub" path="res://scenes/ui/game_over/game_over.tscn" id="12_f31uk"]

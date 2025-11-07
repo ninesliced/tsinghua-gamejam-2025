@@ -4,6 +4,8 @@ class_name AnchorManager
 @export var anchor_max = 3
 @export var list_anchors: Array[Anchor] = []
 @onready var anchor_scene: PackedScene = preload("res://scenes/anchors/anchor.tscn")
+@onready var setAnchor = $SetAnchor
+@onready var removeAnchor = $RemoveAnchor
 
 signal on_anchor_used(anchor: Anchor)
 signal on_anchor_added(anchor: Anchor)
@@ -48,6 +50,7 @@ func use_anchor():
 	anchor.enable()
 	on_anchor_used.emit(anchor)
 	SignalBus.on_anchor_placed.emit(anchor)
+	setAnchor.play()
 
 
 func add_anchor(anchor: Anchor):
@@ -60,6 +63,7 @@ func add_anchor(anchor: Anchor):
 	anchor.disable()
 	on_anchor_added.emit(anchor)
 	anchors_in_range.erase(anchor)
+	removeAnchor.play()
 
 func enable():
 	enabled = true

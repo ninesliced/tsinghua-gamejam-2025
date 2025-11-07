@@ -41,4 +41,7 @@ scale_amount_curve = SubResource("Curve_eo7p8")
 [node name="DelayTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 
+[node name="Shoot" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+
 [connection signal="timeout" from="DelayTimer" to="." method="_on_delay_timer_timeout"]

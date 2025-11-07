@@ -5,11 +5,13 @@ var is_open : bool = false
 
 @onready var animated_sprite_2d: AnimatedSprite2D = %AnimatedSprite2D
 @onready var interaction_area: Area2D = $Area2D
+@onready var openchest_sound = $OpenChest
 
 func _on_interaction_area_body_entered(body: Node) -> void:
 	if body is Player and !is_open:
 		is_open = true
 		animated_sprite_2d.play("open")
+		openchest_sound.play()
 		if len(items) > 0:
 			items.shuffle()
 			var selected_item = items[0]

@@ -11,3 +11,4 @@ class_name WeaponData
 @export var spread_angle: float = 0.0
 @export var automatic: bool = false
 @export var bullet_speed: float = 400.0
+@export var sound: AudioStream

@@ -1,9 +1,9 @@
-[gd_scene load_steps=35 format=3 uid="uid://cwp27or88qkvo"]
+[gd_scene load_steps=39 format=3 uid="uid://cwp27or88qkvo"]
 
 [ext_resource type="Script" uid="uid://bcy3y0yh1qhom" path="res://scenes/player/player.gd" id="1_dovo2"]
 [ext_resource type="PackedScene" uid="uid://b62c81khntjjv" path="res://addons/shaker/components/gameplay/state_machine/state_machine.tscn" id="2_75vfm"]
 [ext_resource type="Script" uid="uid://b28k41i5rvxp2" path="res://scenes/player/player_animation_manager.gd" id="2_fm80t"]
-[ext_resource type="Script" uid="uid://blouvq6vn0e70" path="res://scenes/player/weapon_preview.gd" id="2_kvlxm"]
+[ext_resource type="Script" path="res://scenes/player/weapon_preview.gd" id="2_kvlxm"]
 [ext_resource type="PackedScene" uid="uid://dbph4hfobefpw" path="res://addons/shaker/components/gameplay/state_machine/state.tscn" id="3_0owmy"]
 [ext_resource type="PackedScene" uid="uid://bhw42if6pyrcm" path="res://scenes/player/components/movement_component.tscn" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://cd3vndlmhk4b" path="res://scenes/player/states/normal.gd" id="4_0owmy"]
@@ -14,9 +14,13 @@
 [ext_resource type="Texture2D" uid="uid://cx1hl3ywjwx30" path="res://assets/tilesheet/tilemap_packed.png" id="8_myrg7"]
 [ext_resource type="PackedScene" uid="uid://dqieuqmaqtj3n" path="res://scenes/components/interaction_zone_component.tscn" id="10_je7p5"]
 [ext_resource type="Script" uid="uid://d1b7pxmk0hej1" path="res://scenes/player/components/movement_dash_component.gd" id="11_gx1jg"]
-[ext_resource type="PackedScene" uid="uid://coryu46ck21v" path="res://scenes/anchors/anchor_preview.tscn" id="15_fcs02"]
+[ext_resource type="AudioStream" uid="uid://jiecsu256orr" path="res://assets/sfx/SFX_RobotWheel.wav" id="12_8ydkj"]
+[ext_resource type="PackedScene" path="res://scenes/anchors/anchor_preview.tscn" id="15_fcs02"]
+[ext_resource type="AudioStream" uid="uid://dbjk8jtn71bkr" path="res://assets/sfx/SFX_SetAnchor.wav" id="15_lgqa7"]
 [ext_resource type="Script" uid="uid://bjhtjigiy7f1t" path="res://scenes/player/anchor_displayer.gd" id="15_myrg7"]
-[ext_resource type="PackedScene" uid="uid://dgtr4jc6gcnqx" path="res://scenes/player/components/weapon_component.tscn" id="16_myrg7"]
+[ext_resource type="AudioStream" uid="uid://do5dcnqrf4f6m" path="res://assets/sfx/SFX_RemoveAnchor.wav" id="16_8ydkj"]
+[ext_resource type="PackedScene" path="res://scenes/player/components/weapon_component.tscn" id="16_myrg7"]
+[ext_resource type="AudioStream" uid="uid://b2rcb57dwfwqy" path="res://assets/sfx/SFX_ChangeWeapon.wav" id="20_3j4b4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ydkj"]
 atlas = ExtResource("8_myrg7")
@@ -435,6 +439,10 @@ offset = Vector2(0, -5)
 
 [node name="MovementComponent" parent="." instance=ExtResource("3_gmlin")]
 
+[node name="Movement" type="AudioStreamPlayer" parent="MovementComponent"]
+stream = ExtResource("12_8ydkj")
+volume_db = -12.0
+
 [node name="MovementAnchorComponent" type="Node" parent="MovementComponent" node_paths=PackedStringArray("anchor_manager", "movement_component")]
 script = ExtResource("7_qek5x")
 anchor_manager = NodePath("../../AnchorManager")
@@ -452,6 +460,14 @@ position = Vector2(0, -9)
 script = ExtResource("4_lvxji")
 anchor_max = 5
 
+[node name="SetAnchor" type="AudioStreamPlayer" parent="AnchorManager"]
+stream = ExtResource("15_lgqa7")
+volume_db = -12.0
+
+[node name="RemoveAnchor" type="AudioStreamPlayer" parent="AnchorManager"]
+stream = ExtResource("16_8ydkj")
+volume_db = -12.0
+
 [node name="InteractionZoneComponent" parent="." instance=ExtResource("10_je7p5")]
 unique_name_in_owner = true
 position = Vector2(0, -9)
@@ -467,6 +483,9 @@ script = SubResource("GDScript_h17s1")
 [node name="WeaponComponent" parent="." instance=ExtResource("16_myrg7")]
 unique_name_in_owner = true
 position = Vector2(0, -8)
+
+[node name="changeWeapon" type="AudioStreamPlayer" parent="WeaponComponent"]
+stream = ExtResource("20_3j4b4")
 
 [node name="AnchorPreview" parent="." instance=ExtResource("15_fcs02")]
 

@@ -13,6 +13,8 @@ class_name Weapon
 			%Sprite.texture = weapon_data.texture
 		if _delay_timer:
 			_delay_timer.wait_time = weapon_data.delay
+		if %Shoot:
+			%Shoot.stream = weapon_data.sound
 var _can_shoot: bool = true
 
 func _process(delta: float) -> void:
@@ -67,6 +69,7 @@ func _spawn_bullet(angle_offset: float) -> void:
 	bullet_instance.damage = weapon_data.damage
 	
 	get_tree().current_scene.add_child(bullet_instance)
+	%Shoot.play()
 
 func _on_delay_timer_timeout() -> void:
 	_can_shoot = true

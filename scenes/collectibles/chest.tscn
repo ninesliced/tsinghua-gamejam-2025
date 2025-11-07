@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4halr0pru6gq"]
+[gd_scene load_steps=10 format=3 uid="uid://b4halr0pru6gq"]
 
 [ext_resource type="Script" uid="uid://diew0l1r13u8n" path="res://scenes/collectibles/chest.gd" id="1_apxcf"]
 [ext_resource type="Texture2D" uid="uid://cx1hl3ywjwx30" path="res://assets/tilesheet/tilemap_packed.png" id="2_8sbtr"]
+[ext_resource type="AudioStream" uid="uid://de01yegw1bmav" path="res://assets/sfx/SFX_OpenChest.wav" id="3_8sbtr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ri47"]
 atlas = ExtResource("2_8sbtr")
@@ -60,3 +61,6 @@ shape = SubResource("RectangleShape2D_apxcf")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 4.5)
 shape = SubResource("RectangleShape2D_8sbtr")
+
+[node name="OpenChest" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8sbtr")

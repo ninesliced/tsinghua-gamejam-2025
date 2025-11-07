@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="WeaponData" load_steps=4 format=3 uid="uid://c5j686f4dm608"]
+[gd_resource type="Resource" script_class="WeaponData" load_steps=5 format=3 uid="uid://c5j686f4dm608"]
 
 [ext_resource type="Script" uid="uid://ds1dp5nfypweh" path="res://scenes/weapons/weapon_data.gd" id="1_opbxh"]
 [ext_resource type="Texture2D" uid="uid://cx1hl3ywjwx30" path="res://assets/tilesheet/tilemap_packed.png" id="2_06ovi"]
+[ext_resource type="AudioStream" uid="uid://ypl7ly83v51a" path="res://assets/sfx/SFX_MachineGunWithoutCooling.wav" id="2_71doy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_71doy"]
 atlas = ExtResource("2_06ovi")
@@ -15,4 +16,5 @@ delay = 0.4
 bullets_per_shot = 3
 fire_rate = 0.1
 spread_angle = 10.0
+sound = ExtResource("2_71doy")
 metadata/_custom_type_script = "uid://ds1dp5nfypweh"
